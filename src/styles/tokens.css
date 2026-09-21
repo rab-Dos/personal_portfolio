@@ -1,0 +1,131 @@
+/* ==========================================================================
+   TOKENS DE DISEÑO
+   Paleta, tipografía, espacios y formas compartidos por todo el portafolio.
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  /* Paleta base */
+  --color-void-base: #0e0918;
+  --color-elevated-surface: #1a1624;
+  --color-deep-panel: #1b1728;
+  --color-muted-shell: #2c2834;
+  --color-border-smoke: #3e3a46;
+  --color-ash-text: #d1cece;
+  --color-fog-text: #9d9797;
+  --color-cloud-white: #ffffff;
+  --color-dawn-base: #fffafa;
+  --color-paper-surface: #ffffff;
+  --color-lilac-panel: #f2edf5;
+  --color-mist-shell: #e7e0eb;
+  --color-graphite-violet: #251d2f;
+  --color-plum-gray: #5f5868;
+  --color-accessible-border-light: #76707e;
+  --color-current-blue-light: #075f9e;
+  --gradient-ember-cta: linear-gradient(30deg, rgb(253 137 37), rgb(255 12 0));
+  --gradient-electric-current: linear-gradient(141deg, rgb(7 122 199), rgb(107 33 239));
+
+  /* Tema claro por defecto */
+  --surface-page: var(--color-dawn-base);
+  --surface-card: var(--color-paper-surface);
+  --surface-panel: var(--color-lilac-panel);
+  --surface-muted: var(--color-mist-shell);
+  --text-primary: var(--color-graphite-violet);
+  --text-strong: var(--color-void-base);
+  --text-secondary: var(--color-plum-gray);
+  --hero-emphasis-color: #b93612;
+  --gradient-hero-emphasis: linear-gradient(30deg, rgb(185 54 18), rgb(167 13 0));
+  --text-on-ember: var(--color-void-base);
+  --border-control: var(--color-accessible-border-light);
+  --border-subtle: #d9d2df;
+  --interactive-accent: var(--color-current-blue-light);
+  --glass-surface: color-mix(in srgb, var(--surface-page) 68%, transparent);
+  --grid-line: rgb(37 29 47 / 8%);
+  --ambient-ember: rgb(217 126 75 / 14%);
+  --ambient-current: rgb(90 36 201 / 9%);
+  --hero-copy-scrim: rgb(255 250 250 / 68%);
+  --hero-text-shadow: 0 1px 18px rgb(255 250 250 / 92%);
+
+  /* Tipografía */
+  --font-geomanist: 'DM Sans Variable', 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-geomanist-book: var(--font-geomanist);
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --text-body: 1rem;
+  --text-body-sm: 0.875rem;
+  --text-display: clamp(3.25rem, 8vw, 6.75rem);
+
+  /* Composición */
+  --page-max-width: 75rem;
+  --nav-height: 4.75rem;
+  --radius-button: 0.5rem;
+  --radius-card: 1rem;
+  --radius-panel: 1.5rem;
+  --radius-pill: 9999px;
+}
+
+/* Tema oscuro seleccionado explícitamente */
+[data-theme='dark'] {
+  color-scheme: dark;
+  --surface-page: var(--color-void-base);
+  --surface-card: var(--color-elevated-surface);
+  --surface-panel: var(--color-deep-panel);
+  --surface-muted: var(--color-muted-shell);
+  --text-primary: var(--color-ash-text);
+  --text-strong: var(--color-cloud-white);
+  --text-secondary: var(--color-fog-text);
+  --hero-emphasis-color: #ff6236;
+  --gradient-hero-emphasis: var(--gradient-ember-cta);
+  --text-on-ember: var(--color-void-base);
+  --border-control: #77717f;
+  --border-subtle: var(--color-border-smoke);
+  --interactive-accent: #63a9e8;
+  --grid-line: rgb(229 231 235 / 7%);
+  --ambient-ember: rgb(253 137 37 / 10%);
+  --ambient-current: rgb(107 33 239 / 12%);
+  --hero-copy-scrim: rgb(14 9 24 / 62%);
+  --hero-text-shadow: 0 2px 18px rgb(14 9 24 / 96%);
+}
+
+/* Tema oscuro por preferencia del sistema, salvo elección explícita */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+    --surface-page: var(--color-void-base);
+    --surface-card: var(--color-elevated-surface);
+    --surface-panel: var(--color-deep-panel);
+    --surface-muted: var(--color-muted-shell);
+    --text-primary: var(--color-ash-text);
+    --text-strong: var(--color-cloud-white);
+    --text-secondary: var(--color-fog-text);
+    --hero-emphasis-color: #ff6236;
+    --gradient-hero-emphasis: var(--gradient-ember-cta);
+    --text-on-ember: var(--color-void-base);
+    --border-control: #77717f;
+    --border-subtle: var(--color-border-smoke);
+    --interactive-accent: #63a9e8;
+    --grid-line: rgb(229 231 235 / 7%);
+    --ambient-ember: rgb(253 137 37 / 10%);
+    --ambient-current: rgb(107 33 239 / 12%);
+    --hero-copy-scrim: rgb(14 9 24 / 62%);
+    --hero-text-shadow: 0 2px 18px rgb(14 9 24 / 96%);
+  }
+}
+
+/* Integración CSS-first con Tailwind CSS 4 */
+@theme inline {
+  --color-surface-page: var(--surface-page);
+  --color-surface-card: var(--surface-card);
+  --color-surface-panel: var(--surface-panel);
+  --color-surface-muted: var(--surface-muted);
+  --color-text-primary: var(--text-primary);
+  --color-text-strong: var(--text-strong);
+  --color-text-secondary: var(--text-secondary);
+  --color-hero-emphasis: var(--hero-emphasis-color);
+  --color-text-on-ember: var(--text-on-ember);
+  --color-border-control: var(--border-control);
+  --color-border-subtle: var(--border-subtle);
+  --color-interactive-accent: var(--interactive-accent);
+  --font-sans: var(--font-geomanist);
+}

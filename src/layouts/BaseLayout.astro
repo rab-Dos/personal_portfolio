@@ -1,0 +1,127 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: URL | string;
+  image?: string;
+  imageAlt?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  image,
+  imageAlt,
+  type = 'website',
+  noindex = false,
+} = Astro.props;
+
+const canonicalUrl = canonical
+  ? new URL(canonical, Astro.site ?? Astro.url)
+  : Astro.site
+    ? new URL(Astro.url.pathname, Astro.site)
+    : undefined;
+const socialImage = image && Astro.site ? new URL(image, Astro.site) : undefined;
+---
+
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <!-- Metadatos esenciales y viewport compatible con áreas seguras -->
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0e0918" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#fffafa" media="(prefers-color-scheme: light)" />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <title>{title}</title>
+
+    <!-- Metadatos sociales: la imagen se habilitará cuando exista un recurso validado -->
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content="Jesus Arellano" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+    {socialImage && <meta property="og:image" content={socialImage} />}
+    {socialImage && imageAlt && <meta property="og:image:alt" content={imageAlt} />}
+    <meta name="twitter:card" content={socialImage ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {socialImage && <meta name="twitter:image" content={socialImage} />}
+    {socialImage && imageAlt && <meta name="twitter:image:alt" content={imageAlt} />}
+
+    <!-- Preferencia de tema aplicada antes del primer render para evitar destellos -->
+    <script is:inline>
+      try {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light' || savedTheme === 'dark') {
+          document.documentElement.dataset.theme = savedTheme;
+        }
+      } catch {}
+    </script>
+  </head>
+  <body>
+    <!-- Acceso directo al contenido principal para navegación por teclado -->
+    <a class="skip-link" href="#main-content">Saltar al contenido principal</a>
+
+    <!-- Contenido específico de cada página -->
+    <slot />
+
+    <!-- Mejora progresiva para alternar y conservar la preferencia de tema -->
+    <script>
+      const themeButton = document.querySelector('[data-theme-toggle]');
+      const sunIcon = document.querySelector('[data-theme-icon="sun"]');
+      const moonIcon = document.querySelector('[data-theme-icon="moon"]');
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+      const currentTheme = () =>
+        document.documentElement.dataset.theme ?? (mediaQuery.matches ? 'dark' : 'light');
+
+      const updateButton = () => {
+        if (!(themeButton instanceof HTMLButtonElement)) return;
+        const isDark = currentTheme() === 'dark';
+        themeButton.setAttribute('aria-pressed', String(isDark));
+        themeButton.dataset.themeState = isDark ? 'dark' : 'light';
+        if (sunIcon instanceof SVGElement) sunIcon.style.opacity = isDark ? '1' : '0';
+        if (moonIcon instanceof SVGElement) moonIcon.style.opacity = isDark ? '0' : '1';
+        themeButton.setAttribute(
+          'aria-label',
+          isDark ? 'Cambiar al tema claro' : 'Cambiar al tema oscuro',
+        );
+      };
+
+      const applyTheme = (nextTheme: 'light' | 'dark') => {
+        document.documentElement.dataset.theme = nextTheme;
+        try {
+          localStorage.setItem('theme', nextTheme);
+        } catch {}
+        updateButton();
+      };
+
+      themeButton?.addEventListener('click', () => {
+        const nextTheme = currentTheme() === 'dark' ? 'light' : 'dark';
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (!document.startViewTransition || reduceMotion) {
+          applyTheme(nextTheme);
+          return;
+        }
+
+        document.startViewTransition(() => applyTheme(nextTheme));
+      });
+
+      updateButton();
+    </script>
+  </body>
+</html>

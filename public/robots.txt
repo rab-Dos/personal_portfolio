@@ -1,0 +1,3 @@
+# Indexación pública básica; el sitemap se añadirá al confirmar SITE_URL.
+User-agent: *
+Allow: /

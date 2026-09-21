@@ -1,0 +1,20 @@
+---
+import SiteHeader from '../components/layout/SiteHeader.astro';
+import HeroSection from '../components/sections/HeroSection.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Jesus Arellano — Development, AI & Data Architect';
+const description =
+  'Portafolio personal de Jesus Arellano: arquitectura, desarrollo, inteligencia artificial y datos.';
+---
+
+<BaseLayout title={title} description={description}>
+  <!-- Navegación global del portafolio -->
+  <SiteHeader />
+
+  <!-- Contenido principal de la página de inicio -->
+  <main id="main-content">
+    <!-- Hero de presentación -->
+    <HeroSection />
+  </main>
+</BaseLayout>
