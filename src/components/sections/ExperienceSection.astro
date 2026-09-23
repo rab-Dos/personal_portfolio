@@ -1,0 +1,1051 @@
+---
+const experience = [
+  {
+    id: 'm3-codice',
+    period: '2021 — Presente',
+    role: 'Technical Lead & Database Architect',
+    company: 'M3 Códice Integral',
+    externalLink: null,
+    summary:
+      'Liderazgo técnico, arquitectura de soluciones, modelado de datos e integraciones empresariales para productos con alta carga documental y operativa. Promovido para liderar la célula de desarrollo e innovación de la organización, transformando procesos operativos tradicionales en ecosistemas digitales unificados y escalables.',
+    outcomes: ['Arquitecturas concurrentes', 'Gobierno de datos', 'Integraciones críticas'],
+    modalSections: [
+      {
+        title: 'Logros e impacto',
+        items: [
+          {
+            heading: 'Arquitectura de Software (Proyecto Hexagon)',
+            description: 'Lidero el diseño y desarrollo de un ERP centralizado en MS SQL Server para unificar la operación global de la empresa, eliminando silos de información.',
+          },
+          {
+            heading: 'Innovación con IA Generativa',
+            description: 'Implementé soluciones de vanguardia como el procesamiento automatizado de CFDI 4.0 con IA y un gestor documental inteligente basado en Arquitectura RAG y Vector Embeddings (LanceDB).',
+          },
+          {
+            heading: 'Liderazgo de Equipo',
+            description: 'Gestiono una célula de desarrollo (Frontend y Backend) bajo metodologías ágiles (Scrum), asegurando la calidad del código mediante pruebas automatizadas (Playwright/Pytest) y documentación técnica.',
+          },
+          {
+            heading: 'Inteligencia de Negocios',
+            description: 'Diseñé un Data Lake que alimenta tableros en Power BI para el monitoreo de métricas críticas de servicio, garantías y sostenibilidad (Métricas Verdes).',
+          },
+        ],
+      },
+    ],
+    highlight: true,
+  },
+  {
+    id: 'alexandria-studio',
+    period: '2017 — Presente',
+    role: 'Co-fundador & Solutions Architect',
+    company: 'Alexandria Studio',
+    externalLink: 'https://alexandriastudio.cloud/',
+    summary:
+      'Dirección técnica y visual de la firma, definición de estándares de desarrollo, identidad digital e infraestructura de documentación como código.',
+    outcomes: ['Arquitectura de producto', 'Documentation as Code', 'Dirección técnica'],
+    modalSections: [],
+    highlight: false,
+  },
+  {
+    id: 'twist-and-beat',
+    period: '2020 — 2024',
+    role: 'Freelance Full Stack Developer & Lead',
+    company: 'Twist & Beat',
+    externalLink: null,
+    summary:
+      'Gestión y ejecución integral de proyectos tecnológicos personalizados, abarcando desde el levantamiento de requerimientos hasta el despliegue y mantenimiento de soluciones digitales.',
+    outcomes: ['Full stack', 'Ciclo de vida completo', 'Entrega continua'],
+    modalSections: [
+      {
+        title: 'Responsabilidades clave',
+        items: [
+          {
+            heading: 'Desarrollo Full-stack',
+            description: 'Diseño y construcción de aplicaciones web y sitios personalizados utilizando diversos lenguajes y frameworks según las necesidades del cliente (PHP, JavaScript, C#).',
+          },
+          {
+            heading: 'Consultoría Técnica y UI/UX',
+            description: 'Asesoría en la arquitectura de sistemas y creación de identidades visuales corporativas, integrando diseño gráfico profesional con funcionalidad técnica.',
+          },
+          {
+            heading: 'Administración de Datos',
+            description: 'Implementación y optimización de bases de datos (MySQL, SQL Server, PostgreSQL) para asegurar la integridad y rapidez en la consulta de información.',
+          },
+          {
+            heading: 'Infraestructura',
+            description: 'Configuración de entornos de alojamiento (WAMP/LAMP) y administración básica de servidores para garantizar la disponibilidad de los proyectos.',
+          },
+        ],
+      },
+    ],
+    highlight: false,
+  },
+  {
+    id: 'idear-electronica',
+    period: '2011 — 2021',
+    role: 'Control Center Supervisor & IT Specialist',
+    company: 'Idear Electrónica / OPT — Sistema BEA',
+    externalLink: null,
+    summary:
+      'Responsable de la integridad técnica y operativa de los sistemas de peaje para proyectos masivos de transporte (Metrobús y Mexibús), asegurando la continuidad del servicio mediante la gestión avanzada de bases de datos y la estandarización de procesos y documentación de Incidencias.',
+    outcomes: ['Analítica masiva', 'ISO 9001:2015', 'Operación crítica'],
+    modalSections: [
+      {
+        title: 'Logros e impacto',
+        items: [
+          {
+            heading: 'Gestión de Datos a Gran Escala',
+            description: 'Administré y monitoreé 36 repositorios de MS SQL Server distribuidos, garantizando la integridad de las transacciones y la replicación exitosa hacia el nodo central.',
+          },
+          {
+            heading: 'Desarrollo de Soluciones Internas',
+            description: 'Diseñé y modelé la base de datos y el portal web (WAMP) para la gestión de incidencias del Corredor Eje 4 Sur, optimizando la generación de reportes operativos en tiempo real.',
+          },
+          {
+            heading: 'Expansión y Escalabilidad',
+            description: 'Lideré la réplica del modelo técnico, documentación y procesos para el lanzamiento de los proyectos Mexibús Línea 3 y Línea 4, logrando una transición operativa sin contratiempos.',
+          },
+          {
+            heading: 'Consultoría de Calidad',
+            description: 'Actué como consultor interno para la certificación ISO 9001:2015, gestionando la documentación técnica, atendiendo auditorías y asegurando el cumplimiento de estándares internacionales.',
+          },
+          {
+            heading: 'Gestión de Equipos',
+            description: 'Supervisé y coordiné equipos técnicos (de hasta 14 elementos) para el soporte de hardware, redes y videovigilancia en múltiples ubicaciones geográficas.',
+          },
+        ],
+      },
+    ],
+    highlight: false,
+  },
+];
+
+const portraitSources = {
+  avif: '/images/profile/personal-pic.avif',
+  webp: '/images/profile/personal-pic.webp',
+  png: '/images/profile/personal-pic.png',
+};
+---
+
+<section class="experience-section" id="experiencia" aria-labelledby="experience-title">
+  <div class="page-container">
+    <!-- Assets copied from resources/personal_pic.* and resources/top_icon.svg. -->
+    <header class="experience-header">
+      <div class="experience-intro">
+        <h2 class="experience-kicker" id="experience-title">
+          <span class="experience-kicker-icon" aria-hidden="true"></span>
+          <span>Experiencia Profesional</span>
+        </h2>
+        <p class="experience-lead">
+          Impacto medible.
+        </p>
+        <p class="experience-description">
+          Trayectoria en orden cronológico inverso, concentrada en las decisiones y resultados que definieron cada etapa: de la Operación Crítica al Liderazgo de Arquitectura.
+        </p>
+      </div>
+
+      <div class="experience-portrait" aria-label="Retrato de Jesus Arellano">
+        <div class="portrait-orbit" aria-hidden="true"><span></span></div>
+        <picture>
+          <source srcset={portraitSources.avif} type="image/avif" sizes="(max-width: 48rem) 19rem, 24rem" />
+          <source srcset={portraitSources.webp} type="image/webp" sizes="(max-width: 48rem) 19rem, 24rem" />
+          <img
+            src={portraitSources.png}
+            width="500"
+            height="500"
+            sizes="(max-width: 48rem) 19rem, 24rem"
+            alt="Jesus Arellano"
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
+      </div>
+    </header>
+
+    <div class="experience-timeline">
+      {experience.map((item, index) => (
+        <article class:list={["experience-item", item.highlight && "experience-item-highlight"]}>
+          <div class="experience-period">{item.period}</div>
+          <div class="experience-marker" aria-hidden="true">
+            <span class="experience-marker-orb">
+              <span
+                class:list={[
+                  item.highlight && 'animate-ping',
+                  item.highlight && 'experience-marker-ping',
+                  'motion-reduce:animate-none',
+                ]}
+              ></span>
+            </span>
+          </div>
+          <div class="experience-card">
+            <div class="experience-card-head">
+              <div>
+                <h3>{item.role}</h3>
+                <p>{item.company}</p>
+              </div>
+              <span class="experience-index" aria-label={`Experiencia ${experience.length - index}`}>
+                {String(experience.length - index).padStart(2, '0')}
+              </span>
+            </div>
+            <p class="experience-summary">{item.summary}</p>
+            <div class="experience-card-footer">
+              <ul class="experience-outcomes" aria-label="Resultados y enfoque">
+                {item.outcomes.map((outcome) => <li>{outcome}</li>)}
+              </ul>
+              <div class="experience-card-actions">
+                {item.externalLink && (
+                  <a
+                    class="experience-card-alexandria-link"
+                    href={item.externalLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <span>Saber más sobre Alexandria Studio</span>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M14 5h5v5m0-5-9 9" />
+                      <path d="M18 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" />
+                    </svg>
+                  </a>
+                )}
+                {!item.externalLink && (
+                  <button
+                    class="experience-card-details"
+                    type="button"
+                    aria-label={`Ver detalle de ${item.role} en ${item.company}`}
+                    aria-haspopup="dialog"
+                    aria-controls={`experience-dialog-${item.id}`}
+                    data-dialog-open={`experience-dialog-${item.id}`}
+                  >
+                    <span>Ver Detalle</span>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M5 12h14m-6-6 6 6-6 6" />
+                    </svg>
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    {experience.filter((item) => !item.externalLink).map((item) => (
+      <dialog
+        class="experience-dialog"
+        id={`experience-dialog-${item.id}`}
+        aria-labelledby={`experience-dialog-section-${item.id}-0`}
+        data-experience-dialog
+      >
+        <div class="experience-dialog-toolbar">
+          <button class="experience-dialog-close" type="button" aria-label="Cerrar detalles" data-dialog-close>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m6 6 12 12M18 6 6 18" />
+            </svg>
+          </button>
+        </div>
+        <div class="experience-dialog-content">
+          {item.modalSections?.map((section, sectionIndex) => (
+            <section class="experience-dialog-section" aria-labelledby={`experience-dialog-section-${item.id}-${sectionIndex}`}>
+              <h2 id={`experience-dialog-section-${item.id}-${sectionIndex}`}>{section.title}</h2>
+              <ul>
+                {section.items.map((detail) => (
+                  <li>
+                    <h3>{detail.heading}</h3>
+                    <p>{detail.description}</p>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </div>
+      </dialog>
+    ))}
+  </div>
+
+  <a
+    class="back-to-top"
+    href="#"
+    aria-label="Regresar al inicio del landing page"
+    aria-hidden="true"
+    tabindex="-1"
+    data-back-to-top
+    aria-describedby="back-to-top-tooltip"
+  >
+    <span class="back-to-top-icon" aria-hidden="true"></span>
+    <span class="back-to-top-tooltip" id="back-to-top-tooltip" role="tooltip">Volver al inicio</span>
+  </a>
+</section>
+
+<script>
+  const heroSection = document.querySelector('#inicio');
+  const backToTop = document.querySelector('[data-back-to-top]');
+
+  if (heroSection instanceof HTMLElement && backToTop instanceof HTMLAnchorElement) {
+    backToTop.addEventListener('click', (event) => {
+      event.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+      });
+    });
+
+    const updateBackToTop = (visible: boolean) => {
+      backToTop.classList.toggle('is-visible', visible);
+      backToTop.setAttribute('aria-hidden', String(!visible));
+      backToTop.tabIndex = visible ? 0 : -1;
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => updateBackToTop(Boolean(entry && !entry.isIntersecting)),
+      { threshold: 0.05 },
+    );
+
+    observer.observe(heroSection);
+    updateBackToTop(window.scrollY > heroSection.offsetHeight * 0.4);
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('[data-dialog-open]').forEach((trigger) => {
+    const dialogId = trigger.dataset.dialogOpen;
+    const dialog = dialogId ? document.getElementById(dialogId) : null;
+    if (!(dialog instanceof HTMLDialogElement)) return;
+
+    const finishClose = () => {
+      if (!dialog.open) return;
+      dialog.close();
+      dialog.classList.remove('is-visible', 'is-closing');
+    };
+
+    const closeDialog = () => {
+      if (!dialog.open || dialog.classList.contains('is-closing')) return;
+      dialog.classList.remove('is-visible');
+      dialog.classList.add('is-closing');
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        finishClose();
+        return;
+      }
+      window.setTimeout(finishClose, 280);
+    };
+
+    trigger.addEventListener('click', () => {
+      if (dialog.open) return;
+      dialog.showModal();
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => dialog.classList.add('is-visible'));
+      });
+    });
+
+    dialog.querySelector<HTMLButtonElement>('[data-dialog-close]')?.addEventListener('click', closeDialog);
+    dialog.addEventListener('cancel', (event) => {
+      event.preventDefault();
+      closeDialog();
+    });
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) closeDialog();
+    });
+    dialog.addEventListener('close', () => dialog.classList.remove('is-visible', 'is-closing'));
+  });
+</script>
+
+<style>
+  .experience-section {
+    position: relative;
+    overflow: clip;
+    padding-block: clamp(5rem, 10vw, 8rem);
+    background:
+      radial-gradient(ellipse 60% 45% at 100% 0%, var(--ambient-ember), transparent 72%),
+      var(--surface-page);
+  }
+
+  .experience-section::before {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--border-subtle) 20%,
+      var(--interactive-accent) 50%,
+      var(--border-subtle) 80%,
+      transparent
+    );
+    content: '';
+    opacity: 0.85;
+  }
+
+  .experience-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.9fr);
+    gap: clamp(3rem, 9vw, 8rem);
+    align-items: center;
+    padding-block-end: clamp(4rem, 10vw, 8rem);
+  }
+
+  .experience-intro {
+    max-width: 42rem;
+  }
+
+  .experience-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 0 0 1rem;
+    color: var(--hero-emphasis-color);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-regular);
+    letter-spacing: 0.12em;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+
+  .experience-kicker-icon {
+    display: inline-block;
+    width: 0.9rem;
+    height: 0.9rem;
+    flex: 0 0 auto;
+    background: currentColor;
+    mask: url('/images/icons/work-icon.svg') center / contain no-repeat;
+    -webkit-mask: url('/images/icons/work-icon.svg') center / contain no-repeat;
+  }
+
+  .experience-kicker::before {
+    width: 1.25rem;
+    height: 1px;
+    flex: 0 0 auto;
+    background: var(--hero-emphasis-color);
+    content: '';
+  }
+
+  .experience-lead {
+    max-width: 40rem;
+    margin: 0;
+    color: var(--text-primary);
+    font-size: clamp(2.75rem, 6vw, 5rem);
+    font-weight: var(--font-weight-light);
+    letter-spacing: -0.05em;
+    line-height: 0.94;
+  }
+
+  .experience-description {
+    max-width: 34rem;
+    margin: 1rem 0 0;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  .experience-portrait {
+    position: relative;
+    display: grid;
+    width: min(100%, 24rem);
+    aspect-ratio: 1;
+    place-items: center;
+    justify-self: end;
+    isolation: isolate;
+  }
+
+  .experience-portrait::before {
+    position: absolute;
+    inset: 8%;
+    z-index: -1;
+    border-radius: var(--radius-pill);
+    background: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--interactive-accent) 28%, transparent),
+      transparent 68%
+    );
+    content: '';
+    filter: blur(1.2rem);
+  }
+
+  .experience-portrait picture,
+  .experience-portrait img {
+    width: 78%;
+    height: 78%;
+    aspect-ratio: 1;
+    border-radius: var(--radius-pill);
+  }
+
+  .experience-portrait picture {
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--interactive-accent) 45%, transparent);
+    background: var(--surface-card);
+    box-shadow: 0 0 2.75rem color-mix(in srgb, var(--interactive-accent) 24%, transparent);
+  }
+
+  .experience-portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .portrait-orbit {
+    position: absolute;
+    inset: 2%;
+    border: 1px solid color-mix(in srgb, var(--interactive-accent) 36%, transparent);
+    border-radius: var(--radius-pill);
+    transform-origin: center;
+    animation: portrait-orbit-rotate 12s linear infinite;
+  }
+
+  .portrait-orbit span {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: 50%;
+    width: 0.65rem;
+    height: 0.65rem;
+    border-radius: var(--radius-pill);
+    background: var(--hero-emphasis-color);
+    box-shadow: 0 0 1rem color-mix(in srgb, var(--hero-emphasis-color) 55%, transparent);
+    transform: translate(-50%, -50%);
+  }
+
+  .experience-timeline {
+    position: relative;
+    display: grid;
+    --timeline-date-track: 20%;
+    --timeline-marker-track: 2rem;
+    --timeline-column-gap: clamp(1rem, 3vw, 2rem);
+    --timeline-axis-offset: 1rem;
+  }
+
+  .experience-timeline::before {
+    position: absolute;
+    inset-block: 0.5rem;
+    inset-inline-start: calc(var(--timeline-date-track) + var(--timeline-column-gap) + var(--timeline-axis-offset));
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--border-control) 8%, var(--border-control) 92%, transparent);
+    content: '';
+    opacity: 0.45;
+  }
+
+  .experience-item {
+    display: grid;
+    grid-template-columns: minmax(0, var(--timeline-date-track)) var(--timeline-marker-track) minmax(0, 1fr);
+    column-gap: var(--timeline-column-gap);
+    align-items: center;
+    padding-block: 0.9rem;
+  }
+
+  .experience-period {
+    align-self: center;
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    line-height: 1.4;
+  }
+
+  .experience-marker {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    align-self: center;
+  }
+
+  .experience-marker-orb {
+    position: relative;
+    display: block;
+    width: 0.65rem;
+    height: 0.65rem;
+    border: 1px solid var(--hero-emphasis-color);
+    border-radius: var(--radius-pill);
+    background: var(--surface-page);
+    box-shadow: 0 0 0 0.25rem color-mix(in srgb, var(--hero-emphasis-color) 16%, transparent);
+  }
+
+  .experience-marker-orb::before {
+    position: absolute;
+    z-index: 1;
+    inset: 0.12rem;
+    border-radius: inherit;
+    background: var(--hero-emphasis-color);
+    content: '';
+  }
+
+  .experience-marker-ping {
+    position: absolute;
+    z-index: 0;
+    inset: -1px;
+    border-radius: inherit;
+    background: var(--hero-emphasis-color);
+    opacity: 0.75;
+  }
+
+  .experience-card {
+    position: relative;
+    padding: clamp(1.35rem, 3.5vw, 2.3rem);
+    border: 1px solid color-mix(in srgb, var(--border-subtle) 78%, transparent);
+    border-radius: var(--radius-card);
+    background: var(--surface-card);
+    transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+  }
+
+  .experience-card:hover {
+    border-color: var(--border-control);
+    background: var(--surface-panel);
+    transform: translateX(0.25rem);
+  }
+
+  .experience-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-block-start: 1.25rem;
+  }
+
+  .experience-card-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.65rem;
+    margin-inline-start: auto;
+  }
+
+  .experience-card-details {
+    display: inline-flex;
+    min-height: 2.75rem;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    padding: 0.55rem 0.85rem;
+    border: 1px solid var(--border-control);
+    border-radius: var(--radius-button);
+    background: var(--surface-muted);
+    color: var(--text-primary);
+    font: inherit;
+    font-size: var(--text-body-sm);
+    cursor: pointer;
+    transition:
+      background-color 180ms ease,
+      border-color 180ms ease,
+      color 180ms ease,
+      transform 140ms ease;
+  }
+
+  .experience-card-details:hover {
+    border-color: var(--interactive-accent);
+    background: color-mix(in srgb, var(--surface-muted) 86%, var(--interactive-accent));
+    color: var(--interactive-accent);
+    transform: translateY(-2px);
+  }
+
+  .experience-card-details:active {
+    transform: scale(0.96);
+  }
+
+  .experience-card-details svg {
+    width: 1rem;
+    height: 1rem;
+    flex: 0 0 auto;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.6;
+    transition: transform 180ms ease;
+  }
+
+  .experience-card-details:hover svg {
+    transform: translateX(0.15rem);
+  }
+
+  .experience-card-alexandria-link {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    padding: 0.55rem 0.85rem;
+    border: 1px solid transparent;
+    border-radius: var(--radius-button);
+    background: var(--gradient-ember-cta);
+    color: var(--text-on-ember);
+    font-size: var(--text-body-sm);
+    line-height: 1.4;
+    text-align: center;
+    text-decoration: none;
+    transition: transform 160ms ease;
+  }
+
+  .experience-card-alexandria-link:hover {
+    transform: translateY(-2px);
+  }
+
+  .experience-card-alexandria-link:active {
+    transform: scale(0.97);
+  }
+
+  .experience-card-alexandria-link svg {
+    width: 1rem;
+    height: 1rem;
+    flex: 0 0 auto;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.6;
+    transition: transform 180ms ease;
+  }
+
+  .experience-card-alexandria-link:hover svg {
+    transform: translate(0.1rem, -0.1rem);
+  }
+
+  .experience-item-highlight .experience-card {
+    border-color: color-mix(in srgb, var(--hero-emphasis-color) 42%, var(--border-subtle));
+    box-shadow: inset 0 -2px 0 color-mix(in srgb, var(--hero-emphasis-color) 72%, transparent);
+  }
+
+  .experience-card-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .experience-card h3 {
+    margin: 0;
+    color: var(--text-strong);
+    font-size: clamp(1.2rem, 2.2vw, 1.65rem);
+    font-weight: var(--font-weight-regular);
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+  }
+
+  .experience-card-head p {
+    margin: 0.35rem 0 0;
+    color: var(--hero-emphasis-color);
+    font-size: 0.9rem;
+  }
+
+  .experience-index {
+    color: var(--text-secondary);
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    line-height: 1;
+  }
+
+  .experience-summary {
+    max-width: 48rem;
+    margin: 1.1rem 0 1.25rem;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  .experience-outcomes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .experience-outcomes li {
+    padding: 0.35rem 0.65rem;
+    border: 1px solid var(--border-control);
+    border-radius: var(--radius-pill);
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+  }
+
+  .experience-dialog {
+    position: fixed;
+    inset: 0;
+    width: min(48rem, calc(100% - 2rem));
+    max-width: none;
+    max-height: min(84dvh, 52rem);
+    margin: auto;
+    padding: 0;
+    overflow: auto;
+    border: 1px solid var(--border-control);
+    border-radius: var(--radius-panel);
+    background: var(--surface-card);
+    color: var(--text-primary);
+    opacity: 0;
+    transform: translateY(0.75rem) scale(0.985);
+    transition: opacity 220ms ease, transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .experience-dialog.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .experience-dialog.is-closing {
+    opacity: 0;
+    transform: translateY(0.75rem) scale(0.985);
+  }
+
+  .experience-dialog::backdrop {
+    background-color: transparent;
+    backdrop-filter: blur(0);
+    transition: background-color 220ms ease, backdrop-filter 220ms ease;
+  }
+
+  .experience-dialog.is-visible::backdrop {
+    background-color: color-mix(in srgb, var(--surface-page) 78%, transparent);
+    backdrop-filter: blur(0.3rem);
+  }
+
+  .experience-dialog-toolbar {
+    position: sticky;
+    inset-block-start: 0;
+    z-index: 2;
+    display: flex;
+    justify-content: flex-end;
+    padding-block-start: clamp(1rem, 3vw, 1.5rem);
+    padding-inline: clamp(1rem, 3vw, 1.5rem);
+    background: var(--surface-card);
+  }
+
+  .experience-dialog-close {
+    display: grid;
+    width: 2.75rem;
+    height: 2.75rem;
+    flex: 0 0 auto;
+    place-items: center;
+    border: 1px solid var(--border-control);
+    border-radius: var(--radius-button);
+    background: var(--surface-muted);
+    color: var(--text-primary);
+    cursor: pointer;
+  }
+
+  .experience-dialog-close:hover {
+    border-color: var(--interactive-accent);
+    color: var(--interactive-accent);
+  }
+
+  .experience-dialog-close svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-width: 1.75;
+  }
+
+  .experience-dialog-content {
+    display: grid;
+    gap: 1.75rem;
+    padding: 0 clamp(1.25rem, 4vw, 2rem) clamp(1.5rem, 4vw, 2rem);
+  }
+
+  .experience-dialog-section h2 {
+    margin: 0 0 1rem;
+    color: var(--text-strong);
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: var(--font-weight-light);
+    letter-spacing: -0.035em;
+    line-height: 1.15;
+  }
+
+  .experience-dialog-section h3 {
+    margin: 0 0 0.35rem;
+    color: var(--hero-emphasis-color);
+    font-size: 1rem;
+    font-weight: var(--font-weight-regular);
+    line-height: 1.45;
+  }
+
+  .experience-dialog-section ul {
+    display: grid;
+    gap: 1.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .experience-dialog-section li p {
+    margin: 0;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .experience-dialog-section .experience-dialog-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .experience-dialog-stack li {
+    padding: 0.4rem 0.7rem;
+    border: 1px solid var(--border-control);
+    border-radius: var(--radius-button);
+    background: var(--surface-muted);
+    color: var(--text-primary);
+    font-size: var(--text-body-sm);
+  }
+
+  .back-to-top {
+    position: fixed;
+    inset-block-end: max(1.25rem, env(safe-area-inset-bottom));
+    inset-inline-end: max(1.25rem, env(safe-area-inset-right));
+    z-index: 90;
+    display: grid;
+    width: 3.25rem;
+    height: 3.25rem;
+    place-items: center;
+    border: 1px solid var(--border-control);
+    border-radius: var(--radius-pill);
+    background: var(--surface-card);
+    color: var(--text-strong);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(0.75rem) scale(0.85);
+    transition: opacity 260ms ease, transform 260ms ease, visibility 260ms ease;
+    visibility: hidden;
+  }
+
+  .back-to-top.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+    visibility: visible;
+  }
+
+  .back-to-top:hover {
+    background: var(--surface-muted);
+    border-color: var(--interactive-accent);
+  }
+
+  .back-to-top-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    background: currentColor;
+    mask: url('/images/icons/top-icon.svg') center / contain no-repeat;
+    -webkit-mask: url('/images/icons/top-icon.svg') center / contain no-repeat;
+  }
+
+  .back-to-top-tooltip {
+    position: absolute;
+    inset-block-end: calc(100% + 0.65rem);
+    inset-inline-end: 0;
+    width: max-content;
+    max-width: min(14rem, calc(100vw - 2rem));
+    padding: 0.45rem 0.7rem;
+    border: 1px solid var(--border-control);
+    border-radius: var(--radius-button);
+    background: var(--surface-card);
+    color: var(--text-primary);
+    font-size: var(--text-caption);
+    line-height: 1.4;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(0.25rem);
+    transition: opacity 160ms ease, transform 160ms ease, visibility 160ms ease;
+    visibility: hidden;
+  }
+
+  .back-to-top:hover .back-to-top-tooltip,
+  .back-to-top:focus-visible .back-to-top-tooltip {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+  }
+
+  @keyframes portrait-orbit-rotate {
+    to { transform: rotate(1turn); }
+  }
+
+  @media (max-width: 47.99rem) {
+    .experience-header {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .experience-portrait {
+      order: -1;
+      width: min(100%, 19rem);
+      justify-self: center;
+    }
+
+    .experience-timeline {
+      --timeline-date-track: 23%;
+      --timeline-marker-track: 1.25rem;
+      --timeline-column-gap: clamp(0.5rem, 2.5vw, 1rem);
+      --timeline-axis-offset: 0.625rem;
+    }
+
+    .experience-item {
+      position: relative;
+      grid-template-columns: 1rem minmax(0, 1fr);
+      gap: 1rem;
+    }
+
+    .experience-timeline::before {
+      inset-inline-start: 0.45rem;
+    }
+
+    .experience-period {
+      grid-column: 2;
+      grid-row: 1;
+      padding-block-start: 0;
+    }
+
+    .experience-marker {
+      grid-column: 1;
+      grid-row: 1 / span 2;
+      align-self: stretch;
+      padding-block-start: 0.3rem;
+    }
+
+    .experience-card {
+      grid-column: 2;
+      grid-row: 2;
+    }
+  }
+
+  @media (max-width: 35rem) {
+    .experience-card-footer {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .experience-card-actions {
+      align-items: flex-end;
+      flex-direction: column;
+    }
+
+    .experience-card-head {
+      display: block;
+    }
+
+    .experience-index {
+      display: block;
+      margin-block-start: 1rem;
+    }
+
+    .back-to-top {
+      width: 3rem;
+      height: 3rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .portrait-orbit,
+    .experience-card,
+    .experience-card-details,
+    .experience-card-details svg,
+    .experience-card-alexandria-link,
+    .experience-card-alexandria-link svg,
+    .back-to-top,
+    .back-to-top-tooltip,
+    .experience-dialog {
+      animation: none;
+      scroll-behavior: auto;
+      transition: none;
+    }
+
+    .experience-dialog::backdrop {
+      transition: none;
+    }
+  }
+</style>
