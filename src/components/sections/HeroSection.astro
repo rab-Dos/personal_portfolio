@@ -46,18 +46,18 @@
 
   <!-- Acciones principales: ocupan una franja libre debajo del video en escritorio -->
   <div class="page-container hero-actions" aria-label="Enlaces destacados">
-    <a class="hero-action hero-action-primary" href="#proyectos">
-      <span>Explorar Proyectos</span>
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M5 12h14M13 6l6 6-6 6" />
-      </svg>
-    </a>
-    <a class="hero-action hero-action-secondary" href="#contacto">
+    <a class="hero-action hero-action-primary" href="#contacto">
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <rect x="3.5" y="5" width="17" height="14" rx="2" />
         <path d="m5 7 7 5 7-5" />
       </svg>
-      <span>Iniciar conversación</span>
+      <span>Contáctame</span>
+    </a>
+    <a class="hero-action hero-action-secondary" href="#proyectos">
+      <span>Explorar Proyectos</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M5 12h14M13 6l6 6-6 6" />
+      </svg>
     </a>
 
     <!-- Enlaces sociales como botones ghost dentro de la misma franja de acciones -->
@@ -275,9 +275,10 @@
   }
 
   .hero-action-secondary {
+    padding-inline: 1rem;
     border-color: var(--border-control);
-    background: color-mix(in srgb, var(--surface-page) 38%, transparent);
-    color: var(--text-strong);
+    background: color-mix(in srgb, var(--surface-muted) 72%, transparent);
+    color: var(--text-primary);
     backdrop-filter: blur(0.75rem);
     -webkit-backdrop-filter: blur(0.75rem);
   }
@@ -292,7 +293,7 @@
 
   .hero-action-secondary:hover {
     border-color: var(--interactive-accent);
-    background: color-mix(in srgb, var(--surface-muted) 62%, transparent);
+    background: var(--surface-muted);
   }
 
   .hero-action:active {
@@ -724,9 +725,10 @@
   }
 
   #inicio .hero-action-secondary {
+    padding-inline: 1rem;
     border-color: var(--border-control);
-    background: color-mix(in srgb, var(--surface-page) 38%, transparent);
-    color: var(--text-strong);
+    background: color-mix(in srgb, var(--surface-muted) 72%, transparent);
+    color: var(--text-primary);
     backdrop-filter: blur(0.75rem);
     -webkit-backdrop-filter: blur(0.75rem);
   }
@@ -741,7 +743,7 @@
 
   #inicio .hero-action-secondary:hover {
     border-color: var(--interactive-accent);
-    background: color-mix(in srgb, var(--surface-muted) 62%, transparent);
+    background: var(--surface-muted);
   }
 
   #inicio .hero-action:active {
