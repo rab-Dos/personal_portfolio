@@ -38,7 +38,7 @@
         Desarrollo, inteligencia y datos <span class="hero-highlight">conectados.</span>
       </h1>
       <p class="hero-introduction">
-        Hola, soy <strong class="hero-name">Jesus Arellano</strong> y diseño soluciones digitales
+        Hola, soy <strong class="hero-name">Jesus Arellano</strong> y con +15 años de experiencia diseño soluciones digitales
         donde software, inteligencia artificial y datos trabajan como un solo sistema.
       </p>
     </div>
@@ -59,6 +59,27 @@
       </svg>
       <span>Iniciar conversación</span>
     </a>
+
+    <!-- Enlaces sociales como botones ghost dentro de la misma franja de acciones -->
+    <a
+      class="profile-external-link"
+      href="https://www.linkedin.com/in/arellano-jesus/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <span class="profile-icon profile-icon-linkedin" aria-hidden="true"></span>
+      <span>LinkedIn</span>
+    </a>
+    <a
+      class="profile-external-link"
+      href="https://github.com/rab-Dos"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <span class="profile-icon profile-icon-github" aria-hidden="true"></span>
+      <span>GitHub</span>
+    </a>
+    <span class="profile-location">Zona Metropolitana · MX · 🇲🇽</span>
   </div>
 </section>
 
@@ -68,29 +89,6 @@
      ========================================================================= -->
 <section class="profile-summary" id="resumen-profesional" aria-label="Resumen profesional">
   <div class="page-container profile-summary-content">
-    <!-- Enlaces externos autorizados y ubicación profesional general -->
-    <div class="profile-links">
-      <a
-        class="profile-external-link"
-        href="https://www.linkedin.com/in/arellano-jesus/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <span class="profile-icon profile-icon-linkedin" aria-hidden="true"></span>
-        <span>LinkedIn</span>
-      </a>
-      <a
-        class="profile-external-link"
-        href="https://github.com/rab-Dos"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <span class="profile-icon profile-icon-github" aria-hidden="true"></span>
-        <span>GitHub</span>
-      </a>
-      <p class="profile-location">Ciudad de México · MX</p>
-    </div>
-
     <!-- Barra de atributos profesionales, adaptable de cuatro a una columna -->
     <dl class="profile-facts">
       <div class="profile-fact">
@@ -99,15 +97,15 @@
       </div>
       <div class="profile-fact">
         <dt>Especialización</dt>
-        <dd>Arquitectura · IA · Datos · Web</dd>
+        <dd>Arquitectura · IA · DBA y BI · Web · Gráfico</dd>
       </div>
       <div class="profile-fact">
         <dt>Entornos</dt>
-        <dd>Enterprise · Operación crítica</dd>
+        <dd>Enterprise · Operación crítica · Cloud & On-Premise · Side Projects</dd>
       </div>
       <div class="profile-fact">
         <dt>Enfoque</dt>
-        <dd>Impacto sobre complejidad</dd>
+        <dd>Sencillez que genera impacto · Escalabilidad</dd>
       </div>
     </dl>
   </div>
@@ -234,6 +232,8 @@
   .hero-actions {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
     gap: 0.75rem;
     margin-block: 0 clamp(2rem, 6vw, 3.5rem);
   }
@@ -359,7 +359,8 @@
   /* Desenfoque del solape: elimina la división plana entre video y máscara */
   .mandrill-animation[data-mode='split']::after {
     position: absolute;
-    inset-block: 5%;
+    /* Comparte el alto completo con el velo que cubre el vídeo y el texto */
+    inset-block: 0;
     inset-inline-start: 44%;
     z-index: 1;
     width: 12%;
@@ -382,7 +383,7 @@
 
   @media (min-width: 56rem) {
     .hero {
-      grid-template-rows: minmax(0, 1fr) auto;
+      grid-template-rows: minmax(0, 1fr) minmax(5.5rem, auto);
       height: calc(100dvh - var(--nav-height) - 11rem);
       min-height: 31rem;
     }
@@ -412,7 +413,7 @@
       inset-inline: 0;
       z-index: 1;
       width: 100%;
-      height: calc(100% - 4.75rem);
+      height: calc(100% - 5.5rem);
       min-height: 0;
       aspect-ratio: auto;
       translate: none;
@@ -433,8 +434,9 @@
       position: relative;
       z-index: 3;
       grid-row: 2;
-      align-self: end;
-      margin-block: 0 0.75rem;
+      align-self: stretch;
+      height: 100%;
+      margin-block: 0;
     }
 
     h1 {
@@ -468,11 +470,19 @@
     }
 
     .hero-actions {
-      display: grid;
+      display: flex;
+      justify-content: center;
     }
 
-    .hero-action {
-      width: 100%;
+    .hero-action,
+    .profile-external-link {
+      width: auto;
+      flex: 1 1 calc(50% - 0.375rem);
+    }
+
+    .profile-location {
+      flex-basis: 100%;
+      justify-content: center;
     }
   }
 
@@ -504,10 +514,19 @@
     align-items: center;
     gap: 0.5rem;
     min-height: 2.75rem;
-    color: var(--text-secondary);
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-control);
+    border-radius: var(--radius-button);
+    background: color-mix(in srgb, var(--surface-muted) 72%, transparent);
+    color: var(--text-primary);
     font-size: var(--text-body-sm);
     text-decoration: none;
     text-underline-offset: 0.3rem;
+    transition:
+      border-color 180ms ease,
+      background-color 180ms ease,
+      color 180ms ease,
+      transform 140ms ease;
   }
 
   .profile-icon {
@@ -536,13 +555,25 @@
 
   .profile-external-link:hover {
     color: var(--text-strong);
-    text-decoration: underline;
+    border-color: var(--interactive-accent);
+    background: var(--surface-muted);
+    text-decoration: none;
+    transform: translateY(-0.125rem);
+  }
+
+  .profile-external-link:active {
+    transform: translateY(0) scale(0.98);
   }
 
   .profile-location {
     margin: 0;
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding-inline: 0.25rem;
     color: var(--text-secondary);
     font-size: var(--text-body-sm);
+    white-space: nowrap;
   }
 
   .profile-facts {
@@ -585,15 +616,13 @@
     }
 
     .profile-summary-content {
+      display: grid;
+      align-content: start;
       height: 100%;
     }
 
-    .profile-links {
-      min-height: 2.5rem;
-    }
-
     .profile-facts {
-      margin-block-start: 0.5rem;
+      margin-block-start: 0;
     }
 
     .profile-fact {
@@ -610,6 +639,18 @@
   }
 
   @media (max-width: 55.999rem) {
+    .hero-actions {
+      margin-block-end: 1rem;
+    }
+
+    .profile-summary {
+      padding-block: 0;
+    }
+
+    .profile-facts {
+      margin-block-start: 0;
+    }
+
     .profile-facts {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -640,6 +681,8 @@
   #inicio .hero-actions {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
     gap: 0.75rem;
     margin-block: 0 clamp(2rem, 6vw, 3.5rem);
   }
@@ -707,7 +750,7 @@
 
   @media (min-width: 56rem) {
     #inicio {
-      grid-template-rows: minmax(0, 1fr) auto;
+      grid-template-rows: minmax(0, 1fr) minmax(5.5rem, auto);
       height: calc(100dvh - var(--nav-height) - 11rem);
       min-height: 31rem;
     }
@@ -725,7 +768,7 @@
       inset-inline: 0;
       z-index: 1;
       width: 100%;
-      height: calc(100% - 4.75rem);
+      height: calc(100% - 5.5rem);
       min-height: 0;
       aspect-ratio: auto;
       translate: none;
@@ -748,8 +791,9 @@
       position: relative;
       z-index: 3;
       grid-row: 2;
-      align-self: end;
-      margin-block: 0 0.75rem;
+      align-self: stretch;
+      height: 100%;
+      margin-block: 0;
     }
 
     #mandrill-animation[data-mode='split'] #sourceVideo {
@@ -762,6 +806,7 @@
     }
 
     #mandrill-animation[data-mode='split']::after {
+      inset-block: 0;
       inset-inline-start: 44%;
       width: 12%;
     }
@@ -795,10 +840,19 @@
     align-items: center;
     gap: 0.5rem;
     min-height: 2.75rem;
-    color: var(--text-secondary);
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-control);
+    border-radius: var(--radius-button);
+    background: color-mix(in srgb, var(--surface-muted) 72%, transparent);
+    color: var(--text-primary);
     font-size: var(--text-body-sm);
     text-decoration: none;
     text-underline-offset: 0.3rem;
+    transition:
+      border-color 180ms ease,
+      background-color 180ms ease,
+      color 180ms ease,
+      transform 140ms ease;
   }
 
   .profile-icon {
@@ -827,13 +881,25 @@
 
   .profile-external-link:hover {
     color: var(--text-strong);
-    text-decoration: underline;
+    border-color: var(--interactive-accent);
+    background: var(--surface-muted);
+    text-decoration: none;
+    transform: translateY(-0.125rem);
+  }
+
+  .profile-external-link:active {
+    transform: translateY(0) scale(0.98);
   }
 
   .profile-location {
     margin: 0;
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding-inline: 0.25rem;
     color: var(--text-secondary);
     font-size: var(--text-body-sm);
+    white-space: nowrap;
   }
 
   .profile-facts {
@@ -876,15 +942,13 @@
     }
 
     .profile-summary-content {
+      display: grid;
+      align-content: start;
       height: 100%;
     }
 
-    .profile-links {
-      min-height: 2.5rem;
-    }
-
     .profile-facts {
-      margin-block-start: 0.5rem;
+      margin-block-start: 0;
     }
 
     .profile-fact {
@@ -911,6 +975,18 @@
   }
 
   @media (max-width: 55.999rem) {
+    #inicio .hero-actions {
+      margin-block-end: 1rem;
+    }
+
+    .profile-summary {
+      padding-block: 0;
+    }
+
+    .profile-facts {
+      margin-block-start: 0;
+    }
+
     .profile-facts {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -942,11 +1018,19 @@
     }
 
     #inicio .hero-actions {
-      display: grid;
+      display: flex;
+      justify-content: center;
     }
 
-    #inicio .hero-action {
-      width: 100%;
+    #inicio .hero-action,
+    #inicio .profile-external-link {
+      width: auto;
+      flex: 1 1 calc(50% - 0.375rem);
+    }
+
+    #inicio .profile-location {
+      flex-basis: 100%;
+      justify-content: center;
     }
   }
 
