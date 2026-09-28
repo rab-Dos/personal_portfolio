@@ -1,0 +1,976 @@
+---
+import ProjectVisual from './ProjectVisual.astro';
+import ProjectGallery from './ProjectGallery.astro';
+
+const projects = [
+  {
+    index: '01',
+    title: 'MCI factuCore',
+    client: 'M3 Códice Integral · Cliente Interno',
+    description:
+      'Pipeline empresarial para ingerir, extraer, validar y persistir órdenes de compra y facturas mediante OCR e inteligencia artificial.',
+    achievements: [
+      'Definición integral del diccionario técnico, diagramas de arquitectura con Mermaid.js y del identificador único DOCID.',
+      'Optimización de FastAPI mediante aislamiento para entornos de alta concurrencia transaccional.',
+      'Frontend reactivo con navegación en árbol para consultar expedientes integrados con SharePoint.',
+    ],
+    stack: ['Python', 'FastAPI', 'MS SQL Server', 'Astro', 'React', 'Tailwind', 'OCR / IA'],
+    variant: 'documents' as const,
+  },
+  {
+    index: '02',
+    title: 'MCI Human',
+    client: 'M3 Códice Integral · Cliente Interno',
+    description:
+      'Plataforma de capital humano para auditar expedientes, automatizar contratación, validar documentación por OCR y generar contratos con firma digital.',
+    achievements: [
+      'Funciones y triggers en PL/pgSQL para calcular el cumplimiento documental del expediente.',
+      'Integración del ciclo contractual con Cincel API para habilitar firma digital PSC.',
+      'Flujos de OCR para extraer CURP, RFC e identificaciones oficiales, entre otros documentos.',
+    ],
+    stack: ['Python', 'FastAPI', 'PostgreSQL', 'Astro', 'React', 'Tailwind', 'OCR / IA', 'Cincel API'],
+    variant: 'people' as const,
+  },
+  {
+    index: '03',
+    title: 'MCI Hexagon',
+    client: 'M3 Códice Integral',
+    description:
+      'Arquitectura unificada ERP y plataforma de seguimiento técnico para controlar servicios, almacén e incidencias operativas.',
+    achievements: [
+      'Optimización del almacenamiento local mediante depuración controlada de logs transaccionales.',
+      'SQL Server Agent Job para automatizar el control y escalamiento jerárquico de incidencias y tickets.',
+      'Integración de módulos OCR para registrar adquisiciones logísticas de equipos de cómputo e impresión.',
+    ],
+    stack: ['Python', 'FastAPI', 'MS SQL Server', 'Astro', 'React', 'Tailwind', 'OCR / IA'],
+    variant: 'operations' as const,
+  },
+  {
+    index: '04',
+    title: 'Control de Incidencias: Auditoría y Analítica de Peaje',
+    client: 'Idear Electrónica · Sistema BEA · OPT',
+    description:
+      'Conciliación de incidencias, disponibilidad de flota y datos masivos de peaje para operaciones críticas de transporte público.',
+    achievements: [
+      'Desarrollo de sistemas internos para incidencias con C++, C#, .NET y bases transaccionales.',
+      'Soporte técnico regional para control de tickets de peaje del Metrobús L2 y Mexibús L3/L4.',
+      'Consultoría interna en auditorías anuales bajo los estándares de calidad ISO 9001:2015.',
+    ],
+    stack: ['PHP', 'MS SQL Server', 'MS Access', 'HTML', 'CSS', 'JS'],
+    variant: 'analytics' as const,
+  },
+];
+
+// Original screenshots in resources/web_* are preserved; these public copies power the project galleries.
+const webProjects = [
+  {
+    index: '01',
+    title: 'Alexandria Studio',
+    client: 'Landing corporativa',
+    description:
+      'Sitio corporativo para una consultora de TI que presenta sus servicios, planes, soluciones a medida y canales de contacto.',
+    achievements: [
+      'Landing de una sola ruta con secciones de identidad, servicios, paquetes y contacto.',
+      'Excelente rendimiento de carga, configuración de SEO y alto nivel de diseño y accesibilidad.',
+      'Hero con malla animada en Canvas, adaptada a pantallas compactas y a movimiento reducido.',
+      'Globo 3D de Three.js que se carga al acercarse al footer y se pausa fuera de vista.',
+    ],
+    stack: ['Astro', 'Tailwind CSS 4', 'TypeScript', 'Three.js', '@astrojs/sitemap'],
+    repository: 'https://github.com/rab-Dos/alexandria_lp',
+    liveSite: 'https://alexandriastudio.cloud/',
+    gallery: [
+      {
+        avif: '/images/projects/alexandria-studio/web_alex_1.avif',
+        webp: '/images/projects/alexandria-studio/web_alex_1.webp',
+        alt: 'Portada de Alexandria Studio con el mensaje de evolución tecnológica y enlaces de contacto y servicios.',
+      },
+      {
+        avif: '/images/projects/alexandria-studio/web_alex_2.avif',
+        webp: '/images/projects/alexandria-studio/web_alex_2.webp',
+        alt: 'Sección de paquetes de servicio de Alexandria Studio con sus opciones de soporte e infraestructura.',
+      },
+      {
+        avif: '/images/projects/alexandria-studio/web_alex_3.avif',
+        webp: '/images/projects/alexandria-studio/web_alex_3.webp',
+        alt: 'Footer de Alexandria Studio con enlaces de navegación, servicios y el globo 3D de conexiones.',
+      },
+    ],
+  },
+  {
+    index: '02',
+    title: 'Dr. Atzin Arreola',
+    client: 'Sitio profesional',
+    description:
+      'Sitio informativo para un especialista en ortopedia, traumatología y cirugía articular, con información de atención y acceso a citas (Activo de 2023 a 2025).',
+    achievements: [
+      'Contenido organizado en servicios, preguntas frecuentes, ubicación y contacto.',
+      'Pasarela de mensajes animada con Anime.js y controles de navegación entre secciones.',
+      'Datos estructurados para el perfil médico y las preguntas frecuentes, junto a un mapa de ubicación embebido.',
+    ],
+    stack: ['HTML5', 'Tailwind CSS 3', 'JavaScript', 'Anime.js', 'Google Maps'],
+    repository: 'https://github.com/rab-Dos/drarreola',
+    gallery: [
+      {
+        avif: '/images/projects/dr-atzin-arreola/web_draa_1.avif',
+        webp: '/images/projects/dr-atzin-arreola/web_draa_1.webp',
+        alt: 'Portada profesional del Dr. Atzin Arreola con su especialidad y acceso a citas.',
+      },
+      {
+        avif: '/images/projects/dr-atzin-arreola/web_draa_2.avif',
+        webp: '/images/projects/dr-atzin-arreola/web_draa_2.webp',
+        alt: 'Sección de presentación del sitio del Dr. Atzin Arreola con su fotografía y texto de bienvenida.',
+      },
+      {
+        avif: '/images/projects/dr-atzin-arreola/web_draa_3.avif',
+        webp: '/images/projects/dr-atzin-arreola/web_draa_3.webp',
+        alt: 'Sección de contacto y ubicación del consultorio, con un mapa y opciones para agendar cita.',
+      },
+    ],
+  },
+  {
+    index: '03',
+    title: 'Super Fiesta de Fernanda',
+    client: 'Invitación digital',
+    description:
+      'Invitación web temática para consultar los detalles de una celebración, la ubicación del evento y una galería fotográfica.',
+    achievements: [
+      'Recorrido de una página con secciones de bienvenida, detalles, ubicación, galería y despedida.',
+      'Escenas animadas con ambientación inspirada en Rapunzel, creadas con CSS.',
+      'Menú móvil y navegación por secciones controlados con JavaScript nativo.',
+    ],
+    stack: ['HTML5', 'CSS3', 'JavaScript nativo'],
+    repository: 'https://github.com/rab-Dos/fiesta_fer_2026',
+    gallery: [
+      {
+        avif: '/images/projects/super-fiesta-fernanda/web_fer_1.avif',
+        webp: '/images/projects/super-fiesta-fernanda/web_fer_1.webp',
+        alt: 'Portada de la invitación Super Fiesta de Fernanda con una bienvenida temática.',
+      },
+      {
+        avif: '/images/projects/super-fiesta-fernanda/web_fer_2.avif',
+        webp: '/images/projects/super-fiesta-fernanda/web_fer_2.webp',
+        alt: 'Sección de ubicación de la invitación con los datos del salón y un mapa.',
+      },
+      {
+        avif: '/images/projects/super-fiesta-fernanda/web_fer_3.avif',
+        webp: '/images/projects/super-fiesta-fernanda/web_fer_3.webp',
+        alt: 'Sección de despedida de la invitación con un mensaje para las personas invitadas.',
+      },
+    ],
+  },
+];
+
+---
+
+<section class="projects-section" id="proyectos" aria-labelledby="projects-title">
+  <div class="page-container">
+    <!-- Icono copiado desde resources/proyects_icon.svg para uso temático en la interfaz. -->
+    <header class="projects-header">
+      <div class="projects-intro">
+        <h2 class="projects-kicker" id="projects-title">
+          <span class="projects-kicker-icon" aria-hidden="true"></span>
+          <span>Proyectos</span>
+        </h2>
+        <p class="projects-lead">Sistemas que resuelven problemas reales</p>
+        <p class="projects-description">
+          Una selección de soluciones, presentada por problema, logro técnico y stack. Los detalles sensibles se mantienen fuera del dominio público.
+        </p>
+      </div>
+      <div class="projects-art" aria-hidden="true">
+        <picture data-project-art>
+          <source
+            srcset="/images/brand/frontal.avif"
+            data-enterprise-srcset="/images/brand/frontal.avif"
+            data-web-srcset="/images/brand/frontal_molesto.avif"
+            type="image/avif"
+          />
+          <source
+            srcset="/images/brand/frontal.webp"
+            data-enterprise-srcset="/images/brand/frontal.webp"
+            data-web-srcset="/images/brand/frontal_molesto.webp"
+            type="image/webp"
+          />
+          <img
+            src="/images/brand/frontal.png"
+            data-enterprise-src="/images/brand/frontal.png"
+            data-web-src="/images/brand/frontal_molesto.png"
+            width="800"
+            height="800"
+    alt=""
+    loading="lazy"
+    decoding="async"
+          />
+        </picture>
+      </div>
+    </header>
+
+    <div class="projects-switcher" data-projects-tabs>
+      <div class="projects-tablist" role="tablist" aria-label="Categorías de proyectos" hidden>
+        <button
+          class="projects-tab"
+          id="projects-tab-enterprise"
+          type="button"
+          role="tab"
+          aria-selected="true"
+          aria-controls="projects-panel-enterprise"
+          data-project-tab
+        >
+          <span>Sistemas Empresariales</span>
+        </button>
+        <button
+          class="projects-tab"
+          id="projects-tab-web"
+          type="button"
+          role="tab"
+          aria-selected="false"
+          aria-controls="projects-panel-web"
+          data-project-tab
+        >
+          <span>Sitios Web</span>
+        </button>
+      </div>
+
+      <section class="projects-panel" id="projects-panel-enterprise" data-project-panel>
+        <h3 class="visually-hidden">Sistemas Empresariales</h3>
+        <div class="projects-grid">
+          {projects.map((project) => (
+            <article class="project-card" aria-labelledby={`project-${project.index}-title`}>
+              <div class="project-card-content">
+                <div class="project-copy">
+                  <div class="project-card-meta">
+                    <span class="project-index">{project.index}</span>
+                    <span class="project-client">{project.client}</span>
+                    <span class="project-type">Arquitectura privada</span>
+                  </div>
+
+                  <h3 id={`project-${project.index}-title`}>{project.title}</h3>
+                  <p class="project-description">{project.description}</p>
+
+                  <section class="project-achievements" aria-labelledby={`project-${project.index}-achievements`}>
+                    <h4 id={`project-${project.index}-achievements`}>Logros clave</h4>
+                    <ul>
+                      {project.achievements.map((achievement) => (
+                        <li><span aria-hidden="true"></span>{achievement}</li>
+                      ))}
+                    </ul>
+                  </section>
+                </div>
+
+                <div class="project-visual-column">
+                  <div class="project-visual-frame">
+                    <ProjectVisual variant={project.variant} label={project.title} />
+                  </div>
+                  <ul class="project-stack" aria-label={`Tecnologías utilizadas en ${project.title}`}>
+                    {project.stack.map((technology) => <li>{technology}</li>)}
+                  </ul>
+                </div>
+              </div>
+
+              <p class="project-note">
+                <span class="project-note-icon" aria-hidden="true"></span>
+                <span>Detalle arquitectónico disponible en conversación técnica, se contempla la solución de las necesidades expuestas, no así el producto mencionado.</span>
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="projects-panel projects-web-panel" id="projects-panel-web" data-project-panel>
+        <h3 class="visually-hidden">Sitios Web</h3>
+        <div class="projects-grid">
+          {webProjects.map((project) => (
+            <article class="project-card project-card-web" aria-labelledby={`project-web-${project.index}-title`}>
+              <div class="project-card-content">
+                <div class="project-copy">
+                  <div class="project-card-meta">
+                    <span class="project-index">{project.index}</span>
+                    <span class="project-client">{project.client}</span>
+                  </div>
+
+                  <h3 id={`project-web-${project.index}-title`}>{project.title}</h3>
+                  <p class="project-description">{project.description}</p>
+
+                  <section class="project-achievements" aria-labelledby={`project-web-${project.index}-achievements`}>
+                    <h4 id={`project-web-${project.index}-achievements`}>Logros clave</h4>
+                    <ul>
+                      {project.achievements.map((achievement) => (
+                        <li><span aria-hidden="true"></span>{achievement}</li>
+                      ))}
+                    </ul>
+                  </section>
+
+                </div>
+
+                <div class="project-visual-column">
+                  <ProjectGallery label={project.title} images={project.gallery} />
+                  <ul class="project-stack" aria-label={`Tecnologías utilizadas en ${project.title}`}>
+                    {project.stack.map((technology) => <li>{technology}</li>)}
+                  </ul>
+                  <div class="project-actions" aria-label={`Enlaces externos de ${project.title}`}>
+                    <a
+                      class="project-link"
+                      href={project.repository}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Repositorio en GitHub
+                      <span class="visually-hidden"> (abre en una pestaña nueva)</span>
+                    </a>
+                    {'liveSite' in project && (
+                      <a
+                        class="project-link project-link-secondary"
+                        href={project.liveSite}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Visitar sitio
+                        <span class="visually-hidden"> (abre en una pestaña nueva)</span>
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-projects-tabs]').forEach((root) => {
+    const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-project-tab]'));
+    const panels = Array.from(root.querySelectorAll<HTMLElement>('[data-project-panel]'));
+    const tablist = root.querySelector<HTMLElement>('[role="tablist"]');
+    const art = root.closest<HTMLElement>('.projects-section')?.querySelector<HTMLPictureElement>('[data-project-art]');
+    let currentArtVariant: 'enterprise' | 'web' = 'enterprise';
+    let artTransitionVersion = 0;
+
+    if (!tablist || tabs.length !== panels.length || tabs.length === 0) return;
+
+    panels.forEach((panel, index) => {
+      panel.setAttribute('role', 'tabpanel');
+      panel.setAttribute('aria-labelledby', tabs[index].id);
+      panel.tabIndex = 0;
+    });
+
+    const transitionArt = async (variant: 'enterprise' | 'web') => {
+      if (!art || variant === currentArtVariant) return;
+
+      const image = art.querySelector<HTMLImageElement>('img[data-enterprise-src]');
+      if (!image) return;
+
+      const transitionVersion = ++artTransitionVersion;
+      const shouldAnimate = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      currentArtVariant = variant;
+      if (shouldAnimate) art.classList.add('is-transitioning');
+
+      if (shouldAnimate) {
+        await new Promise<void>((resolve) => {
+          let settled = false;
+          const finish = () => {
+            if (settled) return;
+            settled = true;
+            window.clearTimeout(fallbackTimer);
+            image.removeEventListener('transitionend', handleTransitionEnd);
+            resolve();
+          };
+          const handleTransitionEnd = (event: TransitionEvent) => {
+            if (event.target === image && event.propertyName === 'opacity') finish();
+          };
+          const fallbackTimer = window.setTimeout(finish, 320);
+          image.addEventListener('transitionend', handleTransitionEnd);
+        });
+      }
+
+      if (transitionVersion !== artTransitionVersion) return;
+
+      art.querySelectorAll<HTMLSourceElement>('source[data-enterprise-srcset]').forEach((source) => {
+        const srcset = source.dataset[`${variant}Srcset`];
+        if (srcset) source.srcset = srcset;
+      });
+      const src = image.dataset[`${variant}Src`];
+      if (src) image.src = src;
+
+      try {
+        await image.decode();
+      } catch {
+        // Reveal the image even if its decoder rejects the request.
+      }
+
+      if (shouldAnimate && transitionVersion === artTransitionVersion) {
+        requestAnimationFrame(() => {
+          if (transitionVersion === artTransitionVersion) art.classList.remove('is-transitioning');
+        });
+      }
+    };
+
+    const selectTab = (selectedIndex: number, moveFocus = false) => {
+      tabs.forEach((tab, index) => {
+        const selected = index === selectedIndex;
+        tab.setAttribute('aria-selected', String(selected));
+        tab.tabIndex = selected ? 0 : -1;
+        panels[index].hidden = !selected;
+      });
+
+      void transitionArt(selectedIndex === 1 ? 'web' : 'enterprise');
+
+      panels[selectedIndex].dispatchEvent(new Event('project-panel-shown'));
+
+      if (moveFocus) tabs[selectedIndex].focus();
+    };
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => selectTab(index));
+      tab.addEventListener('keydown', (event) => {
+        let nextIndex: number | undefined;
+
+        switch (event.key) {
+          case 'ArrowRight':
+            nextIndex = (index + 1) % tabs.length;
+            break;
+          case 'ArrowLeft':
+            nextIndex = (index - 1 + tabs.length) % tabs.length;
+            break;
+          case 'Home':
+            nextIndex = 0;
+            break;
+          case 'End':
+            nextIndex = tabs.length - 1;
+            break;
+        }
+
+        if (nextIndex !== undefined) {
+          event.preventDefault();
+          selectTab(nextIndex, true);
+        }
+      });
+    });
+
+    selectTab(0);
+    tablist.hidden = false;
+  });
+</script>
+
+<style>
+  .projects-section {
+    position: relative;
+    overflow: clip;
+    padding-block: clamp(5rem, 10vw, 8rem);
+    background:
+      radial-gradient(ellipse 60% 45% at 0% 0%, var(--ambient-current), transparent 72%),
+      var(--surface-page);
+  }
+
+  .projects-section::before {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--border-subtle) 20%,
+      var(--interactive-accent) 50%,
+      var(--border-subtle) 80%,
+      transparent
+    );
+    content: '';
+    opacity: 0.85;
+  }
+
+  .projects-header {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.9fr);
+    gap: clamp(3rem, 8vw, 7rem);
+    align-items: center;
+    padding-block-end: clamp(3rem, 7vw, 5rem);
+  }
+
+  .projects-intro {
+    max-width: 48rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .projects-art {
+    position: relative;
+    display: grid;
+    width: min(100%, 25rem);
+    aspect-ratio: 1;
+    place-items: center;
+    justify-self: end;
+    isolation: isolate;
+  }
+
+  .projects-art::before {
+    position: absolute;
+    inset: 4%;
+    z-index: -1;
+    border-radius: var(--radius-pill);
+    background: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--hero-emphasis-color) 22%, transparent),
+      transparent 68%
+    );
+    content: '';
+    filter: blur(1.4rem);
+  }
+
+  .projects-art picture,
+  .projects-art img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1;
+  }
+
+  .projects-art img {
+    object-fit: contain;
+    transition:
+      opacity 240ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .projects-art picture.is-transitioning img {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+
+  .projects-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 0 0 1rem;
+    color: var(--hero-emphasis-color);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-regular);
+    letter-spacing: 0.12em;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+
+  .projects-kicker-icon {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    flex: 0 0 auto;
+    background: currentColor;
+    mask: url('/images/icons/projects-icon.svg') center / contain no-repeat;
+    -webkit-mask: url('/images/icons/projects-icon.svg') center / contain no-repeat;
+  }
+
+  .projects-kicker::before {
+    width: 1.25rem;
+    height: 1px;
+    flex: 0 0 auto;
+    background: var(--hero-emphasis-color);
+    content: '';
+  }
+
+  .projects-lead {
+    max-width: 40rem;
+    margin: 0;
+    color: var(--text-primary);
+    font-size: clamp(2.75rem, 6vw, 5rem);
+    font-weight: var(--font-weight-light);
+    letter-spacing: -0.05em;
+    line-height: 0.94;
+  }
+
+  .projects-description {
+    max-width: 38rem;
+    margin: 1rem 0 0;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  .projects-tablist {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-block-end: 2rem;
+  }
+
+  .projects-tablist[hidden] {
+    display: none;
+  }
+
+  .projects-tab {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    padding: 0.65rem 1rem;
+    border: 1px solid var(--border-control);
+    border-radius: var(--radius-button);
+    background: var(--surface-muted);
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: var(--text-body-sm);
+    text-align: center;
+    transition:
+      transform 180ms ease,
+      background-color 180ms ease,
+      border-color 180ms ease,
+      color 180ms ease;
+  }
+
+  .projects-tab[aria-selected='true'] {
+    border-color: var(--hero-emphasis-color);
+    background: color-mix(in srgb, var(--hero-emphasis-color) 13%, var(--surface-card));
+    color: var(--hero-emphasis-color);
+  }
+
+  .projects-tab:hover {
+    transform: translateY(-2px);
+  }
+
+  .projects-tab:hover:not([aria-selected='true']) {
+    border-color: var(--hero-emphasis-color);
+    background: color-mix(in srgb, var(--hero-emphasis-color) 7%, var(--surface-muted));
+  }
+
+  .projects-tab:focus-visible {
+    outline: 2px solid var(--interactive-accent);
+    outline-offset: 3px;
+  }
+
+  .projects-panel[hidden] {
+    display: none;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-auto-rows: auto;
+    gap: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  .project-card {
+    display: flex;
+    min-width: 0;
+    min-height: 0;
+    flex-direction: column;
+    gap: clamp(1rem, 3vw, 2.5rem);
+    align-items: stretch;
+    padding: clamp(1rem, 2vw, 1.5rem);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-panel);
+    background: var(--surface-card);
+    transition:
+      transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 240ms ease,
+      background-color 240ms ease;
+  }
+
+  .project-card:hover {
+    transform: translateY(-4px);
+    border-color: color-mix(in srgb, var(--hero-emphasis-color) 55%, var(--border-subtle));
+  }
+
+  .project-card-content {
+    display: grid;
+    min-height: 0;
+    grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+    gap: clamp(1rem, 3vw, 2.5rem);
+    align-items: stretch;
+  }
+
+  .project-copy {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    justify-content: start;
+    padding: clamp(1rem, 3vw, 2.4rem);
+  }
+
+  .project-visual-column {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+  }
+
+  .project-visual-frame {
+    width: 100%;
+    min-height: 22rem;
+    height: 100%;
+    flex: 1 1 auto;
+  }
+
+  .project-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.55rem 0.75rem;
+    color: var(--text-secondary);
+    font-size: var(--text-caption);
+    letter-spacing: 0.055em;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+
+  .project-index {
+    color: var(--hero-emphasis-color);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .project-client {
+    flex: 1 1 10rem;
+  }
+
+  .project-type {
+    padding: 0.2rem 0.55rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-pill);
+    background: var(--surface-muted);
+    color: var(--text-secondary);
+    font-size: 0.65rem;
+    letter-spacing: 0.025em;
+  }
+
+  .project-copy > h3 {
+    margin: 1.1rem 0 0;
+    color: var(--text-strong);
+    font-size: clamp(2.3rem, 4.7vw, 4.4rem);
+    font-weight: var(--font-weight-light);
+    letter-spacing: -0.045em;
+    line-height: 1.05;
+  }
+
+  .project-description {
+    margin: 1rem 0 0;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-weight: var(--font-weight-light);
+    line-height: 1.65;
+  }
+
+  .project-achievements {
+    width: 100%;
+    margin-block-start: 1.4rem;
+    padding-block-start: 1.25rem;
+    border-block-start: 1px solid var(--border-subtle);
+  }
+
+  .project-achievements h4 {
+    margin: 0 0 0.8rem;
+    color: var(--hero-emphasis-color);
+    font-size: var(--text-caption);
+    font-weight: var(--font-weight-regular);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .project-achievements ul {
+    display: grid;
+    gap: 0.65rem;
+    margin: 0;
+    padding: 0;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.55;
+    list-style: none;
+  }
+
+  .project-achievements li {
+    display: grid;
+    grid-template-columns: 5px minmax(0, 1fr);
+    gap: 0.65rem;
+  }
+
+  .project-achievements li > span {
+    width: 5px;
+    height: 5px;
+    margin-block-start: 0.55rem;
+    border-radius: var(--radius-pill);
+    background: var(--hero-emphasis-color);
+  }
+
+  .project-achievements li::marker {
+    color: var(--hero-emphasis-color);
+  }
+
+  .project-stack {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 0.85rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .project-stack li {
+    padding: 0.38rem 0.62rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-button);
+    background: var(--surface-muted);
+    color: var(--text-primary);
+    font-size: 0.72rem;
+    line-height: 1.2;
+  }
+
+  .project-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.65rem;
+    margin-block-start: 1.4rem;
+  }
+
+  .project-link {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0.65rem 0.9rem;
+    border: 1px solid var(--border-control);
+    border-radius: var(--radius-button);
+    background: var(--surface-muted);
+    color: var(--text-primary);
+    font-size: var(--text-body-sm);
+    line-height: 1.25;
+    text-align: center;
+    text-decoration: none;
+    transition:
+      transform 180ms ease,
+      border-color 180ms ease,
+      color 180ms ease,
+      background-color 180ms ease;
+  }
+
+  .project-link:hover {
+    transform: translateY(-2px);
+    border-color: var(--hero-emphasis-color);
+    color: var(--hero-emphasis-color);
+  }
+
+  .project-link-secondary {
+    background: transparent;
+  }
+
+  .project-note {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    margin: 0;
+    padding-block-start: 1rem;
+    border-block-start: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    font-size: var(--text-caption);
+    line-height: 1.55;
+    text-align: center;
+  }
+
+  .project-note-icon {
+    width: 1rem;
+    height: 1rem;
+    flex: 0 0 auto;
+    margin-block-start: 0.1rem;
+    background: currentColor;
+    mask: url('/images/icons/stack-icon.svg') center / contain no-repeat;
+    -webkit-mask: url('/images/icons/stack-icon.svg') center / contain no-repeat;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    clip-path: inset(50%);
+    border: 0;
+  }
+
+  @media (max-width: 48rem) {
+    .projects-header {
+      min-height: 24rem;
+      grid-template-columns: 1fr;
+      gap: 0;
+      align-items: center;
+    }
+
+    .projects-intro {
+      max-width: none;
+    }
+
+    .projects-art {
+      position: absolute;
+      inset-block-start: 50%;
+      inset-inline-end: -3rem;
+      z-index: 0;
+      width: min(75vw, 20rem);
+      opacity: 0.14;
+      pointer-events: none;
+      transform: translateY(-50%);
+    }
+
+    .projects-tablist {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .projects-tab {
+      min-height: 3.25rem;
+      padding-inline: 0.6rem;
+    }
+
+    .project-card-content {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.25rem;
+    }
+
+    .project-copy {
+      padding: 0.75rem;
+    }
+
+    .project-visual-frame {
+      min-height: 20rem;
+      height: 100%;
+    }
+
+    .project-note {
+      align-items: flex-start;
+    }
+
+    .project-note-icon {
+      margin-block-start: 0.1rem;
+    }
+
+    .project-copy > h3 {
+      font-size: clamp(2.25rem, 10vw, 3rem);
+    }
+
+    .project-card-meta {
+      font-size: 0.68rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .projects-tab,
+    .project-card,
+    .project-link,
+    .projects-art img {
+      transition: none;
+    }
+
+    .projects-tab:hover,
+    .project-card:hover,
+    .project-link:hover {
+      transform: none;
+    }
+  }
+</style>
