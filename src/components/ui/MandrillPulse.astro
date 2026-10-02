@@ -1,0 +1,50 @@
+---
+import mandrillVector from '../../../resources/logo_vector.svg?raw';
+
+// Solo se recupera la geometría local del recurso original; no se inyecta su XML.
+const paths = Array.from(mandrillVector.matchAll(/<path\s[^>]*?\bd="([^"]+)"/g), (match) => match[1]);
+const pulseAlpha = [0.02, 0.12, 0.4, 0.78, 1, 0.78, 0.4, 0.12, 0.02];
+---
+
+<mandrill-pulse>
+  <svg viewBox="0 0 500 500" width="500" height="500" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+    <g class="mandrill-lines" stroke="currentColor" stroke-width="2">
+      {paths.map((d) => <path d={d} data-mandrill-line />)}
+    </g>
+    <g class="mandrill-current" stroke-width="5" stroke-linecap="butt">
+      {Array.from({ length: 10 }, (_, index) => (
+        <g class:list={['mandrill-spark', { 'mandrill-spark-warm': index % 2 === 1 }]} data-mandrill-spark>
+          {pulseAlpha.map((alpha) => <path stroke-opacity={alpha} data-pulse-segment />)}
+        </g>
+      ))}
+    </g>
+  </svg>
+</mandrill-pulse>
+
+<script>
+  import '../../scripts/mandrill-pulse';
+</script>
+
+<style>
+  mandrill-pulse { display: block; }
+  svg {
+    width: var(--mandrill-width, 100%);
+    max-width: none;
+    height: auto;
+    margin-inline: var(--mandrill-offset, 0);
+    overflow: visible;
+    color: var(--text-primary);
+  }
+  .mandrill-spark {
+    opacity: 0;
+    stroke: var(--interactive-accent);
+    filter: blur(0.35px) drop-shadow(0 0 6px var(--interactive-accent));
+  }
+  .mandrill-spark-warm {
+    stroke: var(--hero-emphasis-color);
+    filter: blur(0.35px) drop-shadow(0 0 6px var(--hero-emphasis-color));
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .mandrill-current { display: none; }
+  }
+</style>
