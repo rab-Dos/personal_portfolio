@@ -217,9 +217,7 @@ const portraitSources = {
                     data-dialog-open={`experience-dialog-${item.id}`}
                   >
                     <span>Ver Detalle</span>
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M5 12h14m-6-6 6 6-6 6" />
-                    </svg>
+                    <span class="experience-card-details-icon" aria-hidden="true"></span>
                   </button>
                 )}
               </div>
@@ -639,19 +637,18 @@ const portraitSources = {
     transform: scale(0.96);
   }
 
-  .experience-card-details svg {
+  .experience-card-details-icon {
+    display: inline-block;
     width: 1rem;
     height: 1rem;
     flex: 0 0 auto;
-    fill: none;
-    stroke: currentColor;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 1.6;
+    background: currentColor;
+    mask: url('/jesusarellano/images/icons/arrow.svg') center / contain no-repeat;
+    -webkit-mask: url('/jesusarellano/images/icons/arrow.svg') center / contain no-repeat;
     transition: transform 180ms ease;
   }
 
-  .experience-card-details:hover svg {
+  .experience-card-details:hover .experience-card-details-icon {
     transform: translateX(0.15rem);
   }
 
@@ -1033,7 +1030,7 @@ const portraitSources = {
     .portrait-orbit,
     .experience-card,
     .experience-card-details,
-    .experience-card-details svg,
+    .experience-card-details-icon,
     .experience-card-alexandria-link,
     .experience-card-alexandria-link svg,
     .back-to-top,
