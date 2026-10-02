@@ -25,7 +25,7 @@
   }
 
   const media = document.createElement('video');
-  media.src = '/media/mandrill/packed-pingpong.mp4';
+  media.src = '/jesusarellano/media/mandrill/packed-pingpong.mp4';
   media.loop = true;
   media.muted = true;
   media.playsInline = true;
@@ -37,7 +37,7 @@
 
   // En móvil se conserva solo la máscara; el video original se descarga únicamente en escritorio.
   const compactLayout = matchMedia('(max-width: 55.999rem)');
-  const sourceVideoPath = '/media/mandrill/source-pingpong.mp4';
+  const sourceVideoPath = '/jesusarellano/media/mandrill/source-pingpong.mp4';
   hero.dataset.mode = compactLayout.matches ? 'generated' : 'split';
   if (!compactLayout.matches) {
     sourceVideo.src = sourceVideoPath;
@@ -227,7 +227,7 @@
 
   let tracking=null, visible=true, resizePending=true;
   let canvasPane={x:0,y:0,w:1,h:1}, sourcePane={x:0,y:0,w:0,h:0};
-  fetch('/media/mandrill/tracking.json').then(r=>r.json()).then(v=>{
+  fetch('/jesusarellano/media/mandrill/tracking.json').then(r=>r.json()).then(v=>{
     tracking=v;
     if(reduced) requestAnimationFrame(render);
   });

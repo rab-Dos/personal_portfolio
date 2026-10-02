@@ -2,12 +2,13 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'astro/config';
 
-const site = process.env.SITE_URL;
+const site = process.env.SITE_URL || 'https://alexandriastudio.cloud/jesusarellano';
 
 export default defineConfig({
-  // Sitio estático: el sitemap y las URL canónicas se activan al definir SITE_URL.
+  // Usa la URL pública real como valor predeterminado y permite sobrescribirla por entorno.
   output: 'static',
   site,
+  base: '/jesusarellano',
   devToolbar: {
     enabled: false,
   },

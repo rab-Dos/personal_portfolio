@@ -1,0 +1,790 @@
+---
+const technologyGroups = [
+  {
+    id: 'backend',
+    title: 'Lenguajes y Backend',
+    description: 'Lenguajes y tecnologías para servicios, consultas y automatización.',
+    items: [
+      'Python',
+      'TypeScript / JavaScript',
+      'C# / .NET',
+      'C++',
+      'PHP',
+      'SQL (T-SQL / PL/pgSQL)',
+      'PowerShell',
+      'FastAPI',
+    ],
+  },
+  {
+    id: 'web',
+    title: 'Frontend y UI',
+    description: 'Frameworks y herramientas para construir experiencias web modernas.',
+    items: ['React', 'Vue', 'Astro', 'Tailwind CSS'],
+  },
+  {
+    id: 'data',
+    title: 'Bases de Datos',
+    description: 'Motores relacionales y vectoriales para persistencia y consulta de datos.',
+    items: ['Microsoft SQL Server', 'PostgreSQL', 'MySQL', 'Firebird', 'LanceDB'],
+  },
+  {
+    id: 'ai',
+    title: 'IA y Recuperación',
+    description: 'Técnicas para enriquecer modelos con contexto y búsqueda semántica.',
+    items: ['RAG (Retrieval-Augmented Generation)', 'Vector Embeddings'],
+  },
+  {
+    id: 'tooling',
+    title: 'Herramientas y Documentación',
+    description: 'Control de versiones, contenedores, entornos de trabajo y documentación.',
+    items: [
+      'Git',
+      'GitHub',
+      'Gitea (self-hosted)',
+      'Docker',
+      'VS Code',
+      'Warp (terminal)',
+      'uv (paquetes y entornos de Python)',
+      'pnpm / npm',
+      'MkDocs (documentación técnica)',
+      'Mermaid.js',
+    ],
+  },
+  {
+    id: 'infrastructure',
+    title: 'Infraestructura y Acceso Remoto',
+    description: 'Servicios cloud, servidores virtuales y herramientas de administración remota.',
+    items: ['Azure', 'VPS', 'RustDesk', 'Splashtop'],
+  },
+  {
+    id: 'productivity',
+    title: 'Productividad y Multimedia',
+    description: 'Herramientas de oficina, diseño vectorial y edición de audio.',
+    items: [
+      'Microsoft Office (Excel avanzado y Power Pivot)',
+      'LibreOffice',
+      'Inkscape',
+      'Audacity',
+    ],
+  },
+];
+
+---
+
+<section class="about-section" id="sobre-mi" aria-labelledby="about-title">
+  <div class="page-container">
+    <header class="about-header">
+      <div class="about-intro">
+        <h2 class="about-kicker" id="about-title">
+          <span class="about-kicker-icon" aria-hidden="true"></span>
+          <span>Sobre Mí</span>
+        </h2>
+        <p class="about-lead">
+          <strong>No construyo capas aisladas: Diseño sistemas completos.</strong>
+        </p>
+        <p class="about-lead-detail">
+          Desde el modelo de datos hasta la interfaz final, cada decisión técnica debe reducir riesgo, acelerar operación y dejar una plataforma más clara que la que recibió.
+        </p>
+      </div>
+
+      <div class="about-art" aria-hidden="true">
+        <!-- Variantes optimizadas copiadas desde resources/Original_Reverso para esta ilustración de marca. -->
+        <picture>
+          <source srcset="/jesusarellano/images/brand/original-reverso.avif" type="image/avif" />
+          <source srcset="/jesusarellano/images/brand/original-reverso.webp" type="image/webp" />
+          <img
+            src="/jesusarellano/images/brand/original-reverso.png"
+            width="512"
+            height="512"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          />
+        </picture>
+      </div>
+    </header>
+
+    <div class="about-story-grid">
+      <div class="about-copy">
+        <p>
+          Soy un <strong>Development, AI &amp; Data Architect</strong> enfocado en crear productos tecnológicos de alto impacto, combinando <strong>backends robustos</strong> con <strong>interfaces modernas y eficientes</strong>. Estudié Ingeniería en Informática en la <strong>UPIICSA del IPN</strong> y programo desde los 12 años, cuando comencé con BASIC y Pascal. Mi trayectoria ha evolucionado de administrar <strong>sistemas y bases de datos transaccionales a gran escala</strong> a diseñar <strong>arquitecturas empresariales</strong> y liderar técnicamente equipos multidisciplinarios en integraciones críticas. Actualmente soy cofundador de Alexandria Studio.
+        </p>
+        <p>
+          Me apasiona <strong>estructurar información compleja</strong> y crear soluciones de <strong>automatización documental</strong> y <strong>recuperación de información</strong>, especialmente en plataformas donde la <strong>trazabilidad es indispensable</strong>. Mi trabajo va más allá del código limpio: alineo el <strong>modelado lógico de datos</strong> con los objetivos de crecimiento del negocio para ayudar a prevenir <strong>problemas de concurrencia</strong> y <strong>degradación del rendimiento</strong> en entornos de misión crítica. Busco que cada decisión tecnológica fortalezca la <strong>resiliencia de los sistemas</strong>, mejore el <strong>rendimiento de los datos</strong> y respalde los <strong>objetivos estratégicos del negocio</strong>.
+        </p>
+      </div>
+
+      <aside class="core-panel" aria-labelledby="core-title">
+        <header class="core-panel-header">
+          <h3 id="core-title">Pero fuera del core...</h3>
+          <p>Una identidad más allá del stack.</p>
+        </header>
+        <div class="core-grid">
+          <article class="core-item">
+            <span aria-hidden="true">01</span>
+            <div>
+              <h4>Diseño de marca</h4>
+              <p>Identidad visual, dibujo de vectores y comunicación técnica.</p>
+            </div>
+          </article>
+          <article class="core-item">
+            <span aria-hidden="true">02</span>
+            <div>
+              <h4>Edición multimedia</h4>
+              <p>Video, audio y composición como extensión del producto.</p>
+            </div>
+          </article>
+          <article class="core-item">
+            <span aria-hidden="true">03</span>
+            <div>
+              <h4>Guitarra</h4>
+              <p>Disciplina, ritmo e iteración lejos de la pantalla.</p>
+            </div>
+          </article>
+          <article class="core-item">
+            <span aria-hidden="true">04</span>
+            <div>
+              <h4>Sci-fi, Surrealismo &amp; comics</h4>
+              <p>Imaginación de sistemas, futuros y nuevas interfaces.</p>
+            </div>
+          </article>
+          <article class="core-item">
+            <span aria-hidden="true">05</span>
+            <div>
+              <h4>Idiomas</h4>
+              <p>Español nativo · Inglés B1</p>
+            </div>
+          </article>
+        </div>
+      </aside>
+    </div>
+
+    <section class="technologies-section" aria-labelledby="technologies-title">
+      <header class="technologies-header">
+        <h3 class="technologies-kicker" id="technologies-title">
+          <span class="technologies-kicker-icon" aria-hidden="true"></span>
+          <span>Tecnologías Aplicadas</span>
+        </h3>
+        <p class="technologies-description">
+          Un ecosistema de herramientas para convertir ideas en sistemas. Selecciona una especialidad para explorar sus tecnologías.
+        </p>
+      </header>
+
+      <technology-orbit aria-labelledby="technologies-title">
+      <div class="orbit-controls" hidden>
+        <div class="orbit-navigation" aria-label="Controles de tecnologías">
+          <button type="button" class="orbit-control" data-orbit-previous aria-label="Especialidad anterior">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m14 6-6 6 6 6" /></svg>
+          </button>
+          <button type="button" class="orbit-control orbit-motion" data-orbit-motion>Pausar órbita</button>
+          <button type="button" class="orbit-control" data-orbit-next aria-label="Especialidad siguiente">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m10 6 6 6-6 6" /></svg>
+          </button>
+        </div>
+        <p class="orbit-status" data-orbit-status role="status" aria-live="polite" aria-atomic="true"></p>
+      </div>
+      <div class="technology-grid" data-orbit-stage>
+        {technologyGroups.map((group, index) => (
+          <article class="technology-card" data-orbit-card data-orbit-title={group.title} aria-labelledby={`technology-${group.id}-title`}>
+            <button type="button" class="technology-select" data-orbit-select aria-label={`Mostrar ${group.title} en el centro`} aria-pressed="false" hidden></button>
+            <div class="technology-card-intro">
+              <div class="technology-card-top">
+              <span class="technology-icon" aria-hidden="true">
+                {group.id === 'ai' && (
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <path d="M9.663 17h4.673M12 3v1m6.364 1.636-.707.707M21 12h-1M4 12H3m3.343-5.657-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547Z" />
+                  </svg>
+                )}
+                {group.id === 'backend' && (
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065Z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                )}
+                {group.id === 'data' && (
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <path d="M4 7v10c0 2.21 3.58 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.58 4 8 4s8-1.79 8-4M4 7c0-2.21 3.58-4 8-4s8 1.79 8 4m0 5c0 2.21-3.58 4-8 4s-8-1.79-8-4" />
+                  </svg>
+                )}
+                {group.id === 'web' && (
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <path d="m16 18 6-6-6-6M8 6l-6 6 6 6m7-16-4 20" />
+                  </svg>
+                )}
+                {group.id === 'tooling' && (
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <path d="m4 17 6-6-6-6M12 19h8" />
+                  </svg>
+                )}
+                {group.id === 'infrastructure' && (
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <rect x="3" y="4" width="18" height="6" rx="2" />
+                    <rect x="3" y="14" width="18" height="6" rx="2" />
+                    <path d="M7 7h.01M7 17h.01M11 7h6M11 17h6" />
+                  </svg>
+                )}
+                {group.id === 'productivity' && (
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <path d="m21 15-5-5L5 21" />
+                  </svg>
+                )}
+              </span>
+              <span class="technology-card-index" aria-hidden="true">{String(index + 1).padStart(2, '0')} / {String(technologyGroups.length).padStart(2, '0')}</span>
+              </div>
+              <h4 id={`technology-${group.id}-title`}>{group.title}</h4>
+              <p>{group.description}</p>
+            </div>
+
+            <ul class="technology-list" aria-label={`Tecnologías de ${group.title}`}>
+              {group.items.map((name) => (
+                <li class="technology-row">
+                  <span>{name}</span>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+      <div class="orbit-picker" aria-label="Elegir especialidad" hidden>
+        {technologyGroups.map((group, index) => (
+          <button type="button" class="orbit-dot" data-orbit-index={index} aria-label={`Mostrar ${group.title}`} aria-pressed="false">
+            <span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+          </button>
+        ))}
+      </div>
+      </technology-orbit>
+    </section>
+  </div>
+</section>
+
+<script>
+  import '../../scripts/technology-orbit';
+</script>
+
+<style>
+  .about-section {
+    position: relative;
+    overflow: clip;
+    padding-block: clamp(5rem, 10vw, 8rem);
+    background:
+      radial-gradient(ellipse 60% 40% at 100% 0%, var(--ambient-ember), transparent 72%),
+      var(--surface-page);
+  }
+
+  .about-section::before {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-subtle) 24%, var(--border-subtle) 76%, transparent);
+    content: '';
+  }
+
+  .about-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.9fr);
+    gap: clamp(3rem, 8vw, 7rem);
+    align-items: center;
+    padding-block-end: clamp(3rem, 7vw, 5rem);
+  }
+
+  .about-intro {
+    max-width: 48rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .about-kicker,
+  .technologies-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 0 0 1rem;
+    color: var(--hero-emphasis-color);
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-regular);
+    letter-spacing: 0.12em;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+
+  .about-kicker-icon {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    flex: 0 0 auto;
+    background: currentColor;
+    mask: url('/jesusarellano/images/icons/about-icon.svg') center / contain no-repeat;
+    -webkit-mask: url('/jesusarellano/images/icons/about-icon.svg') center / contain no-repeat;
+  }
+
+  .technologies-kicker-icon {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    flex: 0 0 auto;
+    background: currentColor;
+    mask: url('/jesusarellano/images/icons/stack-icon.svg') center / contain no-repeat;
+    -webkit-mask: url('/jesusarellano/images/icons/stack-icon.svg') center / contain no-repeat;
+  }
+
+  .about-kicker::before,
+  .technologies-kicker::before {
+    width: 1.25rem;
+    height: 1px;
+    flex: 0 0 auto;
+    background: var(--hero-emphasis-color);
+    content: '';
+  }
+
+  .about-lead {
+    max-width: 42rem;
+    margin: 0;
+    color: var(--text-primary);
+    font-size: clamp(1.75rem, 3.7vw, 3.5rem);
+    font-weight: var(--font-weight-light);
+    letter-spacing: -0.045em;
+    line-height: 1.04;
+  }
+
+  .about-lead strong {
+    color: var(--text-strong);
+    font-weight: var(--font-weight-regular);
+  }
+
+  .about-lead-detail {
+    max-width: 38rem;
+    margin: 1rem 0 0;
+    color: var(--text-secondary);
+    font-size: clamp(1rem, 1.4vw, 1.125rem);
+    line-height: 1.7;
+  }
+
+  .about-art {
+    position: relative;
+    display: grid;
+    width: min(100%, 25rem);
+    aspect-ratio: 1;
+    place-items: center;
+    justify-self: end;
+    isolation: isolate;
+  }
+
+  .about-art::before {
+    position: absolute;
+    inset: 4%;
+    z-index: -1;
+    border-radius: var(--radius-pill);
+    background: radial-gradient(circle, color-mix(in srgb, var(--hero-emphasis-color) 18%, transparent), transparent 68%);
+    content: '';
+    filter: blur(1.4rem);
+  }
+
+  .about-art picture,
+  .about-art img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1;
+  }
+
+  .about-art img {
+    object-fit: contain;
+  }
+
+  .about-story-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(17rem, 0.75fr);
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
+  }
+
+  .about-copy {
+    max-width: 52rem;
+  }
+
+  .about-copy p {
+    margin: 0 0 1.25rem;
+    color: var(--text-primary);
+    font-size: clamp(1rem, 1.4vw, 1.125rem);
+    line-height: 1.7;
+  }
+
+  .about-copy p:last-child {
+    margin-block-end: 0;
+  }
+
+  .about-copy strong {
+    color: var(--hero-emphasis-color);
+    font-weight: 600;
+  }
+
+  .core-panel {
+    min-width: 0;
+    padding: clamp(1.25rem, 2.5vw, 2rem);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-card);
+    background: var(--surface-card);
+  }
+
+  .core-panel-header {
+    margin-block-end: 1.25rem;
+  }
+
+  .core-panel-header h3 {
+    margin: 0;
+    color: var(--text-strong);
+    font-size: 1.25rem;
+    font-weight: var(--font-weight-regular);
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+  }
+
+  .core-panel-header p {
+    margin: 0.35rem 0 0;
+    color: var(--text-secondary);
+    font-size: var(--text-body-sm);
+    line-height: 1.5;
+  }
+
+  .core-grid {
+    display: grid;
+    gap: 0.25rem;
+  }
+
+  .core-item {
+    display: grid;
+    grid-template-columns: 2rem minmax(0, 1fr);
+    gap: 0.75rem;
+    padding-block: 0.85rem;
+    border-block-start: 1px solid var(--border-subtle);
+  }
+
+  .core-item > span {
+    color: var(--hero-emphasis-color);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: var(--text-caption);
+    line-height: 1.7;
+  }
+
+  .core-item h4 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: var(--text-body-sm);
+    font-weight: var(--font-weight-regular);
+    line-height: 1.45;
+  }
+
+  .core-item p {
+    margin: 0.2rem 0 0;
+    color: var(--text-secondary);
+    font-size: var(--text-caption);
+    line-height: 1.55;
+  }
+
+  .technologies-section {
+    padding-block-start: clamp(5rem, 9vw, 7.5rem);
+  }
+
+  .technologies-header {
+    max-width: 48rem;
+    margin-block-end: clamp(2rem, 4vw, 3rem);
+  }
+
+  .technologies-description {
+    max-width: 42rem;
+    margin: 1rem 0 0;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  technology-orbit {
+    --orbit-edge: color-mix(in srgb, var(--hero-emphasis-color) 48%, var(--border-subtle));
+    --orbit-glow: color-mix(in srgb, var(--hero-emphasis-color) 42%, transparent);
+    display: block;
+  }
+
+  .technology-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+    align-items: start;
+    gap: 1.5rem;
+  }
+
+  .technology-card {
+    position: relative;
+    min-width: 0;
+    padding: clamp(1.25rem, 2vw, 1.75rem);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-panel);
+    background:
+      radial-gradient(ellipse at 0 0, var(--ambient-ember), transparent 65%),
+      var(--surface-card);
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--text-strong) 8%, transparent);
+    transition: border-color 200ms ease, background-color 200ms ease;
+  }
+
+  .technology-card-top {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-block-end: 1.25rem;
+  }
+
+  .technology-card-index {
+    margin-inline-start: auto;
+    color: var(--text-secondary);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: var(--text-caption);
+    letter-spacing: 0.06em;
+  }
+
+  .technology-select {
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    border-radius: inherit;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .technology-select:focus-visible {
+    outline: 2px solid var(--interactive-accent);
+    outline-offset: 5px;
+  }
+
+  technology-orbit[data-enhanced] .technology-grid {
+    position: relative;
+    display: block;
+    overflow: clip;
+    isolation: isolate;
+    background: radial-gradient(ellipse at center, var(--ambient-ember), transparent 65%);
+  }
+
+  technology-orbit[data-enhanced] .technology-grid::before,
+  technology-orbit[data-enhanced] .technology-grid::after {
+    position: absolute;
+    inset: 28% 3%;
+    border: 1px solid var(--border-subtle);
+    border-radius: 50%;
+    transform: rotate(-12deg);
+    pointer-events: none;
+    content: '';
+  }
+
+  technology-orbit[data-enhanced] .technology-grid::after {
+    inset: 18% 14%;
+    border-color: color-mix(in srgb, var(--interactive-accent) 18%, transparent);
+    transform: rotate(15deg);
+  }
+
+  technology-orbit[data-enhanced] .technology-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: min(23rem, 82%);
+    transform: translate(-50%, -50%);
+    transform-origin: center;
+    will-change: transform;
+  }
+
+  .technology-card[data-selected] {
+    border-color: var(--orbit-edge);
+    background:
+      radial-gradient(ellipse at 0 0, var(--ambient-ember), transparent 75%),
+      var(--surface-panel);
+    box-shadow: inset 0 0 0 1px var(--orbit-edge);
+  }
+
+  .orbit-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  .orbit-navigation,
+  .orbit-picker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .orbit-control,
+  .orbit-dot {
+    display: inline-flex;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    border: 1px solid var(--border-control);
+    border-radius: var(--radius-button);
+    background: var(--surface-card);
+    color: var(--text-primary);
+    font-size: var(--text-body-sm);
+    cursor: pointer;
+  }
+
+  .orbit-motion {
+    padding-inline: 1rem;
+  }
+
+  .orbit-control svg {
+    width: 1rem;
+    height: 1rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .orbit-control:hover:not(:disabled),
+  .orbit-dot:hover,
+  .orbit-dot[aria-pressed='true'] {
+    border-color: var(--hero-emphasis-color);
+    color: var(--hero-emphasis-color);
+    background: var(--surface-panel);
+  }
+
+  .orbit-dot[aria-pressed='true'] {
+    box-shadow: inset 0 -3px 0 var(--hero-emphasis-color);
+  }
+
+  .orbit-control:disabled {
+    cursor: default;
+  }
+
+  .orbit-status {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: var(--text-body-sm);
+  }
+
+  .orbit-picker {
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin-block-start: 0.75rem;
+  }
+
+  .orbit-controls[hidden],
+  .orbit-picker[hidden],
+  .technology-select[hidden] {
+    display: none;
+  }
+
+  .technology-icon {
+    display: grid;
+    width: 3rem;
+    height: 3rem;
+    flex: 0 0 auto;
+    place-items: center;
+    border: 1px solid color-mix(in srgb, var(--hero-emphasis-color) 30%, var(--border-subtle));
+    border-radius: var(--radius-node);
+    background: color-mix(in srgb, var(--hero-emphasis-color) 10%, var(--surface-card));
+    color: var(--hero-emphasis-color);
+    transition: background-color 180ms ease, border-color 180ms ease, filter 180ms ease;
+  }
+
+  .technology-card:is(:hover, :focus-within, [data-selected]) .technology-icon {
+    border-color: var(--hero-emphasis-color);
+    filter: drop-shadow(0 0 0.85rem var(--orbit-glow));
+  }
+
+  .technology-card[data-selected] .technology-icon {
+    animation: orbit-icon-breathe 4s ease-in-out infinite;
+  }
+
+  @keyframes orbit-icon-breathe {
+    0%, 100% {
+      filter: drop-shadow(0 0 0.3rem var(--orbit-glow));
+    }
+
+    50% {
+      filter: drop-shadow(0 0 1.1rem var(--orbit-glow));
+    }
+  }
+
+  .technology-icon svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
+  }
+
+  .technology-card h4 {
+    margin: 0 0 0.5rem;
+    color: var(--text-strong);
+    font-size: 1.375rem;
+    font-weight: var(--font-weight-regular);
+    line-height: 1.3;
+  }
+
+  .technology-card-intro > p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: var(--text-body-sm);
+    line-height: 1.65;
+  }
+
+  .technology-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin: 1.25rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .technology-row {
+    min-width: 0;
+    padding: 0.45rem 0.65rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-button);
+    background: var(--surface-card);
+    color: var(--text-primary);
+    font-size: var(--text-body-sm);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 48rem) {
+    .about-header {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.5rem;
+    }
+
+    .about-art {
+      width: min(75vw, 20rem);
+      justify-self: center;
+    }
+
+    .about-story-grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .about-art img,
+    .technology-card,
+    .technology-icon {
+      transition: none;
+    }
+
+    .technology-card[data-selected] .technology-icon {
+      animation: none;
+    }
+  }
+</style>

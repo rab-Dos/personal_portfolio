@@ -37,13 +37,13 @@ Astro mostrará en la terminal la dirección local disponible. El puerto puede v
 
 ## Variables de entorno
 
-Copia `.env.example` como `.env` y define la URL pública cuando sea necesario:
+Copia `.env.example` como `.env` si necesitas sobrescribir la URL pública predeterminada:
 
 ```env
-SITE_URL=https://example.com
+SITE_URL=https://alexandriastudio.cloud/jesusarellano
 ```
 
-`SITE_URL` habilita las URL canónicas de Astro y la generación del sitemap. Sin esta variable, el proyecto puede ejecutarse localmente con normalidad.
+`SITE_URL` configura la URL usada por Astro y el sitemap. De forma predeterminada, el proyecto usa `https://alexandriastudio.cloud/jesusarellano`.
 
 ## Estructura principal
 
@@ -97,6 +97,10 @@ Los recursos adaptados, referencias visuales y dependencias externas se document
 | `pnpm start` | Alias del servidor de desarrollo |
 | `pnpm build` | Genera la versión estática de producción |
 | `pnpm preview` | Sirve localmente una compilación existente |
+
+## Publicación
+
+El sitio está configurado para servirse desde `/jesusarellano/`. Después de `pnpm build`, publica el contenido de `dist` dentro de la carpeta del servidor que corresponde a esa ruta, de modo que `index.html`, `_astro/`, `images/`, `media/` y `scripts/` queden directamente dentro de ella.
 
 ## Convenciones de trabajo
 

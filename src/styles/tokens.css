@@ -52,6 +52,7 @@
   --font-geomanist-book: var(--font-geomanist);
   --font-weight-light: 300;
   --font-weight-regular: 400;
+  --text-caption: 0.75rem;
   --text-body: 1rem;
   --text-body-sm: 0.875rem;
   --text-display: clamp(3.25rem, 8vw, 6.75rem);
@@ -60,6 +61,7 @@
   --page-max-width: 75rem;
   --nav-height: 4.75rem;
   --radius-button: 0.5rem;
+  --radius-node: 0.75rem;
   --radius-card: 1rem;
   --radius-panel: 1.5rem;
   --radius-pill: 9999px;
