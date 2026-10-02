@@ -47,17 +47,12 @@
   <!-- Acciones principales: ocupan una franja libre debajo del video en escritorio -->
   <div class="page-container hero-actions" aria-label="Enlaces destacados">
     <a class="hero-action hero-action-primary" href="#contacto">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <rect x="3.5" y="5" width="17" height="14" rx="2" />
-        <path d="m5 7 7 5 7-5" />
-      </svg>
+      <span class="hero-action-icon hero-action-mail-icon" aria-hidden="true"></span>
       <span>Contáctame</span>
     </a>
     <a class="hero-action hero-action-secondary" href="#proyectos">
       <span>Explorar Proyectos</span>
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M5 12h14M13 6l6 6-6 6" />
-      </svg>
+      <span class="hero-action-icon hero-action-arrow-icon" aria-hidden="true"></span>
     </a>
 
     <!-- Enlaces sociales como botones ghost dentro de la misma franja de acciones -->
@@ -258,15 +253,35 @@
       transform 140ms ease;
   }
 
-  .hero-action svg {
+  .hero-action-icon {
     width: 1.125rem;
     height: 1.125rem;
     flex: 0 0 auto;
-    fill: none;
-    stroke: currentColor;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 1.6;
+    display: inline-block;
+  }
+
+  .hero-action-mail-icon {
+    background: currentColor;
+    mask-image: url('/jesusarellano/images/icons/mail.svg');
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    -webkit-mask-image: url('/jesusarellano/images/icons/mail.svg');
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+  }
+
+  .hero-action-arrow-icon {
+    background: currentColor;
+    mask-image: url('/jesusarellano/images/icons/arrow.svg');
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    -webkit-mask-image: url('/jesusarellano/images/icons/arrow.svg');
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
   }
 
   .hero-action-primary {
@@ -708,15 +723,35 @@
       transform 140ms ease;
   }
 
-  #inicio .hero-action svg {
+  #inicio .hero-action-icon {
     width: 1.125rem;
     height: 1.125rem;
     flex: 0 0 auto;
-    fill: none;
-    stroke: currentColor;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 1.6;
+    display: inline-block;
+  }
+
+  #inicio .hero-action-mail-icon {
+    background: currentColor;
+    mask-image: url('/jesusarellano/images/icons/mail.svg');
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    -webkit-mask-image: url('/jesusarellano/images/icons/mail.svg');
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+  }
+
+  #inicio .hero-action-arrow-icon {
+    background: currentColor;
+    mask-image: url('/jesusarellano/images/icons/arrow.svg');
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    -webkit-mask-image: url('/jesusarellano/images/icons/arrow.svg');
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
   }
 
   #inicio .hero-action-primary {
