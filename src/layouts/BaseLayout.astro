@@ -44,10 +44,11 @@ const socialImage = image && Astro.site ? new URL(image, Astro.site) : undefined
     <meta name="theme-color" content="#fffafa" media="(prefers-color-scheme: light)" />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
     {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
-    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/jesusarellano/favicon.ico" sizes="any" />
+    <link rel="icon" href="/jesusarellano/favicon.svg" type="image/svg+xml" />
     <title>{title}</title>
 
-    <!-- Metadatos sociales: la imagen se habilitará cuando exista un recurso validado -->
+    <!-- Metadatos para compartir el sitio en redes sociales -->
     <meta property="og:type" content={type} />
     <meta property="og:site_name" content="Jesus Arellano" />
     <meta property="og:title" content={title} />
