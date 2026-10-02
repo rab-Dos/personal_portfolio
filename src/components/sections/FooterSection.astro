@@ -1,0 +1,233 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="footer-grid-pattern" aria-hidden="true"></div>
+  <div class="page-container footer-grid">
+    <div class="footer-copy">
+      <p class="footer-kicker">¿LISTO PARA EMPEZAR UN PROYECTO?</p>
+      <h2 id="footer-title">Construyamos algo juntos.</h2>
+    </div>
+    <nav class="footer-social" aria-label="Redes sociales y correo">
+      <a href="https://github.com/rab-Dos" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <span class="social-icon github-icon" aria-hidden="true"></span>
+      </a>
+      <a href="https://www.linkedin.com/in/arellano-jesus/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <span class="social-icon linkedin-icon" aria-hidden="true"></span>
+      </a>
+      <a href="mailto:jarellanof.soporte@gmail.com" aria-label="Correo electrónico">
+        <span class="social-icon mail-icon" aria-hidden="true"></span>
+      </a>
+    </nav>
+  </div>
+
+  <div class="page-container footer-figure" data-footer-figure>
+    <picture>
+      <source srcset="/jesusarellano/images/footer/footer.avif" type="image/avif" />
+      <source srcset="/jesusarellano/images/footer/footer.webp" type="image/webp" />
+      <img src="/jesusarellano/images/footer/footer.png" alt="" width="700" height="242" loading="lazy" decoding="async" />
+    </picture>
+  </div>
+
+  <div class="page-container footer-bottom">
+    <p>© <time datetime={String(currentYear)} data-current-year>{currentYear}</time> <span class="footer-name">Jesus Arellano Flores</span> · Casi todos los derechos reservados</p>
+    <p class="footer-built">Construido con Astro + Tailwind CSS + <span class="love-icon" aria-label="amor" role="img"></span></p>
+  </div>
+</footer>
+
+<script>
+  const yearElement = document.querySelector('[data-current-year]');
+  if (yearElement instanceof HTMLTimeElement) {
+    const updateYear = () => {
+      const year = String(new Date().getFullYear());
+      yearElement.textContent = year;
+      yearElement.dateTime = year;
+    };
+    updateYear();
+    document.addEventListener('visibilitychange', updateYear);
+    const refreshAtMidnight = () => {
+      const now = new Date();
+      const nextMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+      window.setTimeout(() => {
+        updateYear();
+        refreshAtMidnight();
+      }, nextMidnight.getTime() - now.getTime() + 1000);
+    };
+    refreshAtMidnight();
+  }
+
+  const figure = document.querySelector('[data-footer-figure]');
+  if (figure instanceof HTMLElement && 'IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    figure.classList.add('is-pending');
+    const observer = new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting) && document.visibilityState === 'visible') {
+        figure.classList.remove('is-pending');
+        observer.disconnect();
+      }
+    }, { threshold: 0.15 });
+    observer.observe(figure);
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible' && figure.classList.contains('is-pending') && figure.getBoundingClientRect().top < window.innerHeight) {
+        figure.classList.remove('is-pending');
+        observer.disconnect();
+      }
+    });
+  }
+</script>
+
+<style>
+  .site-footer {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+    border-block-start: 1px solid var(--border-subtle);
+    background:
+      radial-gradient(circle farthest-side at 100% -80%, var(--footer-rose-outer), var(--footer-rose-inner) 39%, transparent 55%),
+      var(--surface-page);
+  }
+
+  .site-footer::before {
+    position: absolute;
+    inset-block-start: -1px;
+    inset-inline: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-subtle) 20%, var(--interactive-accent) 50%, var(--border-subtle) 80%, transparent);
+    content: '';
+  }
+
+  .footer-grid-pattern {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-position: center;
+    background-size: 3.75rem 3.75rem;
+    mask-image: linear-gradient(to bottom, rgb(0 0 0 / 78%), transparent 96%);
+    pointer-events: none;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.2fr auto auto;
+    align-items: center;
+    gap: 2rem;
+    min-height: 15rem;
+    padding-block: clamp(3rem, 6vw, 5rem);
+  }
+
+  .footer-copy { grid-column: 1; }
+
+  .footer-kicker {
+    margin: 0 0 0.75rem;
+    color: var(--hero-emphasis-color);
+    font-size: var(--text-caption);
+    font-weight: var(--font-weight-regular);
+    letter-spacing: 0.12em;
+    line-height: 1.5;
+  }
+
+  .footer-copy h2 {
+    max-width: 14ch;
+    margin: 0;
+    color: var(--text-strong);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: var(--font-weight-light);
+    letter-spacing: -0.04em;
+    line-height: 1.03;
+    text-wrap: balance;
+  }
+
+  .footer-social {
+    display: flex;
+    grid-column: 3;
+    align-items: center;
+    gap: 0.55rem;
+  }
+
+  .footer-social a {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid var(--border-control);
+    border-radius: var(--radius-button);
+    background: var(--surface-muted);
+    color: var(--text-primary);
+    transition: border-color 180ms ease, color 180ms ease, transform 180ms ease;
+  }
+
+  .footer-social a:hover,
+  .footer-social a:focus-visible {
+    border-color: var(--interactive-accent);
+    color: var(--interactive-accent);
+    transform: translateY(-2px);
+  }
+
+  .social-icon,
+  .love-icon {
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    flex: 0 0 auto;
+    background: currentColor;
+    mask-position: center;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+  }
+
+  .github-icon { mask-image: url('/jesusarellano/images/footer/github_icon.svg'); }
+  .linkedin-icon { mask-image: url('/jesusarellano/images/footer/linkedin_icon.svg'); }
+  .mail-icon { mask-image: url('/jesusarellano/images/footer/mail_icon.svg'); }
+  .love-icon { mask-image: url('/jesusarellano/images/footer/love_icon.svg'); }
+
+  .footer-figure {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .footer-figure picture {
+    display: block;
+    width: min(100%, 30rem);
+    transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .footer-figure.is-pending picture { transform: translateY(100%); }
+
+  .footer-figure img { width: 100%; height: auto; }
+
+  .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem 2rem;
+    padding-block: 1.1rem;
+    padding-inline-end: 3.5rem;
+    border-block-start: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    font-size: var(--text-body-sm);
+    line-height: 1.5;
+  }
+
+  .footer-bottom p { margin: 0; }
+  .footer-name { color: var(--hero-emphasis-color); }
+  .footer-built { display: inline-flex; align-items: center; gap: 0.35rem; }
+  .footer-built .love-icon { color: var(--hero-emphasis-color); }
+
+  @media (max-width: 48rem) {
+    .footer-grid { grid-template-columns: 1fr; min-height: 0; padding-block: 3rem 2rem; }
+    .footer-copy { text-align: center; }
+    .footer-copy h2 { margin-inline: auto; }
+    .footer-social { grid-column: 1; justify-content: center; }
+    .footer-bottom { flex-direction: column; align-items: center; padding-block-end: 4rem; padding-inline-end: 0; text-align: center; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .footer-figure picture { transition: none; }
+    .footer-social a { transition: none; }
+    .footer-social a:hover, .footer-social a:focus-visible { transform: none; }
+  }
+</style>

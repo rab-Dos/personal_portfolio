@@ -44,6 +44,8 @@
   --grid-line: rgb(37 29 47 / 8%);
   --ambient-ember: rgb(217 126 75 / 14%);
   --ambient-current: rgb(90 36 201 / 9%);
+  --footer-rose-outer: rgb(175 106 140 / 14%);
+  --footer-rose-inner: rgb(98 65 83 / 10%);
   --hero-copy-scrim: rgb(255 250 250 / 68%);
   --hero-text-shadow: 0 1px 18px rgb(255 250 250 / 92%);
 
@@ -86,6 +88,8 @@
   --grid-line: rgb(229 231 235 / 7%);
   --ambient-ember: rgb(253 137 37 / 10%);
   --ambient-current: rgb(107 33 239 / 12%);
+  --footer-rose-outer: rgb(175 106 140 / 46%);
+  --footer-rose-inner: rgb(98 65 83 / 38%);
   --hero-copy-scrim: rgb(14 9 24 / 62%);
   --hero-text-shadow: 0 2px 18px rgb(14 9 24 / 96%);
 }
@@ -110,6 +114,8 @@
     --grid-line: rgb(229 231 235 / 7%);
     --ambient-ember: rgb(253 137 37 / 10%);
     --ambient-current: rgb(107 33 239 / 12%);
+    --footer-rose-outer: rgb(175 106 140 / 46%);
+    --footer-rose-inner: rgb(98 65 83 / 38%);
     --hero-copy-scrim: rgb(14 9 24 / 62%);
     --hero-text-shadow: 0 2px 18px rgb(14 9 24 / 96%);
   }
