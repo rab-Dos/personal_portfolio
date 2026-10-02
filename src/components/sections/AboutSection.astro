@@ -1,4 +1,10 @@
 ---
+import arrowRightVector from '../../../resources/arrow_icon.svg?raw';
+import arrowLeftVector from '../../../resources/arrow_l_icon.svg?raw';
+
+const arrowRightPath = Array.from(arrowRightVector.matchAll(/<path\b[^>]*\bd="([^"]+)"/g), (match) => match[1]).at(-1) ?? '';
+const arrowLeftPath = Array.from(arrowLeftVector.matchAll(/<path\b[^>]*\bd="([^"]+)"/g), (match) => match[1]).at(-1) ?? '';
+
 const technologyGroups = [
   {
     id: 'backend',
@@ -174,11 +180,11 @@ const technologyGroups = [
       <div class="orbit-controls" hidden>
         <div class="orbit-navigation" aria-label="Controles de tecnologías">
           <button type="button" class="orbit-control" data-orbit-previous aria-label="Especialidad anterior">
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m14 6-6 6 6 6" /></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d={arrowLeftPath} /></svg>
           </button>
           <button type="button" class="orbit-control orbit-motion" data-orbit-motion>Pausar órbita</button>
           <button type="button" class="orbit-control" data-orbit-next aria-label="Especialidad siguiente">
-            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m10 6 6 6-6 6" /></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d={arrowRightPath} /></svg>
           </button>
         </div>
         <p class="orbit-status" data-orbit-status role="status" aria-live="polite" aria-atomic="true"></p>
@@ -639,13 +645,10 @@ const technologyGroups = [
   }
 
   .orbit-control svg {
-    width: 1rem;
-    height: 1rem;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 1.8;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+    width: 1.25rem;
+    height: 1.25rem;
+    fill: currentColor;
+    stroke: none;
   }
 
   .orbit-control:hover:not(:disabled),
