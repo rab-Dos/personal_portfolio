@@ -47,6 +47,14 @@ const whatsappUrl = `https://api.whatsapp.com/send?phone=5215615912984&text=${en
           <span class="whatsapp-icon contact-action-icon" aria-hidden="true"></span>
           <span>Enviar mensaje por WhatsApp</span>
         </a>
+        <a class="contact-button contact-button-secondary" href="https://x.com/Maiden_AF" target="_blank" rel="noopener noreferrer" aria-label="X (antes Twitter)">
+          <span class="x-icon contact-action-icon" aria-hidden="true"></span>
+          <span>X</span>
+        </a>
+        <a class="contact-button contact-button-secondary" href="https://github.com/rab-Dos" target="_blank" rel="noopener noreferrer">
+          <span class="github-icon contact-action-icon" aria-hidden="true"></span>
+          <span>GitHub</span>
+        </a>
       </div>
     </article>
   </div>
@@ -208,7 +216,7 @@ const whatsappUrl = `https://api.whatsapp.com/send?phone=5215615912984&text=${en
   .contact-actions {
     display: grid;
     grid-area: actions;
-    grid-template-columns: repeat(4, 16.625rem);
+    grid-template-columns: repeat(3, 16.625rem);
     justify-content: space-between;
     gap: 0.8rem;
     min-width: 0;
@@ -376,6 +384,14 @@ const whatsappUrl = `https://api.whatsapp.com/send?phone=5215615912984&text=${en
   .whatsapp-icon {
     mask: url('/jesusarellano/images/social/whatsapp.svg') center / contain no-repeat;
     -webkit-mask: url('/jesusarellano/images/social/whatsapp.svg') center / contain no-repeat;
+  }
+  .x-icon {
+    mask: url('/jesusarellano/images/social/x.svg') center / contain no-repeat;
+    -webkit-mask: url('/jesusarellano/images/social/x.svg') center / contain no-repeat;
+  }
+  .github-icon {
+    mask: url('/jesusarellano/images/social/github.svg') center / contain no-repeat;
+    -webkit-mask: url('/jesusarellano/images/social/github.svg') center / contain no-repeat;
   }
 
   @media (max-width: 84rem) and (min-width: 48.001rem) {

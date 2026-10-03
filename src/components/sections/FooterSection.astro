@@ -1,5 +1,7 @@
 ---
 const currentYear = new Date().getFullYear();
+const whatsappMessage = 'Buen día, Jesus. Me gustaría agendar una sesión de análisis técnico y conversar sobre mi proyecto.';
+const whatsappUrl = `https://api.whatsapp.com/send?phone=5215615912984&text=${encodeURIComponent(whatsappMessage)}`;
 ---
 
 <footer class="site-footer">
@@ -15,6 +17,12 @@ const currentYear = new Date().getFullYear();
       </a>
       <a href="https://www.linkedin.com/in/arellano-jesus/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
         <span class="social-icon linkedin-icon" aria-hidden="true"></span>
+      </a>
+      <a href="https://x.com/Maiden_AF" target="_blank" rel="noopener noreferrer" aria-label="X (antes Twitter)">
+        <span class="social-icon x-icon" aria-hidden="true"></span>
+      </a>
+      <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" aria-label="Enviar mensaje por WhatsApp al +52 56 1591 2984">
+        <span class="social-icon whatsapp-icon" aria-hidden="true"></span>
       </a>
       <a href="mailto:jarellanof.soporte@gmail.com" aria-label="Correo electrónico">
         <span class="social-icon mail-icon" aria-hidden="true"></span>
@@ -180,6 +188,8 @@ const currentYear = new Date().getFullYear();
 
   .github-icon { mask-image: url('/jesusarellano/images/footer/github_icon.svg'); }
   .linkedin-icon { mask-image: url('/jesusarellano/images/footer/linkedin_icon.svg'); }
+  .x-icon { mask-image: url('/jesusarellano/images/footer/x_icon.svg'); }
+  .whatsapp-icon { mask-image: url('/jesusarellano/images/footer/whatsapp_icon.svg'); }
   .mail-icon { mask-image: url('/jesusarellano/images/footer/mail_icon.svg'); }
   .love-icon { mask-image: url('/jesusarellano/images/footer/love_icon.svg'); }
 
