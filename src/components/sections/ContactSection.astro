@@ -409,6 +409,7 @@ const whatsappUrl = `https://api.whatsapp.com/send?phone=5215615912984&text=${en
 </style>
 
 <script>
+  import { playSound } from '../../scripts/sounds';
   const emailTargets: Record<string, string> = {
     jesus: 'mailto:jarellanof.soporte@gmail.com',
     alexandria: 'mailto:jesus.arellano@alexandriastudio.cloud',
@@ -424,8 +425,9 @@ const whatsappUrl = `https://api.whatsapp.com/send?phone=5215615912984&text=${en
       if (dialog.open) dialog.close();
       dialog.classList.remove('is-visible', 'is-closing');
     };
-    const closeDialog = () => {
+    const closeDialog = (audible = true) => {
       if (!dialog.open || dialog.classList.contains('is-closing')) return;
+      if (audible) playSound('close');
       dialog.classList.remove('is-visible');
       dialog.classList.add('is-closing');
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -438,6 +440,7 @@ const whatsappUrl = `https://api.whatsapp.com/send?phone=5215615912984&text=${en
     trigger.addEventListener('click', () => {
       if (dialog.open) return;
       dialog.showModal();
+      playSound('open');
       window.requestAnimationFrame(() => {
         window.requestAnimationFrame(() => {
           if (dialog.open && !dialog.classList.contains('is-closing')) dialog.classList.add('is-visible');
@@ -448,12 +451,15 @@ const whatsappUrl = `https://api.whatsapp.com/send?phone=5215615912984&text=${en
     dialog.querySelectorAll<HTMLButtonElement>('[data-recipient]').forEach((option) => {
       option.addEventListener('click', () => {
         const mailto = emailTargets[option.dataset.recipient ?? ''];
-        if (mailto) window.location.assign(mailto);
-        closeDialog();
+        if (mailto) {
+          playSound('tap');
+          window.location.assign(mailto);
+        }
+        closeDialog(false);
       });
     });
 
-    dialog.querySelector('.contact-email-close')?.addEventListener('click', closeDialog);
+    dialog.querySelector('.contact-email-close')?.addEventListener('click', () => closeDialog());
     dialog.addEventListener('cancel', (event) => {
       event.preventDefault();
       closeDialog();

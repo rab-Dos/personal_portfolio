@@ -339,6 +339,7 @@ const webProjects = [
 </section>
 
 <script>
+  import { playSound } from '../../scripts/sounds';
   document.querySelectorAll<HTMLElement>('[data-projects-tabs]').forEach((root) => {
     const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-project-tab]'));
     const panels = Array.from(root.querySelectorAll<HTMLElement>('[data-project-panel]'));
@@ -407,6 +408,10 @@ const webProjects = [
     };
 
     const selectTab = (selectedIndex: number, moveFocus = false) => {
+      const previousIndex = tabs.findIndex((tab) => tab.getAttribute('aria-selected') === 'true');
+      if (previousIndex !== selectedIndex) {
+        playSound('select', { direction: selectedIndex < previousIndex ? 'back' : 'forward' });
+      }
       tabs.forEach((tab, index) => {
         const selected = index === selectedIndex;
         tab.setAttribute('aria-selected', String(selected));

@@ -275,6 +275,7 @@ const portraitSources = {
 </section>
 
 <script>
+  import { playSound } from '../../scripts/sounds';
   const heroSection = document.querySelector('#inicio');
   const backToTop = document.querySelector('[data-back-to-top]');
 
@@ -315,6 +316,7 @@ const portraitSources = {
 
     const closeDialog = () => {
       if (!dialog.open || dialog.classList.contains('is-closing')) return;
+      playSound('close');
       dialog.classList.remove('is-visible');
       dialog.classList.add('is-closing');
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -327,6 +329,7 @@ const portraitSources = {
     trigger.addEventListener('click', () => {
       if (dialog.open) return;
       dialog.showModal();
+      playSound('open');
       window.requestAnimationFrame(() => {
         window.requestAnimationFrame(() => dialog.classList.add('is-visible'));
       });

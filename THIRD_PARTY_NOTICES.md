@@ -1,5 +1,12 @@
 # Referencias y dependencias visuales
 
+## Cuelume
+
+- Repositorio: https://github.com/danielwh2/cuelume
+- Licencia: MIT; incluida en la dependencia instalada.
+- Uso: señales de interacción sintetizadas con Web Audio en navegación, tema, menú móvil, diálogos, galerías y tecnologías.
+- Integración: `src/scripts/sounds.ts`; sonidos suaves, sin reproducción al cargar, con control de silencio persistente en la cabecera.
+
 ## Theme Toggle Effect
 
 - Fuente: https://theme-toggle.rdsx.dev/

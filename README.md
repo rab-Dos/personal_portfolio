@@ -98,6 +98,10 @@ Los recursos adaptados, referencias visuales y dependencias externas se document
 | `pnpm build` | Genera la versión estática de producción |
 | `pnpm preview` | Sirve localmente una compilación existente |
 
+## Sonidos de interacción
+
+Cuelume genera señales suaves con Web Audio al navegar, cambiar el tema, usar el menú móvil, abrir o cerrar detalles, cambiar la galería y seleccionar tecnologías. El control de sonido permite silenciarlas y guarda la preferencia en este navegador: aparece en la cabecera de escritorio y dentro del menú de hamburguesa en móvil. No hay reproducción automática al cargar, al pasar el cursor ni al desplazar la página. La integración compartida está en `src/scripts/sounds.ts`.
+
 ## Publicación
 
 El sitio está configurado para servirse desde `/jesusarellano/`. Después de `pnpm build`, publica el contenido de `dist` dentro de la carpeta del servidor que corresponde a esa ruta, de modo que `index.html`, `_astro/`, `images/`, `media/` y `scripts/` queden directamente dentro de ella.

@@ -90,6 +90,7 @@ const { label, images } = Astro.props;
 </div>
 
 <script>
+  import { playSound } from '../../scripts/sounds';
   document.querySelectorAll<HTMLElement>('[data-project-gallery]').forEach((gallery) => {
     const viewport = gallery.querySelector<HTMLElement>('[data-gallery-viewport]');
     const originalSlides = Array.from(gallery.querySelectorAll<HTMLElement>('[data-gallery-slide]'));
@@ -166,6 +167,7 @@ const { label, images } = Astro.props;
       const targetIndex = activeVirtualIndex + direction;
       const target = virtualSlides[targetIndex];
       if (!target) return;
+      playSound('navigate', { direction: direction < 0 ? 'back' : 'forward' });
       activeVirtualIndex = targetIndex;
       if (reducedMotion()) setScrollPositionImmediately(targetIndex);
       else setScrollPosition(targetIndex, 'smooth');

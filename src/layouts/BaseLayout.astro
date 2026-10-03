@@ -81,6 +81,7 @@ const socialImage = image && Astro.site ? new URL(image, Astro.site) : undefined
 
     <!-- Mejora progresiva para alternar y conservar la preferencia de tema -->
     <script>
+      import { playSound } from '../scripts/sounds';
       const themeButton = document.querySelector('[data-theme-toggle]');
       const sunIcon = document.querySelector('[data-theme-icon="sun"]');
       const moonIcon = document.querySelector('[data-theme-icon="moon"]');
@@ -113,6 +114,7 @@ const socialImage = image && Astro.site ? new URL(image, Astro.site) : undefined
       let activeThemeTransition: ViewTransition | undefined;
 
       themeButton?.addEventListener('click', () => {
+        playSound('toggle');
         const nextTheme = currentTheme() === 'dark' ? 'light' : 'dark';
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 

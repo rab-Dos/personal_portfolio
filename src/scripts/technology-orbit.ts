@@ -1,3 +1,5 @@
+import { playSound } from './sounds';
+
 type OrbitPose = { x: number; y: number; scale: number };
 
 class TechnologyOrbit extends HTMLElement {
@@ -87,7 +89,8 @@ class TechnologyOrbit extends HTMLElement {
       if (!reducedMotion.matches && (moving || settling)) requestRender();
     };
 
-    const select = (index: number) => {
+    const select = (index: number, audible = false) => {
+      if (audible) playSound('select', { direction: index < selected ? 'back' : 'forward' });
       window.clearTimeout(focusTimeout);
       selected = (index + cards.length) % cards.length;
       playing = false;
@@ -139,19 +142,20 @@ class TechnologyOrbit extends HTMLElement {
 
     this.addEventListener('click', (event) => {
       const button = (event.target as Element).closest<HTMLButtonElement>('button');
-      if (!button || !this.contains(button)) return;
+      if (!button || button.disabled || !this.contains(button)) return;
       if (button === motion) {
         playing = !playing && !reducedMotion.matches;
+        playSound('toggle', { direction: playing ? 'forward' : 'back' });
         syncMotionControl();
         requestRender();
       } else if (button.hasAttribute('data-orbit-previous')) {
-        select(selected === -1 ? cards.length - 1 : selected - 1);
+        select(selected === -1 ? cards.length - 1 : selected - 1, true);
       } else if (button.hasAttribute('data-orbit-next')) {
-        select(selected === -1 ? 0 : selected + 1);
+        select(selected === -1 ? 0 : selected + 1, true);
       } else if (button.hasAttribute('data-orbit-index')) {
-        select(Number(button.dataset.orbitIndex));
+        select(Number(button.dataset.orbitIndex), true);
       } else if (button.hasAttribute('data-orbit-select')) {
-        select(selectors.indexOf(button));
+        select(selectors.indexOf(button), true);
       }
     }, options);
 
@@ -175,7 +179,7 @@ class TechnologyOrbit extends HTMLElement {
       };
       if (!(event.key in destinations)) return;
       event.preventDefault();
-      select(destinations[event.key]);
+      select(destinations[event.key], true);
       selectors[selected].focus({ preventScroll: true });
     }, options);
 

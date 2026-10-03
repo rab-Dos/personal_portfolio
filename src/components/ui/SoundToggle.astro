@@ -1,0 +1,58 @@
+---
+interface Props { menu?: boolean; }
+const { menu = false } = Astro.props;
+---
+
+<!-- Both layouts share the same saved audio preference. -->
+<button class:list={['sound-toggle', { 'sound-toggle-menu': menu }]} type="button" data-sound-toggle hidden
+  aria-label="Desactivar sonidos" aria-pressed="true" title="Desactivar sonidos">
+  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M11 5 6 9H3v6h3l5 4V5Z" />
+    <g class="sound-waves"><path d="M15 8a6 6 0 0 1 0 8M18 5a10 10 0 0 1 0 14" /></g>
+    <path class="sound-muted" d="m16 9 5 6m0-6-5 6" />
+  </svg>
+  {menu && <span class="sound-label">Sonidos <span data-sound-status>activados</span></span>}
+</button>
+
+<style>
+  .sound-toggle {
+    display: inline-grid;
+    place-items: center;
+    flex: 0 0 auto;
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+    border: 1px solid var(--border-control);
+    border-radius: var(--radius-pill);
+    background: color-mix(in srgb, var(--surface-muted) 72%, transparent);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: background-color 180ms ease, border-color 180ms ease, transform 140ms ease;
+  }
+  .sound-toggle[hidden] { display: none; }
+  .sound-toggle:hover {
+    transform: translateY(-0.125rem);
+    background: var(--surface-muted);
+    border-color: var(--interactive-accent);
+  }
+  .sound-toggle:active { transform: translateY(0) scale(0.98); }
+  :global(html.is-changing-theme) .sound-toggle { transition: transform 140ms ease; }
+  .sound-toggle-menu {
+    display: flex;
+    gap: 0.75rem;
+    width: 100%;
+    min-height: 2.75rem;
+    height: auto;
+    padding: 0.75rem;
+    border-radius: var(--radius-button);
+    text-align: start;
+  }
+  .sound-toggle svg { width: 1.25rem; height: 1.25rem; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+  .sound-muted { display: none; }
+  .sound-toggle[aria-pressed='false'] .sound-waves { display: none; }
+  .sound-toggle[aria-pressed='false'] .sound-muted { display: block; }
+  @media (prefers-reduced-motion: reduce) {
+    .sound-toggle, :global(html.is-changing-theme) .sound-toggle { transition: none; }
+    .sound-toggle:hover, .sound-toggle:active { transform: none; }
+  }
+</style>
