@@ -101,6 +101,8 @@ const socialImage = image && Astro.site ? new URL(image, Astro.site) : undefined
           'aria-label',
           isDark ? 'Cambiar al tema claro' : 'Cambiar al tema oscuro',
         );
+        const tooltip = themeButton.querySelector('[data-control-tooltip]');
+        if (tooltip) tooltip.textContent = isDark ? 'Cambiar al tema claro' : 'Cambiar al tema oscuro';
       };
 
       const applyTheme = (nextTheme: 'light' | 'dark') => {

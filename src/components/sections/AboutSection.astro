@@ -1,4 +1,5 @@
 ---
+import ControlTooltip from '../ui/ControlTooltip.astro';
 import arrowRightVector from '../../../resources/arrow_icon.svg?raw';
 import arrowLeftVector from '../../../resources/arrow_l_icon.svg?raw';
 
@@ -179,12 +180,14 @@ const technologyGroups = [
       <technology-orbit aria-labelledby="technologies-title">
       <div class="orbit-controls" hidden>
         <div class="orbit-navigation" aria-label="Controles de tecnologías">
-          <button type="button" class="orbit-control" data-orbit-previous aria-label="Especialidad anterior">
+          <button type="button" class="orbit-control" data-orbit-previous aria-label="Especialidad anterior" data-tooltip-control aria-describedby="orbit-previous-tooltip">
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d={arrowLeftPath} /></svg>
+            <ControlTooltip id="orbit-previous-tooltip" text="Especialidad anterior" />
           </button>
           <button type="button" class="orbit-control orbit-motion" data-orbit-motion>Pausar órbita</button>
-          <button type="button" class="orbit-control" data-orbit-next aria-label="Especialidad siguiente">
+          <button type="button" class="orbit-control" data-orbit-next aria-label="Especialidad siguiente" data-tooltip-control aria-describedby="orbit-next-tooltip">
             <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d={arrowRightPath} /></svg>
+            <ControlTooltip id="orbit-next-tooltip" text="Especialidad siguiente" />
           </button>
         </div>
         <p class="orbit-status" data-orbit-status role="status" aria-live="polite" aria-atomic="true"></p>
@@ -255,8 +258,9 @@ const technologyGroups = [
       </div>
       <div class="orbit-picker" aria-label="Elegir especialidad" hidden>
         {technologyGroups.map((group, index) => (
-          <button type="button" class="orbit-dot" data-orbit-index={index} aria-label={`Mostrar ${group.title}`} aria-pressed="false">
+          <button type="button" class="orbit-dot" data-orbit-index={index} aria-label={`Mostrar ${group.title}`} aria-pressed="false" data-tooltip-control aria-describedby={`orbit-picker-tooltip-${index}`}>
             <span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+            <ControlTooltip id={`orbit-picker-tooltip-${index}`} text={`Mostrar ${group.title}`} />
           </button>
         ))}
       </div>
@@ -642,6 +646,16 @@ const technologyGroups = [
 
   .orbit-motion {
     padding-inline: 1rem;
+  }
+
+  [data-orbit-previous] :global(.control-tooltip),
+  .orbit-dot:nth-child(-n + 3) :global(.control-tooltip) {
+    inset-inline-start: 0;
+    inset-inline-end: auto;
+  }
+
+  .orbit-dot :global(.control-tooltip) {
+    max-width: min(10rem, calc(100vw - 2rem));
   }
 
   .orbit-control svg {

@@ -2,6 +2,8 @@
 @import 'tailwindcss';
 @import './tokens.css';
 @import './theme-transition.css';
+@import './tooltips.css';
+@import './entrance.css';
 
 /* ==========================================================================
    BASE DEL DOCUMENTO

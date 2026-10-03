@@ -22,7 +22,8 @@ const syncControl = () => {
     button.hidden = false;
     button.setAttribute('aria-pressed', String(enabled));
     button.setAttribute('aria-label', enabled ? 'Desactivar sonidos' : 'Activar sonidos');
-    button.title = enabled ? 'Desactivar sonidos' : 'Activar sonidos';
+    const tooltip = button.querySelector('[data-control-tooltip]');
+    if (tooltip) tooltip.textContent = enabled ? 'Desactivar sonidos' : 'Activar sonidos';
     const status = button.querySelector('[data-sound-status]');
     if (status) status.textContent = enabled ? 'activados' : 'desactivados';
   });

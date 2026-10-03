@@ -1,5 +1,6 @@
 ---
 import SoundToggle from '../ui/SoundToggle.astro';
+import ControlTooltip from '../ui/ControlTooltip.astro';
 const brandSources = {
   avif: '/jesusarellano/images/brand/original-frente.avif',
   webp: '/jesusarellano/images/brand/original-frente.webp',
@@ -50,6 +51,8 @@ const brandSources = {
         aria-pressed="false"
         data-theme-state="light"
         data-theme-toggle
+        data-tooltip-control
+        aria-describedby="theme-tooltip"
       >
         <!-- Iconos de tema: el estado actual determina cuál permanece visible -->
         <span class="theme-toggle-icons" aria-hidden="true">
@@ -61,6 +64,7 @@ const brandSources = {
             <path d="M20.25 15.1A8.5 8.5 0 0 1 8.9 3.75a8.5 8.5 0 1 0 11.35 11.35Z" />
           </svg>
         </span>
+        <ControlTooltip id="theme-tooltip" text="Cambiar al tema oscuro" placement="below" />
       </button>
 
       <!-- Control móvil: transforma la hamburguesa en cierre al desplegar el panel -->
@@ -314,7 +318,7 @@ const brandSources = {
   /* Botón de tema: intercambio sol/luna y respuesta táctil */
   .theme-toggle {
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     transition:
       background-color 180ms ease,
       border-color 180ms ease,
@@ -323,6 +327,7 @@ const brandSources = {
 
   .theme-toggle-icons {
     position: relative;
+    overflow: hidden;
     display: grid;
     width: 1.25rem;
     height: 1.25rem;

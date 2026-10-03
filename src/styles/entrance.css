@@ -1,0 +1,53 @@
+/* One timing definition keeps the initial page entrances in sync. */
+:root {
+  --entrance-duration: 2000ms;
+  --entrance-easing: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .site-header .navigation,
+  #inicio,
+  #inicio .hero-copy,
+  #inicio .hero-actions,
+  #resumen-profesional {
+    animation-duration: var(--entrance-duration);
+    animation-timing-function: var(--entrance-easing);
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-fill-mode: backwards;
+  }
+
+  .site-header .navigation { animation-name: navbar-enter; }
+  #inicio { animation-name: hero-lateral-reveal; }
+  #inicio .hero-copy,
+  #inicio .hero-actions { animation-name: hero-content-arrive; }
+  #resumen-profesional { animation-name: summary-enter; }
+}
+
+@keyframes navbar-enter {
+  from { opacity: 0; transform: translateY(-1.5rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes summary-enter {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes hero-lateral-reveal {
+  from {
+    mask-image: linear-gradient(90deg, #000 35%, transparent 65%);
+    mask-size: 300% 100%;
+    mask-position: 100% 0;
+  }
+  to {
+    mask-image: linear-gradient(90deg, #000 35%, transparent 65%);
+    mask-size: 300% 100%;
+    mask-position: 0 0;
+  }
+}
+
+@keyframes hero-content-arrive {
+  from { transform: translateX(-1.5rem); }
+  to { transform: translateX(0); }
+}

@@ -398,13 +398,16 @@
   }
 
   @media (min-width: 56rem) {
+    /* Filas con altura intrínseca: el texto y las acciones nunca se superponen. */
     .hero {
-      grid-template-rows: minmax(0, 1fr) minmax(5.5rem, auto);
-      height: calc(100dvh - var(--nav-height) - 11rem);
-      min-height: 31rem;
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: minmax(min-content, 1fr) auto;
+      height: auto;
+      min-height: calc(100dvh - var(--nav-height) - 0.75rem - 9rem - env(safe-area-inset-top) - env(safe-area-inset-bottom));
     }
 
     .hero-layout {
+      grid-column: 1;
       grid-row: 1;
       grid-template-columns: minmax(0, 1fr);
       min-height: 0;
@@ -424,12 +427,14 @@
     }
 
     .mandrill-animation {
-      position: absolute;
-      inset-block-start: 0;
-      inset-inline: 0;
+      position: relative;
+      grid-column: 1;
+      grid-row: 1;
+      place-self: stretch;
+      inset: auto;
       z-index: 1;
       width: 100%;
-      height: calc(100% - 5.5rem);
+      height: auto;
       min-height: 0;
       aspect-ratio: auto;
       translate: none;
@@ -451,13 +456,19 @@
       z-index: 3;
       grid-row: 2;
       align-self: stretch;
-      height: 100%;
+      height: auto;
+      min-height: 5.5rem;
+      padding-block: 1.25rem;
       margin-block: 0;
     }
 
     h1 {
       max-width: 12ch;
-      font-size: clamp(3.25rem, 6.6vw, 5.3rem);
+      font-size: clamp(3rem, min(6vw, 8dvh), 5.3rem);
+    }
+
+    .hero-introduction {
+      margin-block-start: clamp(1rem, 2.5dvh, 2rem);
     }
   }
 
@@ -467,7 +478,23 @@
     }
 
     h1 {
-      font-size: clamp(3.25rem, 6.1vw, 4.6rem);
+      font-size: clamp(3rem, min(6vw, 8dvh), 4.6rem);
+    }
+  }
+
+  /* Escritorio panorámico: compacta la tipografía según la altura disponible. */
+  @media (min-width: 56rem) and (max-height: 42rem) {
+    h1 {
+      font-size: clamp(2.75rem, 7.5dvh, 3.5rem);
+    }
+
+    .hero-eyebrow {
+      margin-block-end: 1rem;
+    }
+
+    .hero-introduction {
+      font-size: 1rem;
+      line-height: 1.5;
     }
   }
 
@@ -626,9 +653,9 @@
 
   @media (min-width: 56rem) {
     .profile-summary {
-      height: 11rem;
-      padding-block: 0.625rem;
-      overflow: hidden;
+      height: auto;
+      padding-block: 0.625rem 1.5rem;
+      overflow: visible;
     }
 
     .profile-summary-content {
@@ -786,26 +813,30 @@
   }
 
   @media (min-width: 56rem) {
+    /* Mismo flujo intrínseco durante HMR: animación y texto comparten la primera fila. */
     #inicio {
-      grid-template-rows: minmax(0, 1fr) minmax(5.5rem, auto);
-      height: calc(100dvh - var(--nav-height) - 11rem);
-      min-height: 31rem;
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: minmax(min-content, 1fr) auto;
+      height: auto;
+      min-height: calc(100dvh - var(--nav-height) - 0.75rem - 9rem - env(safe-area-inset-top) - env(safe-area-inset-bottom));
     }
 
     #inicio .hero-layout {
+      grid-column: 1;
       grid-row: 1;
       min-height: 0;
       padding-block: clamp(1rem, 3vh, 2rem);
     }
 
     #mandrill-animation {
-      position: absolute;
-      inset-block-start: 0;
-      inset-block-end: auto;
-      inset-inline: 0;
+      position: relative;
+      grid-column: 1;
+      grid-row: 1;
+      place-self: stretch;
+      inset: auto;
       z-index: 1;
       width: 100%;
-      height: calc(100% - 5.5rem);
+      height: auto;
       min-height: 0;
       aspect-ratio: auto;
       translate: none;
@@ -829,8 +860,18 @@
       z-index: 3;
       grid-row: 2;
       align-self: stretch;
-      height: 100%;
+      height: auto;
+      min-height: 5.5rem;
+      padding-block: 1.25rem;
       margin-block: 0;
+    }
+
+    #inicio h1 {
+      font-size: clamp(3rem, min(6vw, 8dvh), 5.3rem);
+    }
+
+    #inicio .hero-introduction {
+      margin-block-start: clamp(1rem, 2.5dvh, 2rem);
     }
 
     #mandrill-animation[data-mode='split'] #sourceVideo {
@@ -973,9 +1014,9 @@
 
   @media (min-width: 56rem) {
     .profile-summary {
-      height: 11rem;
-      padding-block: 0.625rem;
-      overflow: hidden;
+      height: auto;
+      padding-block: 0.625rem 1.5rem;
+      overflow: visible;
     }
 
     .profile-summary-content {
@@ -1007,7 +1048,23 @@
     }
 
     #inicio h1 {
-      font-size: clamp(3.25rem, 6.1vw, 4.6rem);
+      font-size: clamp(3rem, min(6vw, 8dvh), 4.6rem);
+    }
+  }
+
+  /* Replica la variante de poca altura para conservar la composición durante HMR. */
+  @media (min-width: 56rem) and (max-height: 42rem) {
+    #inicio h1 {
+      font-size: clamp(2.75rem, 7.5dvh, 3.5rem);
+    }
+
+    #inicio .hero-eyebrow {
+      margin-block-end: 1rem;
+    }
+
+    #inicio .hero-introduction {
+      font-size: 1rem;
+      line-height: 1.5;
     }
   }
 
