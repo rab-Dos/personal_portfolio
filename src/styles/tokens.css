@@ -40,7 +40,10 @@
   --border-control: var(--color-accessible-border-light);
   --border-subtle: #d9d2df;
   --interactive-accent: var(--color-current-blue-light);
-  --glass-surface: color-mix(in srgb, var(--surface-page) 68%, transparent);
+  --glass-opacity: 78%;
+  --glass-surface: color-mix(in srgb, var(--surface-card) var(--glass-opacity), transparent);
+  --glass-filter: blur(1.5rem) saturate(145%);
+  --nav-inset-edge: inset 0 1px 0 color-mix(in srgb, var(--surface-card) 45%, transparent);
   --grid-line: rgb(37 29 47 / 8%);
   --ambient-ember: rgb(217 126 75 / 14%);
   --ambient-current: rgb(90 36 201 / 9%);
@@ -60,7 +63,8 @@
 
   /* Composición */
   --page-max-width: 75rem;
-  --nav-height: 4.75rem;
+  --nav-height: 4.25rem;
+  --radius-navigation: 1.25rem;
   --radius-button: 0.5rem;
   --radius-node: 0.75rem;
   --radius-card: 1rem;
@@ -84,6 +88,7 @@
   --border-control: #77717f;
   --border-subtle: var(--color-border-smoke);
   --interactive-accent: #63a9e8;
+  --nav-inset-edge: inset 0 1px 0 color-mix(in srgb, var(--color-cloud-white) 10%, transparent);
   --grid-line: rgb(229 231 235 / 7%);
   --ambient-ember: rgb(253 137 37 / 10%);
   --ambient-current: rgb(107 33 239 / 12%);
@@ -110,6 +115,7 @@
     --border-control: #77717f;
     --border-subtle: var(--color-border-smoke);
     --interactive-accent: #63a9e8;
+    --nav-inset-edge: inset 0 1px 0 color-mix(in srgb, var(--color-cloud-white) 10%, transparent);
     --grid-line: rgb(229 231 235 / 7%);
     --ambient-ember: rgb(253 137 37 / 10%);
     --ambient-current: rgb(107 33 239 / 12%);

@@ -11,6 +11,7 @@ const brandSources = {
      Barra sticky con glassmorphism, identidad y variantes desktop/móvil.
      ========================================================================= -->
 <header class="site-header">
+  <div class="mobile-navigation-backdrop" data-mobile-menu-backdrop hidden></div>
   <nav class="page-container navigation" aria-label="Navegación principal">
     <!-- Identidad de marca: AVIF, WebP y PNG en orden de preferencia -->
     <a class="brand" href="#inicio" aria-label="Jesus Arellano, ir al inicio">
@@ -30,11 +31,12 @@ const brandSources = {
 
     <!-- Navegación de escritorio: preparada para sumar nuevas secciones -->
     <div class="desktop-navigation">
-      <a href="#inicio" aria-current="page">Inicio</a>
+      <a href="#inicio" aria-current="location">Inicio</a>
       <a href="#experiencia">Experiencia</a>
       <a href="#proyectos">Proyectos</a>
       <a href="#sobre-mi">Sobre Mí</a>
       <a href="#contacto">Contacto</a>
+      <span class="desktop-section-indicator" aria-hidden="true"></span>
     </div>
 
     <!-- Controles globales: tema y acceso a navegación móvil -->
@@ -83,7 +85,7 @@ const brandSources = {
     hidden
   >
     <nav aria-label="Navegación móvil">
-      <a href="#inicio" aria-current="page">Inicio</a>
+      <a href="#inicio" aria-current="location">Inicio</a>
       <a href="#experiencia">Experiencia</a>
       <a href="#proyectos">Proyectos</a>
       <a href="#sobre-mi">Sobre Mí</a>
@@ -94,7 +96,7 @@ const brandSources = {
   <!-- Navegación mínima disponible cuando JavaScript está desactivado -->
   <noscript>
     <nav class="mobile-navigation-fallback page-container" aria-label="Navegación móvil">
-      <a href="#inicio" aria-current="page">Inicio</a>
+      <a href="#inicio" aria-current="location">Inicio</a>
       <a href="#experiencia">Experiencia</a>
       <a href="#proyectos">Proyectos</a>
       <a href="#sobre-mi">Sobre Mí</a>
@@ -104,22 +106,31 @@ const brandSources = {
 </header>
 
 <style>
-  /* Contenedor sticky sin línea divisoria respecto al hero */
+  /* Marco flotante con esquinas suaves y cristal independiente de la transición de página. */
   .site-header {
     position: sticky;
     inset-block-start: 0;
     z-index: 100;
-    height: var(--nav-height);
-    background: var(--glass-surface);
-    backdrop-filter: blur(1.125rem) saturate(145%);
-    -webkit-backdrop-filter: blur(1.125rem) saturate(145%);
+    height: calc(var(--nav-height) + 0.75rem);
+    padding-block-start: 0.75rem;
   }
 
   .navigation {
+    position: relative;
+    z-index: 2;
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
     min-height: var(--nav-height);
+    padding-inline: 1.25rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-navigation);
+    corner-shape: squircle;
+    background: var(--glass-surface);
+    backdrop-filter: var(--glass-filter);
+    -webkit-backdrop-filter: var(--glass-filter);
+    box-shadow: var(--nav-inset-edge);
+    view-transition-name: site-navigation;
   }
 
   /* Identidad */
@@ -134,6 +145,7 @@ const brandSources = {
     font-weight: var(--font-weight-regular);
     letter-spacing: -0.0125rem;
     text-decoration: none;
+    white-space: nowrap;
   }
 
   .brand-picture {
@@ -144,34 +156,128 @@ const brandSources = {
     overflow: hidden;
     border-radius: var(--radius-pill);
     background: var(--surface-muted);
+    flex: 0 0 auto;
+    transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 260ms ease;
   }
 
   .brand-picture img {
     width: 2.625rem;
     height: 2.625rem;
     object-fit: contain;
+    transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .brand:is(:hover, :focus-visible) .brand-picture {
+    transform: scale(1.04);
+    box-shadow:
+      0 0 0 1px var(--hero-emphasis-color),
+      0 0 1.25rem color-mix(in srgb, var(--hero-emphasis-color) 30%, transparent),
+      inset 0 0 0.75rem color-mix(in srgb, var(--hero-emphasis-color) 14%, transparent);
+  }
+
+  .brand:is(:hover, :focus-visible) .brand-picture img {
+    transform: rotate(-4deg) scale(1.06);
   }
 
   /* Navegación de escritorio */
   .desktop-navigation {
+    position: relative;
     display: none;
     align-items: center;
     justify-content: center;
-    gap: 2rem;
+    gap: clamp(1.25rem, 2.2vw, 2rem);
+    justify-self: center;
+  }
+
+  .desktop-section-indicator {
+    position: absolute;
+    inset-inline-start: 0;
+    inset-block-end: 0.375rem;
+    width: 0.75rem;
+    height: 2px;
+    border-radius: var(--radius-pill);
+    background: var(--interactive-accent);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(var(--section-indicator-x, 0px));
+  }
+
+  .desktop-navigation.has-section-indicator .desktop-section-indicator {
+    opacity: 1;
+    transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1), opacity 180ms ease;
+  }
+
+  .desktop-navigation.has-section-indicator a[aria-current='location']::before {
+    display: none;
+  }
+
+  .desktop-navigation:has(a[aria-current='location']:is(:hover, :focus-visible)) .desktop-section-indicator {
+    opacity: 0;
   }
 
   .desktop-navigation a,
   .mobile-navigation-panel a {
+    position: relative;
+    display: flex;
+    align-items: center;
     min-height: 2.75rem;
     color: var(--text-primary);
     font-size: var(--text-body-sm);
-    text-underline-offset: 0.35rem;
+    line-height: 1.4;
+    text-decoration: none;
+    transition: color 180ms ease;
   }
 
-  .desktop-navigation a[aria-current='page'],
-  .mobile-navigation-panel a[aria-current='page'] {
+  .desktop-navigation a {
+    justify-content: center;
+  }
+
+  .desktop-navigation a::after,
+  .mobile-navigation-panel a::after {
+    position: absolute;
+    inset-inline: 0;
+    inset-block-end: 0.375rem;
+    height: 2px;
+    border-radius: var(--radius-pill);
+    background: var(--gradient-electric-current);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+    content: '';
+  }
+
+  .desktop-navigation a:is(:hover, :focus-visible),
+  .mobile-navigation-panel a:is(:hover, :focus-visible) {
+    color: var(--interactive-accent);
+  }
+
+  .desktop-navigation a:is(:hover, :focus-visible)::after,
+  .mobile-navigation-panel a:is(:hover, :focus-visible)::after {
+    transform: scaleX(1);
+  }
+
+  .desktop-navigation a[aria-current='location']:not(:hover, :focus-visible),
+  .mobile-navigation-panel a[aria-current='location']:not(:hover, :focus-visible) {
     color: var(--text-strong);
-    text-decoration-thickness: 0.125rem;
+  }
+
+  /* Marca persistente de sección; la línea de hover se dibuja por separado. */
+  .desktop-navigation a[aria-current='location']::before,
+  .mobile-navigation-panel a[aria-current='location']::before {
+    position: absolute;
+    inset-block-end: 0.375rem;
+    inset-inline-start: calc(50% - 0.375rem);
+    width: 0.75rem;
+    height: 2px;
+    border-radius: var(--radius-pill);
+    background: var(--interactive-accent);
+    transition: opacity 180ms ease;
+    content: '';
+  }
+
+  .desktop-navigation a[aria-current='location']:is(:hover, :focus-visible)::before,
+  .mobile-navigation-panel a[aria-current='location']:is(:hover, :focus-visible)::before {
+    opacity: 0;
   }
 
   /* Acciones globales */
@@ -190,7 +296,7 @@ const brandSources = {
     place-items: center;
     border: 1px solid var(--border-control);
     border-radius: var(--radius-button);
-    background: var(--surface-muted);
+    background: color-mix(in srgb, var(--surface-muted) 72%, transparent);
     color: var(--text-primary);
     cursor: pointer;
   }
@@ -202,7 +308,7 @@ const brandSources = {
     transition:
       background-color 180ms ease,
       border-color 180ms ease,
-      transform 120ms ease;
+      transform 140ms ease;
   }
 
   .theme-toggle-icons {
@@ -248,24 +354,31 @@ const brandSources = {
   }
 
   .theme-toggle:hover {
-    background: color-mix(in srgb, var(--surface-muted) 78%, var(--interactive-accent));
+    transform: translateY(-0.125rem);
+    background: var(--surface-muted);
     border-color: var(--interactive-accent);
   }
 
-  .theme-toggle:hover .theme-icon-moon {
-    transform: rotate(-12deg) scale(1.08);
-  }
-
-  .theme-toggle[data-theme-state='dark']:hover .theme-icon-sun {
-    transform: rotate(18deg) scale(1.08);
-  }
-
   .theme-toggle:active {
-    transform: scale(0.9);
+    transform: translateY(0) scale(0.98);
   }
 
-  .theme-toggle:active .theme-toggle-icon {
-    transform: rotate(0deg) scale(0.82);
+  /* El cambio de paleta no interpola colores capturados; hover conserva su movimiento. */
+  :global(html.is-changing-theme) .theme-toggle {
+    transition: transform 140ms ease;
+  }
+
+  :global(html.is-changing-theme) .brand-picture {
+    transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  :global(html.is-changing-theme) .desktop-navigation a,
+  :global(html.is-changing-theme) .mobile-navigation-panel a {
+    transition: none;
+  }
+
+  :global(html.is-changing-theme) .mobile-navigation-backdrop {
+    transition: backdrop-filter 220ms ease, -webkit-backdrop-filter 220ms ease;
   }
 
   /* Navegación móvil */
@@ -324,13 +437,40 @@ const brandSources = {
     position: absolute;
     inset-block-start: calc(100% + 0.5rem);
     inset-inline: 0;
+    z-index: 2;
     padding: 0.75rem;
     border: 1px solid var(--border-control);
-    border-radius: var(--radius-card);
-    background: var(--glass-surface);
-    backdrop-filter: blur(1.125rem);
-    -webkit-backdrop-filter: blur(1.125rem);
-    box-shadow: 0 1rem 2.5rem rgb(14 9 24 / 18%);
+    border-radius: var(--radius-navigation);
+    corner-shape: squircle;
+    background: color-mix(in srgb, var(--surface-card) 90%, transparent);
+    backdrop-filter: var(--glass-filter);
+    -webkit-backdrop-filter: var(--glass-filter);
+    box-shadow: var(--nav-inset-edge);
+    view-transition-name: mobile-navigation;
+  }
+
+  .mobile-navigation-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    background-color: transparent;
+    backdrop-filter: blur(0);
+    -webkit-backdrop-filter: blur(0);
+    transition: background-color 220ms ease, backdrop-filter 220ms ease, -webkit-backdrop-filter 220ms ease;
+  }
+
+  .mobile-navigation-backdrop.is-visible {
+    background-color: color-mix(in srgb, var(--surface-page) 58%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .mobile-navigation-backdrop[hidden] {
+    display: none;
+  }
+
+  :global(html.mobile-menu-open) {
+    overflow: hidden;
   }
 
   .mobile-navigation-panel.is-open {
@@ -353,17 +493,57 @@ const brandSources = {
     text-decoration: none;
   }
 
-  .mobile-navigation-panel a:hover {
-    background: var(--surface-muted);
+  .mobile-navigation-panel a::after {
+    inset-inline: 0.75rem;
+  }
+
+  .mobile-navigation-panel a[aria-current='location']::before {
+    inset-inline-start: 0.75rem;
   }
 
   .mobile-navigation-fallback {
     padding-block: 0.75rem;
   }
 
-  @media (min-width: 48rem) {
+  @media (max-width: 22.5rem) {
     .navigation {
-      grid-template-columns: 1fr auto 1fr;
+      padding-inline: 0.75rem;
+    }
+
+    .brand {
+      gap: 0.375rem;
+      font-size: 0.8125rem;
+      white-space: nowrap;
+    }
+
+    .brand-picture {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+
+    .brand-picture img {
+      width: 2.25rem;
+      height: 2.25rem;
+    }
+
+    .navigation-actions {
+      gap: 0.375rem;
+    }
+
+    .theme-toggle,
+    .mobile-navigation-toggle {
+      width: 2.75rem;
+      height: 2.75rem;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .theme-toggle {
+      border-radius: var(--radius-pill);
+    }
+
+    .navigation {
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
     }
 
     .desktop-navigation {
@@ -371,35 +551,52 @@ const brandSources = {
     }
 
     .brand-picture {
-      /* En escritorio el mandril gana presencia sin cambiar la altura del navbar */
-      width: 4rem;
-      height: 4rem;
+      width: 3rem;
+      height: 3rem;
     }
 
     .brand-picture img {
-      width: 3.75rem;
-      height: 3.75rem;
+      width: 2.75rem;
+      height: 2.75rem;
     }
 
     .mobile-navigation-toggle,
     .mobile-navigation-panel,
+    .mobile-navigation-backdrop,
     .mobile-navigation-fallback {
       display: none;
     }
   }
 
   @supports not ((backdrop-filter: blur(1rem)) or (-webkit-backdrop-filter: blur(1rem))) {
-    .site-header,
+    .navigation,
     .mobile-navigation-panel {
-      background: var(--surface-page);
+      background: var(--surface-card);
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
     .theme-toggle,
     .theme-toggle-icon,
-    .mobile-navigation-toggle span {
+    .brand-picture,
+    .brand-picture img,
+    .desktop-navigation a,
+    .desktop-navigation a::before,
+    .desktop-navigation a::after,
+    .desktop-navigation.has-section-indicator .desktop-section-indicator,
+    .mobile-navigation-panel a,
+    .mobile-navigation-panel a::before,
+    .mobile-navigation-panel a::after,
+    .mobile-navigation-toggle span,
+    .mobile-navigation-backdrop {
       transition: none;
+    }
+
+    .brand:is(:hover, :focus-visible) .brand-picture,
+    .brand:is(:hover, :focus-visible) .brand-picture img,
+    .theme-toggle:hover,
+    .theme-toggle:active {
+      transform: none;
     }
   }
 </style>
@@ -407,11 +604,11 @@ const brandSources = {
 <!-- Proporciones críticas inline para conservar el tamaño del logo durante HMR -->
 <style is:inline>
   :root {
-    --nav-height: 4.75rem;
+    --nav-height: 4.25rem;
   }
 
   .site-header {
-    height: var(--nav-height);
+    height: calc(var(--nav-height) + 0.75rem);
   }
 
   .site-header .navigation {
@@ -434,71 +631,167 @@ const brandSources = {
     height: 3rem;
   }
 
-  @media (min-width: 48rem) {
+  @media (max-width: 22.5rem) {
     .site-header .brand-picture {
-      width: 4rem;
-      height: 4rem;
+      width: 2.5rem;
+      height: 2.5rem;
     }
 
     .site-header .brand-picture img {
-      width: 3.75rem;
-      height: 3.75rem;
+      width: 2.25rem;
+      height: 2.25rem;
+    }
+
+    .site-header .theme-toggle,
+    .site-header .mobile-navigation-toggle {
+      width: 2.75rem;
+      height: 2.75rem;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .site-header .brand-picture {
+      width: 3rem;
+      height: 3rem;
+    }
+
+    .site-header .brand-picture img {
+      width: 2.75rem;
+      height: 2.75rem;
     }
   }
 </style>
 
 <script>
+  // Sincroniza ambos menús con la sección que ocupa el área de lectura bajo el navbar.
+  const sectionLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('.desktop-navigation a, .mobile-navigation-panel a'));
+  const sections = Array.from(new Set(sectionLinks.map((link) => link.hash)))
+    .map((hash) => document.getElementById(hash.slice(1)))
+    .filter((section): section is HTMLElement => section instanceof HTMLElement);
+  const header = document.querySelector('.site-header');
+  const desktopNavigation = document.querySelector<HTMLElement>('.desktop-navigation');
+  const desktopIndicator = desktopNavigation?.querySelector<HTMLElement>('.desktop-section-indicator');
+  let currentSection = '';
+  let sectionFrame: number | undefined;
+
+  const updateDesktopIndicator = (sectionId: string) => {
+    if (!desktopNavigation || !desktopIndicator || !desktopNavigation.offsetWidth) return;
+    const activeLink = desktopNavigation.querySelector<HTMLAnchorElement>(`a[href="#${sectionId}"]`);
+    if (!activeLink) return;
+    const linkBounds = activeLink.getBoundingClientRect();
+    const navBounds = desktopNavigation.getBoundingClientRect();
+    const position = linkBounds.left - navBounds.left + (linkBounds.width - desktopIndicator.offsetWidth) / 2;
+    desktopNavigation.style.setProperty('--section-indicator-x', `${position}px`);
+    if (!desktopNavigation.classList.contains('has-section-indicator')) {
+      window.requestAnimationFrame(() => desktopNavigation.classList.add('has-section-indicator'));
+    }
+  };
+
+  const updateCurrentSection = () => {
+    sectionFrame = undefined;
+    if (!sections.length) return;
+    const readingLine = Math.max((header?.getBoundingClientRect().bottom ?? 0) + 24, window.innerHeight * 0.3);
+    let activeSection = sections[0];
+    for (const section of sections) {
+      if (section.getBoundingClientRect().top <= readingLine) activeSection = section;
+      else break;
+    }
+    if (window.scrollY > 0 && window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
+      activeSection = sections[sections.length - 1];
+    }
+    updateDesktopIndicator(activeSection.id);
+    if (currentSection === activeSection.id) return;
+    currentSection = activeSection.id;
+    sectionLinks.forEach((link) => {
+      if (link.hash === `#${currentSection}`) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+  };
+
+  const scheduleSectionUpdate = () => {
+    if (sectionFrame === undefined) sectionFrame = window.requestAnimationFrame(updateCurrentSection);
+  };
+  window.addEventListener('scroll', scheduleSectionUpdate, { passive: true });
+  window.addEventListener('resize', scheduleSectionUpdate);
+  window.addEventListener('pageshow', scheduleSectionUpdate);
+  const sectionResizeObserver = new ResizeObserver(scheduleSectionUpdate);
+  sections.forEach((section) => sectionResizeObserver.observe(section));
+  if (desktopNavigation) sectionResizeObserver.observe(desktopNavigation);
+  document.fonts.ready.then(scheduleSectionUpdate);
+  updateCurrentSection();
+
   // Mejora progresiva del menú móvil inspirada en el patrón de Alexandria.
   const menuButton = document.querySelector('[data-mobile-menu-toggle]');
   const mobileMenu = document.querySelector('[data-mobile-menu]');
+  const menuBackdrop = document.querySelector('[data-mobile-menu-backdrop]');
 
-  if (menuButton instanceof HTMLButtonElement && mobileMenu instanceof HTMLElement) {
+  if (menuButton instanceof HTMLButtonElement && mobileMenu instanceof HTMLElement && menuBackdrop instanceof HTMLElement) {
+    let closeTimer: number | undefined;
+
     const finishClosing = () => {
       mobileMenu.hidden = true;
       mobileMenu.classList.remove('is-closing');
+      menuBackdrop.hidden = true;
+      menuBackdrop.classList.remove('is-visible');
     };
 
     const closeMenu = (returnFocus = false, immediate = false) => {
-      if (mobileMenu.hidden) return;
+      if (!mobileMenu.classList.contains('is-open')) return;
 
+      mobileMenu.inert = true;
       menuButton.classList.remove('is-active');
       menuButton.setAttribute('aria-expanded', 'false');
       menuButton.setAttribute('aria-label', 'Abrir menú de navegación');
       mobileMenu.classList.remove('is-open');
+      menuBackdrop.classList.remove('is-visible');
+      document.documentElement.classList.remove('mobile-menu-open');
+      window.clearTimeout(closeTimer);
 
-      if (immediate) {
+      if (immediate || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         finishClosing();
       } else {
         mobileMenu.classList.add('is-closing');
-        mobileMenu.addEventListener('animationend', finishClosing, { once: true });
+        closeTimer = window.setTimeout(finishClosing, 220);
       }
 
       if (returnFocus) menuButton.focus();
     };
 
     const openMenu = () => {
+      window.clearTimeout(closeTimer);
+      menuBackdrop.hidden = false;
       mobileMenu.hidden = false;
+      mobileMenu.inert = false;
       mobileMenu.classList.remove('is-closing');
       mobileMenu.classList.add('is-open');
+      document.documentElement.classList.add('mobile-menu-open');
       menuButton.classList.add('is-active');
       menuButton.setAttribute('aria-expanded', 'true');
       menuButton.setAttribute('aria-label', 'Cerrar menú de navegación');
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+          if (mobileMenu.classList.contains('is-open')) menuBackdrop.classList.add('is-visible');
+          scheduleSectionUpdate();
+        });
+      });
     };
 
     menuButton.addEventListener('click', () => {
-      if (mobileMenu.hidden) openMenu();
+      if (!mobileMenu.classList.contains('is-open')) openMenu();
       else closeMenu();
     });
+
+    menuBackdrop.addEventListener('click', () => closeMenu(true));
 
     mobileMenu.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', () => closeMenu());
     });
 
     document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && !mobileMenu.hidden) closeMenu(true);
+      if (event.key === 'Escape' && mobileMenu.classList.contains('is-open')) closeMenu(true);
     });
 
-    window.matchMedia('(min-width: 48rem)').addEventListener('change', (event) => {
+    window.matchMedia('(min-width: 64rem)').addEventListener('change', (event) => {
       if (event.matches) closeMenu(false, true);
     });
   }

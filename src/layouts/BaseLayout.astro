@@ -110,6 +110,8 @@ const socialImage = image && Astro.site ? new URL(image, Astro.site) : undefined
         updateButton();
       };
 
+      let activeThemeTransition: ViewTransition | undefined;
+
       themeButton?.addEventListener('click', () => {
         const nextTheme = currentTheme() === 'dark' ? 'light' : 'dark';
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -119,7 +121,23 @@ const socialImage = image && Astro.site ? new URL(image, Astro.site) : undefined
           return;
         }
 
-        document.startViewTransition(() => applyTheme(nextTheme));
+        activeThemeTransition?.skipTransition();
+        const root = document.documentElement;
+        const header = document.querySelector('.site-header');
+        const mobileMenu = document.querySelector<HTMLElement>('[data-mobile-menu]');
+        const headerBottom = header?.getBoundingClientRect().bottom ?? 0;
+        const menuBottom = mobileMenu && !mobileMenu.hidden ? mobileMenu.getBoundingClientRect().bottom : 0;
+        root.style.setProperty('--theme-static-top', `${Math.max(headerBottom, menuBottom)}px`);
+        root.classList.add('is-changing-theme');
+
+        const transition = document.startViewTransition(() => applyTheme(nextTheme));
+        activeThemeTransition = transition;
+        const finishThemeTransition = () => {
+          if (activeThemeTransition !== transition) return;
+          root.classList.remove('is-changing-theme');
+          activeThemeTransition = undefined;
+        };
+        transition.finished.then(finishThemeTransition, finishThemeTransition);
       });
 
       updateButton();

@@ -18,7 +18,7 @@ html {
   min-width: 20rem;
   background: var(--surface-page);
   /* Reserva el navbar sticky al resolver anclas desde desktop y móvil */
-  scroll-padding-top: calc(var(--nav-height) + env(safe-area-inset-top) + 0.5rem);
+  scroll-padding-top: calc(var(--nav-height) + env(safe-area-inset-top) + 1.25rem);
   scroll-behavior: smooth;
 }
 

@@ -897,7 +897,8 @@ const portraitSources = {
     opacity: 0;
     pointer-events: none;
     transform: translateY(0.75rem) scale(0.85);
-    transition: opacity 260ms ease, transform 260ms ease, visibility 260ms ease;
+    transition: opacity 260ms ease, transform 140ms ease, visibility 260ms ease,
+      background-color 180ms ease, border-color 180ms ease, color 180ms ease, box-shadow 180ms ease;
     visibility: hidden;
   }
 
@@ -908,9 +909,16 @@ const portraitSources = {
     visibility: visible;
   }
 
-  .back-to-top:hover {
+  .back-to-top.is-visible:is(:hover, :focus-visible) {
     background: var(--surface-muted);
     border-color: var(--interactive-accent);
+    color: var(--interactive-accent);
+    transform: translateY(-0.125rem);
+    box-shadow: 0 0 1rem color-mix(in srgb, var(--interactive-accent) 20%, transparent);
+  }
+
+  .back-to-top.is-visible:active {
+    transform: translateY(0) scale(0.98);
   }
 
   .back-to-top-icon {
@@ -1043,6 +1051,10 @@ const portraitSources = {
 
     .experience-dialog::backdrop {
       transition: none;
+    }
+
+    .back-to-top.is-visible:is(:hover, :focus-visible, :active) {
+      transform: none;
     }
   }
 </style>
