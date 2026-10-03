@@ -50,8 +50,7 @@
   --hero-text-shadow: 0 1px 18px rgb(255 250 250 / 92%);
 
   /* Tipografía */
-  --font-geomanist: 'DM Sans Variable', 'DM Sans', ui-sans-serif, system-ui, sans-serif;
-  --font-geomanist-book: var(--font-geomanist);
+  --font-dm-sans: 'DM Sans Variable', 'DM Sans', ui-sans-serif, system-ui, sans-serif;
   --font-weight-light: 300;
   --font-weight-regular: 400;
   --text-caption: 0.75rem;
@@ -135,5 +134,5 @@
   --color-border-control: var(--border-control);
   --color-border-subtle: var(--border-subtle);
   --color-interactive-accent: var(--interactive-accent);
-  --font-sans: var(--font-geomanist);
+  --font-sans: var(--font-dm-sans);
 }
