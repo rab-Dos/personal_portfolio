@@ -1,0 +1,26 @@
+# Jesus Arellano — Portafolio
+
+> Portafolio personal de Jesus Arellano, Development, AI & Data Architect. Presenta su experiencia en arquitectura, desarrollo de software, inteligencia artificial y datos, proyectos y canales de contacto.
+
+El sitio está en español de México y su URL principal es https://alexandriastudio.cloud/jesusarellano. Es una landing estática de una sola página; los enlaces de secciones apuntan a contenido HTML de esa página.
+
+Los proyectos distinguen soluciones empresariales y sitios web. Las tecnologías descritas en cada proyecto pertenecen a ese trabajo y no necesariamente al stack del portafolio, construido con Astro y Tailwind CSS. Los proyectos sin demo pública se describen mediante su contexto y contribuciones. El sitio del Dr. Atzin Arreola se presenta como un trabajo activo de 2023 a 2025.
+
+## Contenido del portafolio
+
+- [Inicio](https://alexandriastudio.cloud/jesusarellano): Presentación y especialidades de Jesus Arellano.
+- [Experiencia](https://alexandriastudio.cloud/jesusarellano#experiencia): Trayectoria profesional y detalles de responsabilidades y contribuciones.
+- [Proyectos](https://alexandriastudio.cloud/jesusarellano#proyectos): MCI factuCore, MCI Human, MCI Hexagon, auditoría y analítica de peaje, Alexandria Studio, Dr. Atzin Arreola y Super Fiesta de Fernanda.
+- [Sobre mí](https://alexandriastudio.cloud/jesusarellano#sobre-mi): Perfil personal y tecnologías organizadas por especialidad.
+- [Contacto](https://alexandriastudio.cloud/jesusarellano#contacto): Canales públicos para conversar sobre proyectos y agendar una sesión de análisis técnico.
+
+## Perfiles públicos
+
+- [GitHub](https://github.com/rab-Dos): Repositorios públicos.
+- [LinkedIn](https://www.linkedin.com/in/arellano-jesus/): Perfil profesional.
+- [X](https://x.com/Maiden_AF): Perfil público de Jesus Arellano.
+
+## Optional
+
+- [Sitemap](https://alexandriastudio.cloud/jesusarellano/sitemap-index.xml): Índice de las rutas públicas generadas durante la compilación.
+- [Robots](https://alexandriastudio.cloud/jesusarellano/robots.txt): Reglas de rastreo y ubicación del sitemap.

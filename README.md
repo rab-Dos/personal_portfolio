@@ -2,6 +2,20 @@
 
 Sitio web personal estático orientado a comunicar experiencia en desarrollo de software, inteligencia artificial, arquitectura y datos. La interfaz prioriza accesibilidad, rendimiento, diseño responsive y una presentación visual premium.
 
+## Estado actual
+
+El proyecto implementa una landing de una sola página en español (`es-MX`), configurada para publicarse en [alexandriastudio.cloud/jesusarellano](https://alexandriastudio.cloud/jesusarellano). El código incluye:
+
+- Presentación con hero WebGL y vídeos optimizados.
+- Trayectoria profesional con diálogos de detalle.
+- Proyectos organizados en soluciones empresariales y sitios web, con galerías de capturas y enlaces públicos cuando están disponibles.
+- Sección Sobre mí y explorador de tecnologías por especialidad.
+- Contacto por correo, teléfono, WhatsApp y perfiles públicos, además del pie de página.
+- Navegación responsive, temas claro y oscuro, control de sonido persistente y ajustes para movimiento reducido.
+- Metadatos sociales, JSON-LD, `robots.txt`, sitemap y `llms.txt`.
+
+La salida es estática, sin backend ni formulario que envíe mensajes desde el servidor. El manifiesto abre el sitio en el navegador y no ofrece soporte sin conexión. Las configuraciones de caché del servidor se aplican durante el despliegue; una compilación local no confirma que estén activas en producción. Los criterios de accesibilidad y rendimiento son objetivos de validación, no resultados de auditoría garantizados.
+
 ## Stack
 
 - Astro 7
@@ -43,7 +57,7 @@ Copia `.env.example` como `.env` si necesitas sobrescribir la URL pública prede
 SITE_URL=https://alexandriastudio.cloud/jesusarellano
 ```
 
-`SITE_URL` configura la URL usada por Astro y el sitemap. De forma predeterminada, el proyecto usa `https://alexandriastudio.cloud/jesusarellano`.
+`SITE_URL` configura la URL usada por Astro y el sitemap. De forma predeterminada, el proyecto usa `https://alexandriastudio.cloud/jesusarellano`. La ruta base sigue siendo `/jesusarellano`; al cambiar de dominio o ruta, revisa también las URLs explícitas en `src/pages/index.astro`, `public/robots.txt`, `public/llms.txt`, el manifiesto y los enlaces de recursos.
 
 ## Estructura principal
 
@@ -53,14 +67,20 @@ src/
     layout/       Componentes de navegación y estructura compartida
     sections/     Secciones visibles de la página
   layouts/        Plantilla HTML principal y configuración del tema
+  lib/            Utilidades de imágenes responsivas
   pages/          Rutas del sitio
+  scripts/        Sonidos, explorador de tecnologías y efectos compartidos
   styles/         Tokens, estilos globales y transición de tema
 public/
+  llms.txt        Resumen público del sitio para asistentes de IA
   images/         Recursos públicos de marca y redes sociales
   media/          Vídeos y datos de la animación del hero
   scripts/        Lógica JavaScript de la animación
 resources/        Archivos fuente proporcionados para el proyecto
 agents/           Reglas de construcción y sistema de diseño
+deploy/           Configuración de caché para Nginx
+docs/             Referencia del HTML de metadatos
+scripts/          Optimización de vídeos del hero
 ```
 
 ## Sistema visual y accesibilidad
@@ -89,6 +109,16 @@ La implementación se encuentra en:
 
 Los recursos adaptados, referencias visuales y dependencias externas se documentan en `THIRD_PARTY_NOTICES.md`.
 
+## Licencia
+
+El código y la documentación del proyecto se distribuyen bajo la [licencia MIT](LICENSE), con copyright de 2026 a nombre de Jesus Arellano Flores. Las dependencias y los recursos de terceros conservan sus respectivas licencias y atribuciones; consulta [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
+## Información para asistentes de IA
+
+[`public/llms.txt`](public/llms.txt) contiene un resumen del portafolio y enlaces a sus secciones y perfiles públicos, siguiendo el [formato propuesto de llms.txt](https://llmstxt.org/). Astro lo copia a `dist/llms.txt` al compilar, para servirlo en `/jesusarellano/llms.txt`.
+
+Mantén este archivo sincronizado con el contenido visible y las URLs de producción. Complementa los metadatos y el sitemap; no sustituye `robots.txt` ni establece permisos de rastreo.
+
 ## Comandos disponibles
 
 | Comando | Descripción |
@@ -96,6 +126,7 @@ Los recursos adaptados, referencias visuales y dependencias externas se document
 | `pnpm dev` | Inicia el servidor de desarrollo |
 | `pnpm start` | Alias del servidor de desarrollo |
 | `pnpm build` | Genera la versión estática de producción |
+| `pnpm optimize:hero` | Regenera las copias comprimidas de los vídeos con FFmpeg |
 | `pnpm preview` | Sirve localmente una compilación existente |
 
 ## Sonidos de interacción
@@ -118,7 +149,7 @@ La compilación incluye `public/.htaccess` para Apache con caché de recursos de
 
 ## Publicación
 
-El sitio está configurado para servirse desde `/jesusarellano/`. Después de `pnpm build`, publica el contenido de `dist` dentro de la carpeta del servidor que corresponde a esa ruta, de modo que `index.html`, `_astro/`, `images/`, `media/` y `scripts/` queden directamente dentro de ella.
+El sitio está configurado para servirse desde `/jesusarellano/`. Después de `pnpm build`, publica el contenido de `dist` dentro de la carpeta del servidor que corresponde a esa ruta, de modo que `index.html`, `_astro/`, `images/`, `media/`, `scripts/`, `robots.txt`, `llms.txt` y los archivos del sitemap queden directamente dentro de ella.
 
 ## Convenciones de trabajo
 
