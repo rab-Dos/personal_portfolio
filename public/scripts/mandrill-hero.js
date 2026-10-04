@@ -41,6 +41,7 @@
   hero.dataset.mode = compactLayout.matches ? 'generated' : 'split';
   let resourcesReady = false;
   let resourcesStarted = false;
+  let trackingSettled = false;
 
   // La paleta del shader y de los vectores se adapta al tema activo.
   const systemDark = matchMedia('(prefers-color-scheme: dark)');
@@ -374,10 +375,14 @@
   const uScale=gl.getUniformLocation(program,'uScale'), uTime=gl.getUniformLocation(program,'uTime');
   const uLightTheme=gl.getUniformLocation(program,'uLightTheme');
   const uPointCount=gl.getUniformLocation(program,'uPointCount'), uPoints=gl.getUniformLocation(program,'uPoints[0]');
-  let lastDraw=0;
+  let lastDraw=-Infinity;
   function render(now){
     if(!reduced) requestAnimationFrame(render);
-    if(!visible||media.readyState<2||!media.videoWidth||now-lastDraw<1000/quality.fps) return; lastDraw=now;
+    if(!visible||media.readyState<2||!media.videoWidth||now-lastDraw<1000/quality.fps) return;
+    // El video original, la máscara y los vectores entran juntos, una vez listos.
+    if(!hero.hasAttribute('data-visual-ready') &&
+      (!trackingSettled || (hero.dataset.mode==='split' && sourceVideo.readyState<2))) return;
+    lastDraw=now;
     resize(); const s=scale();
     gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D,videoTexture);
     gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL,false); gl.texImage2D(gl.TEXTURE_2D,0,gl.RGB,gl.RGB,gl.UNSIGNED_BYTE,media);
@@ -395,6 +400,7 @@
     for(let i=0;i<used;i++) flat.set(frame[i],i*4);
     gl.uniform1i(uPointCount,used); gl.uniform4fv(uPoints,flat);
     gl.drawArraysInstanced(gl.TRIANGLES,0,6,count); drawVectors(frame,media.currentTime);
+    if(!hero.hasAttribute('data-visual-ready')) hero.setAttribute('data-visual-ready','');
   }
 
   let userPaused=reduced;
@@ -426,8 +432,10 @@
         return r.json();
       }).then(v=>{
         tracking=v;
+      }).catch(()=>{}).finally(()=>{
+        trackingSettled=true;
         if(reduced) requestAnimationFrame(render);
-      }).catch(()=>{});
+      });
     }
     playPair();
   }
@@ -474,7 +482,10 @@
     if(reduced) requestAnimationFrame(render);
     else playPair();
   },{once:true});
-  sourceVideo.addEventListener('canplay',()=>playPair());
+  sourceVideo.addEventListener('canplay',()=>{
+    if(reduced) requestAnimationFrame(render);
+    else playPair();
+  });
   setSpeed(.65); updatePlaybackLabel();
   window.animalHero={
     setMode(mode){

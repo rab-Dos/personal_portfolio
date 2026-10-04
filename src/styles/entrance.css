@@ -4,11 +4,17 @@
   --entrance-easing: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* Keep late-loading decorative media hidden until its first complete frame. */
+#inicio .mandrill-animation:not([data-visual-ready]):not(.no-webgl) {
+  opacity: 0;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .site-header .navigation,
   #inicio,
   #inicio .hero-copy,
   #inicio .hero-actions,
+  #inicio .mandrill-animation[data-visual-ready],
   #resumen-profesional {
     animation-duration: var(--entrance-duration);
     animation-timing-function: var(--entrance-easing);
@@ -21,6 +27,9 @@
   #inicio { animation-name: hero-lateral-reveal; }
   #inicio .hero-copy,
   #inicio .hero-actions { animation-name: hero-content-arrive; }
+  #inicio .mandrill-animation[data-visual-ready] {
+    animation-name: hero-lateral-reveal, hero-content-arrive;
+  }
   #resumen-profesional { animation-name: summary-enter; }
 }
 
