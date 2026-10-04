@@ -575,17 +575,41 @@ const portraitSources = {
   }
 
   .experience-card {
+    --experience-edge: color-mix(in srgb, var(--interactive-accent) 38%, var(--border-subtle));
+    --experience-edge-hover: color-mix(in srgb, var(--interactive-accent) 65%, var(--border-subtle));
+    --experience-glow: color-mix(in srgb, var(--interactive-accent) 14%, transparent);
+    --experience-glow-hover: color-mix(in srgb, var(--interactive-accent) 22%, transparent);
     position: relative;
+    isolation: isolate;
     padding: clamp(1.35rem, 3.5vw, 2.3rem);
-    border: 1px solid color-mix(in srgb, var(--border-subtle) 78%, transparent);
+    border: 1px solid var(--experience-edge);
     border-radius: var(--radius-card);
-    background: var(--surface-card);
-    transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+    background:
+      radial-gradient(ellipse at 100% 0%, var(--ambient-ember), transparent 60%),
+      radial-gradient(ellipse at 0% 100%, var(--ambient-current), transparent 65%),
+      linear-gradient(135deg, var(--surface-card), var(--surface-panel));
+    box-shadow: 0 0 2rem var(--experience-glow), inset 0 0 1.5rem var(--experience-glow);
+    transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
   }
 
-  .experience-card:hover {
-    border-color: var(--border-control);
-    background: var(--surface-panel);
+  .experience-card::before {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-position: center;
+    background-size: 3.75rem 3.75rem;
+    mask-image: linear-gradient(110deg, rgb(0 0 0 / 78%), transparent 75%);
+    pointer-events: none;
+    content: '';
+  }
+
+  .experience-card:is(:hover, :focus-within) {
+    border-color: var(--experience-edge-hover);
+    box-shadow: 0 0 2rem var(--experience-glow-hover), inset 0 0 1.5rem var(--experience-glow-hover);
     transform: translateX(0.25rem);
   }
 
@@ -698,8 +722,11 @@ const portraitSources = {
   }
 
   .experience-item-highlight .experience-card {
-    border-color: color-mix(in srgb, var(--hero-emphasis-color) 42%, var(--border-subtle));
-    box-shadow: inset 0 -2px 0 color-mix(in srgb, var(--hero-emphasis-color) 72%, transparent);
+    --experience-edge: color-mix(in srgb, var(--hero-emphasis-color) 58%, var(--border-subtle));
+    --experience-edge-hover: color-mix(in srgb, var(--hero-emphasis-color) 80%, var(--border-subtle));
+    --experience-glow: color-mix(in srgb, var(--hero-emphasis-color) 20%, transparent);
+    --experience-glow-hover: color-mix(in srgb, var(--hero-emphasis-color) 28%, transparent);
+    border-block-end-width: 2px;
   }
 
   .experience-card-head {
@@ -1009,6 +1036,13 @@ const portraitSources = {
       grid-column: 2;
       grid-row: 2;
     }
+
+    .experience-card-actions:has(.experience-card-details) {
+      width: 100%;
+      margin-inline: 0;
+      align-items: center;
+      justify-content: center;
+    }
   }
 
   @media (max-width: 35rem) {
@@ -1054,6 +1088,10 @@ const portraitSources = {
 
     .experience-dialog::backdrop {
       transition: none;
+    }
+
+    .experience-card:is(:hover, :focus-within) {
+      transform: none;
     }
 
     .back-to-top.is-visible:is(:hover, :focus-visible, :active) {

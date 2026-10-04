@@ -1,0 +1,26 @@
+{
+  "id": "/jesusarellano/",
+  "name": "Jesus Arellano — Portafolio",
+  "short_name": "Jesus Arellano",
+  "description": "Arquitectura, desarrollo, inteligencia artificial y datos.",
+  "lang": "es-MX",
+  "start_url": "/jesusarellano/",
+  "scope": "/jesusarellano/",
+  "display": "browser",
+  "background_color": "#fffafa",
+  "theme_color": "#fffafa",
+  "icons": [
+    {
+      "src": "/jesusarellano/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/jesusarellano/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

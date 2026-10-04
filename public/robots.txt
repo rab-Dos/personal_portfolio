@@ -1,3 +1,4 @@
-# Indexación pública básica; el sitemap se añadirá al confirmar SITE_URL.
+# Indexación pública y ubicación del sitemap de producción.
 User-agent: *
 Allow: /
+Sitemap: https://alexandriastudio.cloud/jesusarellano/sitemap-index.xml

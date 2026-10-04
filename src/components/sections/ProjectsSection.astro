@@ -215,7 +215,7 @@ const webProjects = [
           aria-controls="projects-panel-enterprise"
           data-project-tab
         >
-          <span>Sistemas Empresariales</span>
+          <span>Sistemas</span>
         </button>
         <button
           class="projects-tab"
@@ -231,7 +231,7 @@ const webProjects = [
       </div>
 
       <section class="projects-panel" id="projects-panel-enterprise" data-project-panel>
-        <h3 class="visually-hidden">Sistemas Empresariales</h3>
+        <h3 class="visually-hidden">Sistemas</h3>
         <div class="projects-grid">
           {projects.map((project) => (
             <article class="project-card" aria-labelledby={`project-${project.index}-title`}>
@@ -657,6 +657,10 @@ const webProjects = [
   }
 
   .project-card {
+    --project-edge: color-mix(in srgb, var(--interactive-accent) 38%, var(--border-subtle));
+    --project-glow: color-mix(in srgb, var(--interactive-accent) 14%, transparent);
+    position: relative;
+    isolation: isolate;
     display: flex;
     min-width: 0;
     min-height: 0;
@@ -664,18 +668,42 @@ const webProjects = [
     gap: clamp(1rem, 3vw, 2.5rem);
     align-items: stretch;
     padding: clamp(1rem, 2vw, 1.5rem);
-    border: 1px solid var(--border-subtle);
+    overflow: hidden;
+    border: 1px solid var(--project-edge);
     border-radius: var(--radius-panel);
-    background: var(--surface-card);
+    background:
+      radial-gradient(ellipse at 100% 0%, var(--ambient-ember), transparent 60%),
+      radial-gradient(ellipse at 0% 100%, var(--ambient-current), transparent 65%),
+      linear-gradient(135deg, var(--surface-card), var(--surface-panel));
+    box-shadow: 0 0 2rem var(--project-glow), inset 0 0 1.5rem var(--project-glow);
     transition:
       transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
       border-color 240ms ease,
-      background-color 240ms ease;
+      box-shadow 240ms ease;
+  }
+
+  /* Trama de Contacto, situada detrás del contenido y adaptada al tema. */
+  .project-card::before {
+    position: absolute;
+    inset: 0;
+    inset-inline-end: 56%;
+    z-index: -1;
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-position: center;
+    background-size: 3.75rem 3.75rem;
+    mask-image: linear-gradient(to bottom, rgb(0 0 0 / 78%), transparent 96%);
+    pointer-events: none;
+    content: '';
   }
 
   .project-card:hover {
     transform: translateY(-4px);
     border-color: color-mix(in srgb, var(--hero-emphasis-color) 55%, var(--border-subtle));
+    box-shadow:
+      0 0 2rem color-mix(in srgb, var(--interactive-accent) 20%, transparent),
+      inset 0 0 1.5rem var(--project-glow);
   }
 
   .project-card-content {
@@ -936,6 +964,10 @@ const webProjects = [
     .project-card-content {
       grid-template-columns: minmax(0, 1fr);
       gap: 1.25rem;
+    }
+
+    .project-card::before {
+      inset-inline-end: 0;
     }
 
     .project-copy {

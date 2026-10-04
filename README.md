@@ -102,6 +102,12 @@ Los recursos adaptados, referencias visuales y dependencias externas se document
 
 Cuelume genera señales suaves con Web Audio al navegar, cambiar el tema, usar el menú móvil, abrir o cerrar detalles, cambiar la galería y seleccionar tecnologías. El control de sonido permite silenciarlas y guarda la preferencia en este navegador: aparece en la cabecera de escritorio y dentro del menú de hamburguesa en móvil. No hay reproducción automática al cargar, al pasar el cursor ni al desplazar la página. La integración compartida está en `src/scripts/sounds.ts`.
 
+## Metadatos y recursos sociales
+
+`BaseLayout.astro` genera los metadatos HTML, Open Graph y X con la cuenta pública `@Maiden_AF`. La portada declara la imagen remota `cdn/opengraph.webp` (1200 × 630, WebP) y datos JSON-LD de `Person`, `WebSite` y `WebPage`. El bloque HTML resultante se entrega como referencia en `docs/seo-head.html`.
+
+`public/apple-touch-icon.png` es una copia del recurso original `resources/apple-touch-icon.png` (180 × 180). `public/site.webmanifest` reutiliza ese icono y el favicon SVG; mantiene las rutas bajo `/jesusarellano/` y abre el sitio en el navegador. El manifiesto no añade soporte sin conexión.
+
 ## Publicación
 
 El sitio está configurado para servirse desde `/jesusarellano/`. Después de `pnpm build`, publica el contenido de `dist` dentro de la carpeta del servidor que corresponde a esa ruta, de modo que `index.html`, `_astro/`, `images/`, `media/` y `scripts/` queden directamente dentro de ella.

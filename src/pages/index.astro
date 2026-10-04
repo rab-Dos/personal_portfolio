@@ -11,6 +11,42 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const title = 'Jesus Arellano — Development, AI & Data Architect';
 const description =
   'Portafolio personal de Jesus Arellano: arquitectura, desarrollo, inteligencia artificial y datos.';
+const url = 'https://alexandriastudio.cloud/jesusarellano';
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': `${url}#person`,
+      name: 'Jesus Arellano',
+      url,
+      jobTitle: 'Development, AI & Data Architect',
+      sameAs: [
+        'https://x.com/Maiden_AF',
+        'https://www.linkedin.com/in/arellano-jesus/',
+        'https://github.com/rab-Dos',
+      ],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${url}#website`,
+      url,
+      name: 'Jesus Arellano',
+      inLanguage: 'es-MX',
+      publisher: { '@id': `${url}#person` },
+    },
+    {
+      '@type': 'WebPage',
+      '@id': `${url}#webpage`,
+      url,
+      name: title,
+      description,
+      inLanguage: 'es-MX',
+      isPartOf: { '@id': `${url}#website` },
+      mainEntity: { '@id': `${url}#person` },
+    },
+  ],
+};
 ---
 
 <BaseLayout
@@ -19,6 +55,10 @@ const description =
   canonical="https://alexandriastudio.cloud/jesusarellano"
   image="https://alexandriastudio.cloud/jesusarellano/cdn/opengraph.webp"
   imageAlt="Vista previa del portafolio de Jesus Arellano"
+  imageWidth={1200}
+  imageHeight={630}
+  imageType="image/webp"
+  structuredData={structuredData}
 >
   <!-- Navegación global del portafolio -->
   <SiteHeader />
