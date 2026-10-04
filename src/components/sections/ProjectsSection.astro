@@ -1,6 +1,24 @@
 ---
 import ProjectVisual from './ProjectVisual.astro';
 import ProjectGallery from './ProjectGallery.astro';
+import { responsiveSources } from '../../lib/responsive-images';
+import frontal from '../../../resources/frontal.png';
+import frontalWeb from '../../../resources/frontal_molesto.png';
+import alex1 from '../../../resources/web_alex_1.webp';
+import alex2 from '../../../resources/web_alex_2.webp';
+import alex3 from '../../../resources/web_alex_3.webp';
+import atzin1 from '../../../resources/web_draa_1.webp';
+import atzin2 from '../../../resources/web_draa_2.webp';
+import atzin3 from '../../../resources/web_draa_3.webp';
+import fiesta1 from '../../../resources/web_fer_1.webp';
+import fiesta2 from '../../../resources/web_fer_2.webp';
+import fiesta3 from '../../../resources/web_fer_3.webp';
+
+const [enterpriseArt, webArt] = await Promise.all([
+  responsiveSources(frontal, [320, 500, 800]),
+  responsiveSources(frontalWeb, [250, 500]),
+]);
+const artSizes = '(max-width: 48rem) min(75vw, 320px), 400px';
 
 const projects = [
   {
@@ -61,7 +79,7 @@ const projects = [
   },
 ];
 
-// Original screenshots in resources/web_* are preserved; these public copies power the project galleries.
+// Astro processes the preserved resources/web_* screenshots into responsive assets.
 const webProjects = [
   {
     index: '01',
@@ -80,18 +98,15 @@ const webProjects = [
     liveSite: 'https://alexandriastudio.cloud/',
     gallery: [
       {
-        avif: '/jesusarellano/images/projects/alexandria-studio/web_alex_1.avif',
-        webp: '/jesusarellano/images/projects/alexandria-studio/web_alex_1.webp',
+        src: alex1,
         alt: 'Portada de Alexandria Studio con el mensaje de evolución tecnológica y enlaces de contacto y servicios.',
       },
       {
-        avif: '/jesusarellano/images/projects/alexandria-studio/web_alex_2.avif',
-        webp: '/jesusarellano/images/projects/alexandria-studio/web_alex_2.webp',
+        src: alex2,
         alt: 'Sección de paquetes de servicio de Alexandria Studio con sus opciones de soporte e infraestructura.',
       },
       {
-        avif: '/jesusarellano/images/projects/alexandria-studio/web_alex_3.avif',
-        webp: '/jesusarellano/images/projects/alexandria-studio/web_alex_3.webp',
+        src: alex3,
         alt: 'Footer de Alexandria Studio con enlaces de navegación, servicios y el globo 3D de conexiones.',
       },
     ],
@@ -111,18 +126,15 @@ const webProjects = [
     repository: 'https://github.com/rab-Dos/drarreola',
     gallery: [
       {
-        avif: '/jesusarellano/images/projects/dr-atzin-arreola/web_draa_1.avif',
-        webp: '/jesusarellano/images/projects/dr-atzin-arreola/web_draa_1.webp',
+        src: atzin1,
         alt: 'Portada profesional del Dr. Atzin Arreola con su especialidad y acceso a citas.',
       },
       {
-        avif: '/jesusarellano/images/projects/dr-atzin-arreola/web_draa_2.avif',
-        webp: '/jesusarellano/images/projects/dr-atzin-arreola/web_draa_2.webp',
+        src: atzin2,
         alt: 'Sección de presentación del sitio del Dr. Atzin Arreola con su fotografía y texto de bienvenida.',
       },
       {
-        avif: '/jesusarellano/images/projects/dr-atzin-arreola/web_draa_3.avif',
-        webp: '/jesusarellano/images/projects/dr-atzin-arreola/web_draa_3.webp',
+        src: atzin3,
         alt: 'Sección de contacto y ubicación del consultorio, con un mapa y opciones para agendar cita.',
       },
     ],
@@ -142,18 +154,15 @@ const webProjects = [
     repository: 'https://github.com/rab-Dos/fiesta_fer_2026',
     gallery: [
       {
-        avif: '/jesusarellano/images/projects/super-fiesta-fernanda/web_fer_1.avif',
-        webp: '/jesusarellano/images/projects/super-fiesta-fernanda/web_fer_1.webp',
+        src: fiesta1,
         alt: 'Portada de la invitación Super Fiesta de Fernanda con una bienvenida temática.',
       },
       {
-        avif: '/jesusarellano/images/projects/super-fiesta-fernanda/web_fer_2.avif',
-        webp: '/jesusarellano/images/projects/super-fiesta-fernanda/web_fer_2.webp',
+        src: fiesta2,
         alt: 'Sección de ubicación de la invitación con los datos del salón y un mapa.',
       },
       {
-        avif: '/jesusarellano/images/projects/super-fiesta-fernanda/web_fer_3.avif',
-        webp: '/jesusarellano/images/projects/super-fiesta-fernanda/web_fer_3.webp',
+        src: fiesta3,
         alt: 'Sección de despedida de la invitación con un mensaje para las personas invitadas.',
       },
     ],
@@ -163,6 +172,15 @@ const webProjects = [
 ---
 
 <section class="projects-section" id="proyectos" aria-labelledby="projects-title">
+  <!-- Download the alternate illustration with the same responsive selection as the visible art. -->
+  <div hidden aria-hidden="true">
+  <picture data-project-art-preload>
+    <source srcset={webArt.avif} sizes={artSizes} type="image/avif" />
+    <source srcset={webArt.webp} sizes={artSizes} type="image/webp" />
+    <img src={webArt.src} width={webArt.width} height={webArt.height}
+      alt="" loading="eager" decoding="async" />
+  </picture>
+  </div>
   <div class="page-container">
     <!-- Icono copiado desde resources/proyects_icon.svg para uso temático en la interfaz. -->
     <header class="projects-header">
@@ -179,25 +197,26 @@ const webProjects = [
       <div class="projects-art" aria-hidden="true">
         <picture data-project-art>
           <source
-            srcset="/jesusarellano/images/brand/frontal.avif"
-            data-enterprise-srcset="/jesusarellano/images/brand/frontal.avif"
-            data-web-srcset="/jesusarellano/images/brand/frontal_molesto.avif"
+            srcset={enterpriseArt.avif} sizes={artSizes}
+            data-enterprise-srcset={enterpriseArt.avif}
+            data-web-srcset={webArt.avif}
             type="image/avif"
           />
           <source
-            srcset="/jesusarellano/images/brand/frontal.webp"
-            data-enterprise-srcset="/jesusarellano/images/brand/frontal.webp"
-            data-web-srcset="/jesusarellano/images/brand/frontal_molesto.webp"
+            srcset={enterpriseArt.webp} sizes={artSizes}
+            data-enterprise-srcset={enterpriseArt.webp}
+            data-web-srcset={webArt.webp}
             type="image/webp"
           />
           <img
-            src="/jesusarellano/images/brand/frontal.png"
-            data-enterprise-src="/jesusarellano/images/brand/frontal.png"
-            data-web-src="/jesusarellano/images/brand/frontal_molesto.png"
+            src={enterpriseArt.src}
+            data-enterprise-src={enterpriseArt.src}
+            data-web-src={webArt.src}
             width="800"
             height="800"
     alt=""
-    loading="lazy"
+    loading="eager"
+    data-section-illustration
     decoding="async"
           />
         </picture>
@@ -350,6 +369,28 @@ const webProjects = [
 
     if (!tablist || tabs.length !== panels.length || tabs.length === 0) return;
 
+    // Warm only the first screenshot of each web gallery before tab activation.
+    let webImagesWarmed = false;
+    const warmWebImages = () => {
+      if (webImagesWarmed) return;
+      webImagesWarmed = true;
+      panels[1]?.querySelectorAll<HTMLElement>('[data-project-gallery]').forEach((gallery) => {
+        gallery.dispatchEvent(new Event('project-gallery-warm'));
+      });
+    };
+    tabs[1]?.addEventListener('pointerenter', warmWebImages, { once: true });
+    tabs[1]?.addEventListener('focus', warmWebImages, { once: true });
+    const section = root.closest('.projects-section');
+    if (section && 'IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          warmWebImages();
+          observer.disconnect();
+        }
+      }, { rootMargin: '1000px 0px' });
+      observer.observe(section);
+    }
+
     panels.forEach((panel, index) => {
       panel.setAttribute('role', 'tabpanel');
       panel.setAttribute('aria-labelledby', tabs[index].id);
@@ -365,6 +406,11 @@ const webProjects = [
       const transitionVersion = ++artTransitionVersion;
       const shouldAnimate = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       currentArtVariant = variant;
+      if (variant === 'web') {
+        const preloadedImage = root.closest('.projects-section')?.querySelector<HTMLImageElement>('[data-project-art-preload] img');
+        try { await preloadedImage?.decode(); } catch {}
+        if (transitionVersion !== artTransitionVersion) return;
+      }
       if (shouldAnimate) art.classList.add('is-transitioning');
 
       if (shouldAnimate) {
@@ -380,7 +426,7 @@ const webProjects = [
           const handleTransitionEnd = (event: TransitionEvent) => {
             if (event.target === image && event.propertyName === 'opacity') finish();
           };
-          const fallbackTimer = window.setTimeout(finish, 320);
+          const fallbackTimer = window.setTimeout(finish, 180);
           image.addEventListener('transitionend', handleTransitionEnd);
         });
       }
@@ -408,6 +454,7 @@ const webProjects = [
     };
 
     const selectTab = (selectedIndex: number, moveFocus = false) => {
+      if (selectedIndex === 1) warmWebImages();
       const previousIndex = tabs.findIndex((tab) => tab.getAttribute('aria-selected') === 'true');
       if (previousIndex !== selectedIndex) {
         playSound('select', { direction: selectedIndex < previousIndex ? 'back' : 'forward' });
@@ -534,8 +581,8 @@ const webProjects = [
   .projects-art img {
     object-fit: contain;
     transition:
-      opacity 240ms cubic-bezier(0.22, 1, 0.36, 1),
-      transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+      opacity 120ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .projects-art picture.is-transitioning img {

@@ -108,6 +108,14 @@ Cuelume genera señales suaves con Web Audio al navegar, cambiar el tema, usar e
 
 `public/apple-touch-icon.png` es una copia del recurso original `resources/apple-touch-icon.png` (180 × 180). `public/site.webmanifest` reutiliza ese icono y el favicon SVG; mantiene las rutas bajo `/jesusarellano/` y abre el sitio en el navegador. El manifiesto no añade soporte sin conexión.
 
+## Carga de imágenes y video
+
+Las ilustraciones de Proyectos y Sobre mí se descargan desde el inicio. Astro genera tamaños responsivos AVIF y WebP con nombres que incluyen un hash a partir de los originales en `resources/`. Las galerías anticipan la primera captura al acercarse a Proyectos o enfocar la pestaña Sitios Web, y preparan capturas adyacentes al acercarse al carrusel o navegarlo.
+
+El hero inicia sus recursos después de la carga inicial de la página, cuando está visible. Usa copias comprimidas H.264 con `faststart`, conservando resolución, 25 fps y duración de 18.08 s para mantener la sincronización del shader. Los videos pasan de 18,610,723 a 7,986,402 bytes (57.1 % menos). Los originales se conservan. Para regenerar las copias: `pnpm optimize:hero`. FFmpeg es una herramienta de desarrollo; Sharp permite a Astro procesar las imágenes durante el build.
+
+La compilación incluye `public/.htaccess` para Apache con caché de recursos de siete días. En Nginx, integrar `deploy/nginx-cache.conf` en la configuración existente: el mapa va en `http {}` y la directiva indicada en el servidor que sirve la landing. Los recursos con hash en `_astro/` permiten caché de un año; imágenes y videos públicos, siete días; scripts públicos, una hora. Publicar `dist` por sí solo no aplica la configuración de Nginx. Los navegadores que ya tengan recursos públicos en caché pueden conservarlos hasta que expire su vigencia.
+
 ## Publicación
 
 El sitio está configurado para servirse desde `/jesusarellano/`. Después de `pnpm build`, publica el contenido de `dist` dentro de la carpeta del servidor que corresponde a esa ruta, de modo que `index.html`, `_astro/`, `images/`, `media/` y `scripts/` queden directamente dentro de ella.

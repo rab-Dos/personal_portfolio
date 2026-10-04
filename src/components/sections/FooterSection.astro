@@ -67,18 +67,46 @@ const whatsappUrl = `https://api.whatsapp.com/send?phone=5215615912984&text=${en
 
   const figure = document.querySelector('[data-footer-figure]');
   if (figure instanceof HTMLElement && 'IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const image = figure.querySelector('img');
+    let imageReady = false;
+    let inView = false;
+    let preparing = false;
     figure.classList.add('is-pending');
-    const observer = new IntersectionObserver((entries) => {
-      if (entries.some((entry) => entry.isIntersecting) && document.visibilityState === 'visible') {
-        figure.classList.remove('is-pending');
-        observer.disconnect();
+    const reveal = () => {
+      if (!imageReady || !inView || document.visibilityState !== 'visible') return;
+      // Two frames keep the pending transform painted before starting the transition.
+      requestAnimationFrame(() => requestAnimationFrame(() => figure.classList.remove('is-pending')));
+      observer.disconnect();
+      warmObserver.disconnect();
+    };
+    const prepareImage = async () => {
+      if (preparing) return;
+      preparing = true;
+      if (image) {
+        image.loading = 'eager';
+        try { await image.decode(); } catch {}
       }
+      imageReady = true;
+      reveal();
+    };
+    const observer = new IntersectionObserver((entries) => {
+      inView = entries.some((entry) => entry.isIntersecting);
+      if (inView) { void prepareImage(); reveal(); }
     }, { threshold: 0.15 });
+    const warmObserver = new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) {
+        void prepareImage();
+        warmObserver.disconnect();
+      }
+    }, { rootMargin: '800px 0px' });
     observer.observe(figure);
+    warmObserver.observe(figure);
     document.addEventListener('visibilitychange', () => {
-      if (document.visibilityState === 'visible' && figure.classList.contains('is-pending') && figure.getBoundingClientRect().top < window.innerHeight) {
-        figure.classList.remove('is-pending');
-        observer.disconnect();
+      if (document.visibilityState === 'visible' && figure.classList.contains('is-pending')) {
+        const rect = figure.getBoundingClientRect();
+        inView = rect.bottom > 0 && rect.top < window.innerHeight;
+        if (inView) void prepareImage();
+        reveal();
       }
     });
   }

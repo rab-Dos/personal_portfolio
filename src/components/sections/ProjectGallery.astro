@@ -1,7 +1,8 @@
 ---
+import { Picture } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 interface GalleryImage {
-  avif: string;
-  webp: string;
+  src: ImageMetadata;
   alt: string;
 }
 
@@ -37,17 +38,9 @@ const { label, images } = Astro.props;
           aria-current={index === 0 ? 'true' : undefined}
         >
           <figure>
-            <picture>
-              <source srcset={image.avif} type="image/avif" />
-              <img
-                src={image.webp}
-                width="800"
-                height="500"
-                alt={image.alt}
-                loading="lazy"
-                decoding="async"
-              />
-            </picture>
+            <Picture src={image.src} formats={['avif', 'webp']} fallbackFormat="webp"
+              widths={[400, 800]} sizes="(max-width: 55.999rem) calc(100vw - 4rem), 560px"
+              alt={image.alt} loading="lazy" decoding="async" />
           </figure>
         </li>
       ))}
@@ -112,6 +105,17 @@ const { label, images } = Astro.props;
     let measuredWidth = 0;
 
     const reducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const warmSlide = (index: number) => {
+      const slide = originalSlides[(index + originalSlides.length) % originalSlides.length];
+      const image = slide.querySelector('img');
+      if (image) image.loading = 'eager';
+    };
+    const warmNeighbors = (index: number) => {
+      warmSlide(index);
+      warmSlide(index + 1);
+      warmSlide(index - 1);
+    };
+    gallery.addEventListener('project-gallery-warm', () => warmSlide(0));
 
     const setScrollPosition = (virtualIndex: number, behavior: ScrollBehavior) => {
       viewport.scrollTo({ left: virtualIndex * viewport.clientWidth, behavior });
@@ -142,6 +146,7 @@ const { label, images } = Astro.props;
       });
 
       status.textContent = `${activeIndex + 1} de ${originalSlides.length}`;
+      warmNeighbors(activeIndex);
     };
 
     const finishScroll = () => {
@@ -167,6 +172,8 @@ const { label, images } = Astro.props;
       const targetIndex = activeVirtualIndex + direction;
       const target = virtualSlides[targetIndex];
       if (!target) return;
+      const targetImage = target.querySelector('img');
+      if (targetImage) targetImage.loading = 'eager';
       playSound('navigate', { direction: direction < 0 ? 'back' : 'forward' });
       activeVirtualIndex = targetIndex;
       if (reducedMotion()) setScrollPositionImmediately(targetIndex);
@@ -215,6 +222,15 @@ const { label, images } = Astro.props;
 
     const panel = gallery.closest<HTMLElement>('[data-project-panel]');
     panel?.addEventListener('project-panel-shown', initialize);
+    if ('IntersectionObserver' in window) {
+      const imageObserver = new IntersectionObserver((entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          warmNeighbors(activeIndex);
+          imageObserver.disconnect();
+        }
+      }, { rootMargin: '600px 0px' });
+      imageObserver.observe(gallery);
+    }
 
     if ('ResizeObserver' in window) {
       const observer = new ResizeObserver(initialize);

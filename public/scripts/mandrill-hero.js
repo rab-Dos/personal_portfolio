@@ -25,11 +25,11 @@
   }
 
   const media = document.createElement('video');
-  media.src = '/jesusarellano/media/mandrill/packed-pingpong.mp4';
+  const packedVideoPath = '/jesusarellano/media/mandrill/packed-pingpong-optimized.mp4';
   media.loop = true;
   media.muted = true;
   media.playsInline = true;
-  media.preload = 'auto';
+  media.preload = 'metadata';
   media.crossOrigin = 'anonymous';
   sourceVideo.loop = true;
   sourceVideo.playbackRate = .65;
@@ -37,12 +37,10 @@
 
   // En móvil se conserva solo la máscara; el video original se descarga únicamente en escritorio.
   const compactLayout = matchMedia('(max-width: 55.999rem)');
-  const sourceVideoPath = '/jesusarellano/media/mandrill/source-pingpong.mp4';
+  const sourceVideoPath = '/jesusarellano/media/mandrill/source-pingpong-optimized.mp4';
   hero.dataset.mode = compactLayout.matches ? 'generated' : 'split';
-  if (!compactLayout.matches) {
-    sourceVideo.src = sourceVideoPath;
-    sourceVideo.preload = 'auto';
-  }
+  let resourcesReady = false;
+  let resourcesStarted = false;
 
   // La paleta del shader y de los vectores se adapta al tema activo.
   const systemDark = matchMedia('(prefers-color-scheme: dark)');
@@ -227,10 +225,6 @@
 
   let tracking=null, visible=true, resizePending=true;
   let canvasPane={x:0,y:0,w:1,h:1}, sourcePane={x:0,y:0,w:0,h:0};
-  fetch('/jesusarellano/media/mandrill/tracking.json').then(r=>r.json()).then(v=>{
-    tracking=v;
-    if(reduced) requestAnimationFrame(render);
-  });
   const vctx=vectors.getContext('2d');
 
   function resize(){
@@ -383,7 +377,7 @@
   let lastDraw=0;
   function render(now){
     if(!reduced) requestAnimationFrame(render);
-    if(!visible||!media.videoWidth||now-lastDraw<1000/quality.fps) return; lastDraw=now;
+    if(!visible||media.readyState<2||!media.videoWidth||now-lastDraw<1000/quality.fps) return; lastDraw=now;
     resize(); const s=scale();
     gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D,videoTexture);
     gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL,false); gl.texImage2D(gl.TEXTURE_2D,0,gl.RGB,gl.RGB,gl.UNSIGNED_BYTE,media);
@@ -412,9 +406,39 @@
   }
   function playPair(force=false){
     if(force) userPaused=false;
-    if(userPaused) return;
-    media.play().catch(()=>{}); sourceVideo.play().catch(()=>{});
+    if(userPaused||document.hidden||!visible||!resourcesStarted) return;
+    media.play().catch(()=>{});
+    if(sourceVideo.hasAttribute('src')) sourceVideo.play().catch(()=>{});
   }
+  function startHeroResources(){
+    if(!resourcesReady||document.hidden||!visible) return;
+    if(!resourcesStarted){
+      resourcesStarted=true;
+      media.src=packedVideoPath;
+      media.load();
+      if(!compactLayout.matches){
+        sourceVideo.src=sourceVideoPath;
+        sourceVideo.preload='metadata';
+        sourceVideo.load();
+      }
+      fetch('/jesusarellano/media/mandrill/tracking.json').then(r=>{
+        if(!r.ok) throw new Error('Tracking unavailable');
+        return r.json();
+      }).then(v=>{
+        tracking=v;
+        if(reduced) requestAnimationFrame(render);
+      }).catch(()=>{});
+    }
+    playPair();
+  }
+  // Eager section illustrations finish before decorative video downloads begin.
+  const scheduleResources=()=>{
+    const begin=()=>{ resourcesReady=true; startHeroResources(); };
+    if('requestIdleCallback' in window) requestIdleCallback(begin,{timeout:1000});
+    else setTimeout(begin,0);
+  };
+  if(document.readyState==='complete') scheduleResources();
+  else window.addEventListener('load',scheduleResources,{once:true});
   function pausePair(){ media.pause(); sourceVideo.pause(); }
   function restart(){ media.currentTime=0; sourceVideo.currentTime=0; userPaused=false; playPair(true); }
   togglePlayback.addEventListener('click',()=>{
@@ -434,17 +458,17 @@
       sourceVideo.pause();
       sourceVideo.removeAttribute('src');
       sourceVideo.load();
-    } else {
+    } else if(resourcesStarted) {
       sourceVideo.src=sourceVideoPath;
-      sourceVideo.preload='auto';
+      sourceVideo.preload='metadata';
       sourceVideo.load();
       if(visible&&!userPaused) playPair();
     }
     resizePending=true;
     if(reduced) requestAnimationFrame(render);
   });
-  new IntersectionObserver(([entry])=>{ visible=entry.isIntersecting; if(visible&&!userPaused) playPair(); else pausePair(); }).observe(hero);
-  document.addEventListener('visibilitychange',()=>{ if(document.hidden) pausePair(); else if(visible&&!userPaused) playPair(); });
+  new IntersectionObserver(([entry])=>{ visible=entry.isIntersecting; if(visible) startHeroResources(); else pausePair(); }).observe(hero);
+  document.addEventListener('visibilitychange',()=>{ if(document.hidden) pausePair(); else if(visible) startHeroResources(); });
   media.addEventListener('play',updatePlaybackLabel); media.addEventListener('pause',updatePlaybackLabel);
   media.addEventListener('canplay',()=>{
     if(reduced) requestAnimationFrame(render);

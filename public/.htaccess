@@ -1,0 +1,12 @@
+# Apache: cache assets while allowing HTML and metadata to be revalidated.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(avif|webp|png|jpe?g|svg|ico|mp4|woff2|css|js)$">
+    Header set Cache-Control "public, max-age=604800"
+  </FilesMatch>
+  <FilesMatch "\.js$">
+    Header set Cache-Control "public, max-age=3600"
+  </FilesMatch>
+  <FilesMatch "\.(html|xml|webmanifest)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>

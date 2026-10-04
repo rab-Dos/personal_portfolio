@@ -1,5 +1,7 @@
 ---
 import ControlTooltip from '../ui/ControlTooltip.astro';
+import { Picture } from 'astro:assets';
+import aboutIllustration from '../../../resources/Original_Reverso.png';
 import arrowRightVector from '../../../resources/arrow_icon.svg?raw';
 import arrowLeftVector from '../../../resources/arrow_l_icon.svg?raw';
 
@@ -95,19 +97,10 @@ const technologyGroups = [
       </div>
 
       <div class="about-art" aria-hidden="true">
-        <!-- Variantes optimizadas copiadas desde resources/Original_Reverso para esta ilustración de marca. -->
-        <picture>
-          <source srcset="/jesusarellano/images/brand/original-reverso.avif" type="image/avif" />
-          <source srcset="/jesusarellano/images/brand/original-reverso.webp" type="image/webp" />
-          <img
-            src="/jesusarellano/images/brand/original-reverso.png"
-            width="512"
-            height="512"
-            alt=""
-            loading="lazy"
-            decoding="async"
-          />
-        </picture>
+        <!-- Astro genera variantes responsivas desde resources/Original_Reverso.png. -->
+        <Picture src={aboutIllustration} formats={['avif', 'webp']} fallbackFormat="webp"
+          widths={[250, 500]} sizes="(max-width: 48rem) 65vw, 400px" alt=""
+          loading="eager" decoding="async" data-section-illustration />
       </div>
     </header>
 
